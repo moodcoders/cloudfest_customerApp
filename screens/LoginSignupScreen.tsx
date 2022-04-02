@@ -1,11 +1,19 @@
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import NumberVerification from '../components/Verification/NumberVerification';
-
-const LoginSignup = () => {
-  console.log(Dimensions.get('window'));
-
+import { Display } from '../utils';
+const LoginSignupScreen = () => {
+  // const Dimension = Dimensions.get('screen');
+  // console.log(Display.setHeight);
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -26,7 +34,13 @@ const LoginSignup = () => {
           style={(styles.image, styles.handymanImg)}
           source={require('../assets/images/handymanImg.png')}
         />
-        <NumberVerification />
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'android' ? 'padding' : 'height'}
+          // style={styles.container}
+        >
+          <NumberVerification />
+        </KeyboardAvoidingView>
+
         <View style={styles.borderContainer}>
           <View style={styles.border} />
           <Text style={styles.borderText}>Or</Text>
@@ -41,21 +55,19 @@ const LoginSignup = () => {
           <FontAwesome name='google' size={34} color='black' />
           <MaterialIcons name='facebook' size={34} color='blue' />
         </View>
-        <Text style={styles.bottomText}>Already have an account?</Text>
       </View>
     </SafeAreaView>
   );
 };
 
-export default LoginSignup;
+export default LoginSignupScreen;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 0,
     height: '100%',
-    // paddingTop: 70,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white', //need to be removed
   },
   image: {
     height: 126,
@@ -65,28 +77,28 @@ const styles = StyleSheet.create({
     color: 'grey',
     fontSize: 18,
     fontWeight: 'bold',
-    marginTop: 3,
+    marginTop: '2%',
   },
   secondaryText: {
     color: 'black',
-    marginTop: 50,
+    marginTop: '10%',
   },
   thirdText: {
     color: 'blue',
-    marginTop: 3,
+    marginTop: '3%',
   },
   handymanImg: {
-    marginTop: 10,
+    marginTop: '8%',
     height: 126,
     width: 112,
   },
   borderContainer: {
-    marginTop: 40,
+    marginTop: '9%',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
   border: {
-    width: '40%',
+    width: '46%',
     borderBottomWidth: 1,
   },
   borderText: {
@@ -95,14 +107,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   borderDown: {
-    marginTop: 10,
+    marginTop: '3%',
     fontSize: 15,
     fontWeight: 'normal',
   },
   socialIcon: {
-    marginTop: 15,
-  },
-  bottomText: {
-    marginTop: 10,
+    marginTop: '3%',
   },
 });

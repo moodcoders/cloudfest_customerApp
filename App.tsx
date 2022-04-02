@@ -6,11 +6,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
-import LoginSignup from './screens/LoginSignup';
-import Otp from './components/Verification/Otp';
+import LoginSignupScreen from './screens/LoginSignupScreen';
+import OtpVerification from './components/Verification/OtpVerification';
+import NumberVerification from './components/Verification/NumberVerification';
 
 type StackParamList = {
-  LoginSignup: undefined;
+  LoginSignupScreen: undefined;
 };
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -23,20 +24,28 @@ const App = () => {
   } else {
     return (
       <SafeAreaProvider>
-        {/* <LoginSignup /> */}
+        <LoginSignupScreen />
         {/* <StatusBar /> */}
         {/* <Navigation colorScheme={colorScheme} /> */}
-        {/* <Otp /> */}
-        <NavigationContainer>
+        {/* <OtpVerification
+          params={{
+            phoneNumber: undefined,
+          }}
+        /> */}
+        {/* <NumberVerification /> */}
+        {/* <NavigationContainer>
           <Stack.Navigator
-            initialRouteName='LoginSignup'
+            initialRouteName='LoginSignupScreen'
             screenOptions={{
               headerShown: false,
             }}
           >
-            <Stack.Screen name='LoginSignup' component={LoginSignup} />
+            <Stack.Screen
+              name='LoginSignupScreen'
+              component={LoginSignupScreen}
+            />
           </Stack.Navigator>
-        </NavigationContainer>
+        </NavigationContainer> */}
       </SafeAreaProvider>
     );
   }

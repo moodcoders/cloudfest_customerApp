@@ -1,93 +1,4 @@
-// import React, { useState, useRef } from 'react';
-// import { StyleSheet, View, TouchableOpacity, Text, Alert } from 'react-native';
-// import PhoneInput from 'react-native-phone-number-input';
-// import { Colors } from 'react-native/Libraries/NewAppScreen';
-// import Otp from './Otp';
-
-// const NumberVerification = () => {
-//   const [value, setValue] = useState('');
-//   const [otpPage, setOtpPage] = useState(false);
-//   const [formattedValue, setFormattedValue] = useState('');
-//   const phoneInput = useRef<PhoneInput>(null);
-
-//   //Method to show Otp page
-//   const showOtpPage = () => {
-//     setOtpPage(!otpPage);
-//   };
-
-//   return (
-//     <>
-//       <View style={styles.container}>
-//         <PhoneInput
-//           ref={phoneInput}
-//           defaultValue={value}
-//           defaultCode='IN'
-//           layout='first'
-//           onChangeText={(text) => {
-//             setValue(text);
-//           }}
-//           onChangeFormattedText={(text) => {
-//             setFormattedValue(text);
-//           }}
-//           countryPickerProps={{ withAlphaFilter: true }}
-//           withShadow
-//           autoFocus
-//         />
-
-//         <TouchableOpacity
-//           style={styles.button}
-//           onPress={() => {
-//             showOtpPage();
-//             console.log(otpPage);
-//           }}
-//         >
-//           <Text style={styles.buttonText}>Login / Signup</Text>
-//         </TouchableOpacity>
-//         {otpPage ? alert('<Otp />') : null}
-//       </View>
-//     </>
-//   );
-// };
-
-// export default NumberVerification;
-
-// const styles = StyleSheet.create({
-//   container: {
-//     alignItems: 'center',
-//     marginTop: 10,
-//   },
-//   button: {
-//     marginTop: 20,
-//     height: 50,
-//     width: 320,
-//     borderRadius: 9.49,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#35B2E6',
-//     shadowColor: 'rgba(0,0,0,0.4)',
-//     shadowOffset: {
-//       width: 1,
-//       height: 5,
-//     },
-//     shadowOpacity: 0.34,
-//     shadowRadius: 6.27,
-//     elevation: 10,
-//   },
-//   buttonText: {
-//     color: 'white',
-//     fontSize: 24,
-//   },
-//   message: {
-//     borderWidth: 1,
-//     borderRadius: 5,
-//     padding: 20,
-//     marginBottom: 20,
-//     justifyContent: 'center',
-//     alignItems: 'flex-start',
-//   },
-// });
-
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -96,15 +7,136 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
-  FlatList,
 } from 'react-native';
+import Colors from '../../constants/Colors';
+import { Display } from '../../utils';
 
 const NumberVerification = () => {
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [isValidNumberFlag, setValidNumberFlag] = useState<Boolean>(false);
+
+  function validatePhoneNumber(number: string): Boolean {
+    const regexp = new RegExp('^[0-9]{1,10}$');
+    return regexp.test(number);
+  }
+
+  function onChangeHandler(text: string) {
+    // console.log(text);
+    let res = validatePhoneNumber(text);
+    setValidNumberFlag(res);
+    setPhoneNumber(text);
+  }
+
   return (
-    <View>
-      <Text>NumberVerification</Text>
+    <View style={styles.container}>
+      <StatusBar
+        barStyle='dark-content'
+        backgroundColor={Colors.DEFAULT_WHITE}
+        translucent
+      />
+      <View style={styles.inputsContainer}>
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity style={styles.countryListContainer}>
+            <Image
+              style={styles.image}
+              source={require('../../assets/images/india.png')}
+            />
+            <Text style={styles.countryCodeText}>{'+91'}</Text>
+          </TouchableOpacity>
+          <View style={styles.phoneInputContainer}>
+            <TextInput
+              maxLength={10}
+              placeholder='Phone Number'
+              placeholderTextColor={Colors.DEFAULT_GREY}
+              selectionColor={Colors.DEFAULT_GREY}
+              keyboardType='number-pad'
+              style={styles.inputText}
+              // value={inputNumber}
+              onChangeText={onChangeHandler}
+            />
+          </View>
+        </View>
+        <Text style={styles.verificationText}>
+          {phoneNumber.length !== 0
+            ? isValidNumberFlag
+              ? ''
+              : 'Invalid'
+            : null}
+        </Text>
+      </View>
+      <TouchableOpacity
+        style={[styles.signinButton, { alignSelf: 'center' }]}
+        activeOpacity={0.8}
+        // onPress={() => navigation.navigate('Verification', { phoneNumber })}
+      >
+        <Text style={styles.signinButtonText}>Contiue</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 export default NumberVerification;
+
+const styles = StyleSheet.create({
+  container: {
+    // flex: 1,
+    backgroundColor: Colors.DEFAULT_WHITE,
+  },
+  inputsContainer: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    marginVertical: '5%',
+  },
+  countryListContainer: {
+    backgroundColor: Colors.LIGHT_GREY,
+    width: Display.setWidth(22),
+    marginRight: 5,
+    borderRadius: 8,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    borderColor: Colors.LIGHT_GREY2,
+    flexDirection: 'row',
+  },
+  image: {
+    height: 35,
+    width: 30,
+    borderRadius: 50,
+  },
+  countryCodeText: {
+    fontSize: 16,
+    color: Colors.DEFAULT_BLACK,
+  },
+  phoneInputContainer: {
+    backgroundColor: Colors.LIGHT_GREY,
+    borderRadius: 8,
+    borderColor: Colors.LIGHT_GREY2,
+    width: '70%',
+    height: '100%',
+  },
+  inputText: {
+    fontSize: 18,
+    height: Display.setHeight(6),
+    marginLeft: 10,
+
+    color: Colors.DEFAULT_BLACK,
+    letterSpacing: 1,
+  },
+  verificationText: {
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  signinButton: {
+    backgroundColor: Colors.DEFAULT_GREEN,
+    borderRadius: 8,
+    height: Display.setHeight(6),
+    width: Display.setWidth(50),
+
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  signinButtonText: {
+    fontSize: 18,
+    lineHeight: 18 * 1.4,
+    color: Colors.DEFAULT_WHITE,
+  },
+});
