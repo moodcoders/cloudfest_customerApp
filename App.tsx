@@ -1,7 +1,8 @@
-import { StripeProvider } from '@stripe/stripe-react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import useCachedResources from './hooks/useCachedResources';
+import { StripeProvider }  from '@stripe/stripe-react-native';
+
 import NavigationTwo from './navigation/Navigation';
+import useCachedResources from './hooks/useCachedResources';
 
 /**
  * Contains the nescessary parent components and navigation component
@@ -9,6 +10,7 @@ import NavigationTwo from './navigation/Navigation';
  * @returns JSX.Element
  *
  */
+const StripeProvider2 : any = StripeProvider
 
 export default function App() {
 
@@ -19,9 +21,9 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider style={{ marginTop: 40 }}>
-        <StripeProvider publishableKey='pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5'>
+        <StripeProvider2 publishableKey = 'pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5'>
           <NavigationTwo />
-        </StripeProvider>
+        </StripeProvider2>
       </SafeAreaProvider>
     );
   }

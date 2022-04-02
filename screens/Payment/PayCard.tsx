@@ -1,15 +1,14 @@
+import Icon2 from 'react-native-vector-icons/FontAwesome';
 import { StyleSheet } from "react-native";
-import Icon2  from 'react-native-vector-icons/FontAwesome';
-import { View, Text } from "../../components/Themed";
+
+import { Text, View } from "../../components/Themed";
 
 interface PayCardParams {
     icon: string,
     name: string,
     color: string,
-    setStripeTab ?: any,
-    setBookingDone ?: any,
-    n ?: string,
-    navigation : any
+    page: string,
+    navigation: any
 };
 
 /**
@@ -18,22 +17,19 @@ interface PayCardParams {
  * @param icon - the icon displayed on the card
  * @param name - name of the card
  * @param color - color of the icon
- * @param n - determines the current active card
+ * @param page - the next page that the card will lead to
  * @param navigation - object that contains react-navigation methods
  * 
  * @returns JSX.Element
  *
  */
-
-const PayCard = ({icon, name, color, n, navigation}: PayCardParams ) =>{
-    return(
+const PayCard = ({ icon, name, color, page, navigation }: PayCardParams) => {
+    return (
         <View style={styles.cardContainer}>
-            <Icon2 name={icon} size={30} color={color} style={styles.cardIcon}/>
+            <Icon2 name={icon} size={30} color={color} style={styles.cardIcon} />
             <Text style={styles.cardText}> {name} </Text>
-            { n==='1'?
-                <Icon2 name='circle-thin' color='#E7EBED' style={styles.cardIcon} onPress={() => navigation.navigate("StripeCard") }/> :
-                <Icon2 name='circle-thin' color='#E7EBED' style={styles.cardIcon} onPress={() =>  navigation.navigate("BookingDone") }/> 
-            }
+            <Icon2 name='circle-thin' color='#E7EBED' style={styles.cardIcon}
+                    onPress={() => navigation.navigate(page)} /> 
         </View>
     )
 };
@@ -41,25 +37,25 @@ const PayCard = ({icon, name, color, n, navigation}: PayCardParams ) =>{
 export default PayCard;
 
 const styles = StyleSheet.create({
-    cardContainer :{
+    cardContainer: {
         borderRadius: 10,
         //backgroundColor:'white',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems:'center',
+        alignItems: 'center',
         width: '95%',
         padding: 13,
-        borderColor:'#E7EBED',
+        borderColor: '#E7EBED',
         borderWidth: 2.5,
-        borderTopWidth:0,
+        borderTopWidth: 0,
         marginBottom: 5
     },
-    cardText :{
+    cardText: {
         color: '#234C7D',
-        fontSize : 18,
+        fontSize: 18,
     },
-    cardIcon :{
+    cardIcon: {
         fontSize: 35
     }
 });

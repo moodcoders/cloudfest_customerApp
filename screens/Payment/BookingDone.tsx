@@ -1,6 +1,9 @@
-import { Button, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/AntDesign';
-import { View, Text } from "../../components/Themed";
+import { Button, Image, StyleSheet, TouchableOpacity } from "react-native";
+
+const mobileImage = require('../../pictures/mobile.jpg');
+const thankYouImage = require('../../pictures/ty.jpg');
+import { Text, View } from "../../components/Themed";
 
 interface BookingInterface {
     navigation: any,
@@ -24,19 +27,20 @@ const BookingDone = ({ navigation }: BookingInterface) => {
                 color='#36475A'
                 style={{ fontSize: 35, alignSelf: 'flex-end', margin: "5%" }}
             />
-            <Text style={styles.bookingText}><Image source={require('../../pictures/mobile.jpg')} />
-                Booking {'\n'}                Confirmed !
+            <Text style={styles.bookingText}>
+                <Image source={mobileImage} />
+                Booking {'\n'}               Confirmed !
             </Text>
-            <Image source={require('../../pictures/ty.jpg')} />
+            <Image source={thankYouImage} />
             <Text style={styles.thanksText}> Thank you for Booking.
                 <Text style={{ color: 'black' }}> {'\n'}Your Booking Number is bg6789p0</Text>
             </Text>
-            <View style={styles.Bbutton}>
+            <View style={styles.Backbutton}>
                 <TouchableOpacity>
                     <Button title='Back to Home Page' onPress={() => navigation.navigate("PayPage")} />
                 </TouchableOpacity>
             </View>
-            <View style={styles.Bbutton}>
+            <View style={styles.Backbutton}>
                 <TouchableOpacity>
                     <Button title='View Booking Details' onPress={() => console.log('booking details')} color='#A89DEC' />
                 </TouchableOpacity>
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
     imagePhone: {
         width: 20
     },
-    Bbutton: {
+    Backbutton: {
         width: '80%',
         height: '10%'
     }

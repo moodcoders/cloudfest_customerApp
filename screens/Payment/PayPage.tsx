@@ -1,8 +1,8 @@
 import Icons from 'react-native-vector-icons/Ionicons';
 import { StyleSheet } from "react-native";
-import { View, Text } from "../../components/Themed";
 
 import PayCard from "./PayCard";
+import { Text, View } from "../../components/Themed";
 
 /**
  * Displayes The card components for payment and the total payment information
@@ -11,13 +11,13 @@ import PayCard from "./PayCard";
  * 
  * @returns JSX.Element
  */
-
 const PayPage = ({ navigation }: any) => {
     return (
         <>
             <Text style={styles.payHeading}>
                 <Text style={{ fontWeight: 'bold' }}>SMART</Text>
-                SERVICES</Text>
+                SERVICES
+            </Text>
             <Icons
                 name='chevron-back-circle'
                 onPress={() => console.log('back button press')}
@@ -25,13 +25,13 @@ const PayPage = ({ navigation }: any) => {
                 style={{ fontSize: 35, margin: 10, marginBottom: 0 }}
             />
             <Text style={styles.payment}>
-
-                Make Payment</Text>
+                Make Payment
+            </Text>
             <View style={styles.payContainer}>
-                <PayCard icon='cc-mastercard' name='Credit Card' color='#FF5E02' n='1' navigation={navigation} />
-                <PayCard icon='google' name='Google Pay' color='#4285F4' navigation={navigation} />
-                <PayCard icon='inr' name='UPI' color='#599BD8' navigation={navigation} />
-                <PayCard icon='money' name='Cash' color='#65CF53' n='4' navigation={navigation} />
+                <PayCard icon='cc-mastercard' name='Credit Card' color='#FF5E02' page='StripeCard' navigation={navigation} />
+                <PayCard icon='google' name='Google Pay' color='#4285F4' navigation={navigation} page='BookingDone'/>
+                <PayCard icon='inr' name='UPI' color='#599BD8' navigation={navigation} page='BookingDone' />
+                <PayCard icon='money' name='Cash' color='#65CF53' page='BookingDone' navigation={navigation} />
                 <View style={styles.paymentSlip}>
                     <Text style={styles.slipHeading}> Charge Details</Text>
                     <Text style={styles.Servicecharge}> Service Charge                  Rs. 200</Text>
