@@ -5,10 +5,9 @@ import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import { View, Text } from "../../components/Themed"
 
 
-//ADD localhost address of your server
-const API_URL = "http://192.168.1.25:3000";
+const API_URL = "http://192.168.0.113:3000";
 
-const StripeApp = ({setStripeTab, setBookingDone }) => {
+const StripeApp = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [cardDetails, setCardDetails] = useState();
   const { confirmPayment, loading } = useConfirmPayment();
@@ -25,7 +24,6 @@ const StripeApp = ({setStripeTab, setBookingDone }) => {
   };
 
   const handlePayPress = async () => {
-    //1.Gather the customer's billing information (e.g., email)
     if (!cardDetails?.complete || !email) {
       Alert.alert("Please enter Complete card details and Email");
       return;
@@ -33,10 +31,8 @@ const StripeApp = ({setStripeTab, setBookingDone }) => {
     const billingDetails = {
       email: email,
     };
-    //2.Fetch the intent client secret from the backend
     try {
       const { clientSecret, error } = await fetchPaymentIntentClientSecret();
-      //2. confirm the payment
       if (error) {
         console.log("Unable to process payment");
       } else {
@@ -49,20 +45,24 @@ const StripeApp = ({setStripeTab, setBookingDone }) => {
         } else if (paymentIntent) {
           alert("Payment Successful");
           console.log("Payment successful ", paymentIntent);
-          setStripeTab( false );
-          setBookingDone( true );
+          navigation.navigate("BookingDone")
         }
       }
     } catch (e) {
       console.log(e.message);
     }
-    //3.Confirm the payment with the card details
   };
 
   return (
     <>
       <Text style={styles.payHeading}>  <Text style={{ fontWeight: 'bold' }}>SMART</Text>SERVICES   </Text>
-      <Text style={styles.payment}> Enter your card details </Text>
+      <Icons
+        name='chevron-back-circle'
+        onPress={() => navigation.navigate("PayPage")}
+        color='#35B2E6'
+        style={{ fontSize: 40, marginLeft: "5%" }}
+      />
+      <Text style={styles.payment}> Card Details</Text>
       <View style={styles.container}>
         <TextInput
           autoCapitalize="none"
@@ -74,7 +74,7 @@ const StripeApp = ({setStripeTab, setBookingDone }) => {
         <CardField
           postalCodeEnabled={true}
           placeholder={{
-            number: "4242 4562 4587 4587",
+            number: "4242 ...",
           }}
           cardStyle={styles.card}
           style={styles.cardContainer}
@@ -84,16 +84,12 @@ const StripeApp = ({setStripeTab, setBookingDone }) => {
         />
         <Button onPress={handlePayPress} title="Pay" disabled={loading} />
       </View>
-      <Icons
-        name='chevron-back-circle'
-        onPress={() =>  setStripeTab(false)}
-        color='#BBD0FA'
-        style={{ fontSize: 45, alignSelf:"flex-end"}}
-      />
     </>
   );
 };
 export default StripeApp;
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -101,14 +97,14 @@ const styles = StyleSheet.create({
     borderWidth: 2.5,
     borderRadius: 10,
     width: '95%',
-    margin: '5%',
+    margin: '2.5%',
     padding: '5%'
   },
   payment: {
     color: '#234C7D',
     fontSize: 25,
-    margin: "5%",
-    marginLeft: "1%"
+    margin: "3%",
+    alignSelf: "center"
   },
   payHeading: {
     color: '#234C7D',
@@ -119,7 +115,6 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#efefefef",
-
     borderRadius: 8,
     fontSize: 20,
     height: 50,

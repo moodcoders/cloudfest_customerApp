@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Image } from "react-native" // ' text and view from '../components/themed'
+import { StyleSheet } from "react-native" // ' text and view from '../components/themed'
 import Icon2  from 'react-native-vector-icons/FontAwesome';
 import { View, Text } from "../../components/Themed"
 
@@ -9,22 +9,27 @@ interface PayCardParams {
     color: string,
     setStripeTab ?: any,
     setBookingDone ?: any,
-    n ?: string
+    n ?: string,
+    navigation : any
 }
-const PayCard = ({icon, name, color, setStripeTab, setBookingDone, n}: PayCardParams) =>{
+
+const PayCard = ({icon, name, color, n, navigation}: PayCardParams ) =>{
     return(
         <View style={styles.cardContainer}>
             <Icon2 name={icon} size={30} color={color} style={styles.cardIcon}/>
             <Text style={styles.cardText}> {name} </Text>
             { n==='1'?
-                <Icon2 name='circle-thin' color='#E7EBED' style={styles.cardIcon} onPress={() =>{ setStripeTab(true) } }/> :
-                <Icon2 name='circle-thin' color='#E7EBED' style={styles.cardIcon} onPress={() =>{ setBookingDone(true); console.log('booking done thingy') } }/> 
+                <Icon2 name='circle-thin' color='#E7EBED' style={styles.cardIcon} onPress={() => navigation.navigate("StripeCard") }/> :
+                <Icon2 name='circle-thin' color='#E7EBED' style={styles.cardIcon} onPress={() =>  navigation.navigate("BookingDone") }/> 
             }
         </View>
     )
 }
 
 export default PayCard
+
+
+
 
 const styles = StyleSheet.create({
     cardContainer :{
