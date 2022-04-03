@@ -5,7 +5,13 @@ import { Feather } from '@expo/vector-icons';
 
 import SuggestionServies from '../components/SuggestionServies';
 
-function ServicePage() {
+/**
+ * Servicespage Displayes  Services provided by the platform
+ * 
+ * @returns JSX.Elements
+ */
+
+const ServicePage = () => {
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
     return (
@@ -18,7 +24,6 @@ function ServicePage() {
                 <Text style={styles.locationSelection}>
                     implement later
                 </Text>
-
                 <View style={[styles.container, styles.shadowProp]}>
                     {/* Search Icon */}
                     <Feather
@@ -35,7 +40,6 @@ function ServicePage() {
                         value={searchQuery}
                     />
                 </View>
-
                 <Text style={styles.subTitle}>Get your work done.{"\n"}Choose Services</Text>
                 <SuggestionServies />
             </View>

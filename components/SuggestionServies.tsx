@@ -2,38 +2,53 @@ import React from 'react';
 import { Image, ScrollView, StyleSheet } from 'react-native';
 import { Text, View } from './Themed';
 
+// Importing  images and name from  dataStore
 import DataServices from '../DataStore/DataService';
-interface MemberProp {
-    img: any,
-    name: String
-};
 
-function Member(props: MemberProp) {
-    return (
-        <View style={{ backgroundColor: 'transparent', alignItems: 'center', }}>
-            <Image source={props.img} style={styles.serviceImage} />
-            <Text style={styles.serviceName}>{props.name}</Text>
-        </View>
-    );
-};
 interface serviceProp {
     name: String,
-    img: any
+    img: any,
 };
 interface listOfServicesProp {
     serviceList: serviceProp[]
 }
 
+// ListOfSerives is maping Image and name 
 function ListOfServices(props: listOfServicesProp) {
     return (
         <>
-            {props.serviceList.map((s: serviceProp, i) => (
-                <Member key={i} name={s.name} img={s.img} />
+            {props.serviceList.map((elements: serviceProp, index) => (
+                <Member key={index} name={elements.name} img={elements.img} />
             ))}
         </>
     );
+}
+
+interface MemberProp {
+    img: any,
+    name: String
 };
 
+/**
+ * 
+ * @param props - Displayes Image and Name in the components using the params passed
+ * @returns JSX.Elements
+ */
+function Member(props: MemberProp) {
+    return (
+        <View style={{ backgroundColor: 'transparent', alignItems: 'center' }}>
+            <Image source={props.img} style={styles.serviceImage} />
+            <Text style={styles.serviceName}>{props.name}</Text>
+        </View>
+    );
+};
+
+/**
+ * SuggestionServies  Provides recommendations for service.
+ * 
+ * @returns JSX Elements
+ * 
+ */
 const SuggestionServies = () => {
     return (
         < ScrollView >
