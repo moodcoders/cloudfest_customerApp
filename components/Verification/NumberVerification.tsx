@@ -9,7 +9,7 @@ import {
   TextInput,
 } from 'react-native';
 import Colors from '../../constants/Colors';
-import { Display } from '../../utils';
+import { Display } from '../../constants';
 
 const NumberVerification = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -30,7 +30,7 @@ const NumberVerification = () => {
   return (
     <View style={styles.container}>
       <StatusBar
-        barStyle='dark-content'
+        barStyle="dark-content"
         backgroundColor={Colors.DEFAULT_WHITE}
         translucent
       />
@@ -46,10 +46,10 @@ const NumberVerification = () => {
           <View style={styles.phoneInputContainer}>
             <TextInput
               maxLength={10}
-              placeholder='Phone Number'
+              placeholder="Phone Number"
               placeholderTextColor={Colors.DEFAULT_GREY}
               selectionColor={Colors.DEFAULT_GREY}
-              keyboardType='number-pad'
+              keyboardType="number-pad"
               style={styles.inputText}
               // value={inputNumber}
               onChangeText={onChangeHandler}

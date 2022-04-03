@@ -142,10 +142,10 @@ const Navigators = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen
-          name='NumberVerification'
+          name="NumberVerification"
           component={NumberVerification}
         />
-        <Stack.Screen name='OtpVerification' component={OtpVerification} />
+        <Stack.Screen name="OtpVerification" component={OtpVerification} />
       </Stack.Navigator>
     </NavigationContainer>
   );

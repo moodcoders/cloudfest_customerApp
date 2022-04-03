@@ -1,26 +1,15 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Dimensions,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
+
 import NumberVerification from '../components/Verification/NumberVerification';
-import { Display } from '../utils';
+import Smartservice from '../assets/images/smartservice.png';
+import HandymanImg from '../assets/images/handymanImg.png';
 const LoginSignupScreen = () => {
-  // const Dimension = Dimensions.get('screen');
-  // console.log(Display.setHeight);
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={require('../assets/images/smartservice.png')}
-        />
+        <Image style={styles.image} source={Smartservice} />
         <Text style={styles.primaryText}>Smart. Resonable. Trusted</Text>
         <Text style={[styles.primaryText, styles.secondaryText]}>
           Home Services By Our
@@ -32,14 +21,9 @@ const LoginSignupScreen = () => {
         </Text>
         <Image
           style={(styles.image, styles.handymanImg)}
-          source={require('../assets/images/handymanImg.png')}
+          source={HandymanImg}
         />
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'android' ? 'padding' : 'height'}
-          // style={styles.container}
-        >
-          <NumberVerification />
-        </KeyboardAvoidingView>
+        <NumberVerification />
 
         <View style={styles.borderContainer}>
           <View style={styles.border} />
@@ -52,8 +36,8 @@ const LoginSignupScreen = () => {
           Sign Up With
         </Text>
         <View style={[styles.borderContainer, styles.socialIcon]}>
-          <FontAwesome name='google' size={34} color='black' />
-          <MaterialIcons name='facebook' size={34} color='blue' />
+          <FontAwesome name="google" size={34} color="black" />
+          <MaterialIcons name="facebook" size={34} color="blue" />
         </View>
       </View>
     </SafeAreaView>

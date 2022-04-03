@@ -10,9 +10,9 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Colors from '../../constants/Colors';
 import Separator from '../Separator';
-import { Display } from '../../utils';
+import { Display } from '../../constants';
 
-const OtpVerification = () => {
+const OtpVerification = ({ navigation }: any) => {
   const firstInput = useRef<any>(null);
   const secondInput = useRef<any>(null);
   const thirdInput = useRef<any>(null);
@@ -24,14 +24,14 @@ const OtpVerification = () => {
   return (
     <View style={styles.container}>
       <StatusBar
-        barStyle='dark-content'
+        barStyle="dark-content"
         backgroundColor={Colors.DEFAULT_WHITE}
         translucent
       />
       <Separator height={StatusBar.currentHeight} />
       <View style={styles.headerContainer}>
         <Ionicons
-          name='chevron-back-outline'
+          name="chevron-back-outline"
           size={30}
           onPress={() => navigation.goBack()}
         />
@@ -46,7 +46,7 @@ const OtpVerification = () => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType='number-pad'
+            keyboardType="number-pad"
             maxLength={1}
             ref={firstInput}
             onChangeText={(text) => {
@@ -58,7 +58,7 @@ const OtpVerification = () => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType='number-pad'
+            keyboardType="number-pad"
             maxLength={1}
             ref={secondInput}
             onChangeText={(text) => {
@@ -70,7 +70,7 @@ const OtpVerification = () => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType='number-pad'
+            keyboardType="number-pad"
             maxLength={1}
             ref={thirdInput}
             onChangeText={(text) => {
@@ -82,7 +82,7 @@ const OtpVerification = () => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType='number-pad'
+            keyboardType="number-pad"
             maxLength={1}
             ref={fourthInput}
             onChangeText={(text) => {
@@ -94,7 +94,7 @@ const OtpVerification = () => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType='number-pad'
+            keyboardType="number-pad"
             maxLength={1}
             ref={fifthInput}
             onChangeText={(text) => {
@@ -106,7 +106,7 @@ const OtpVerification = () => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType='number-pad'
+            keyboardType="number-pad"
             maxLength={1}
             ref={sixthInput}
             onChangeText={(text) => {
