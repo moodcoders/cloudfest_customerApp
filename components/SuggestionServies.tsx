@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, Image, Text, ScrollView } from 'react-native';
-import DataServices from '../DataStore/DataService';
-import { View } from './Themed';
+import { Image, ScrollView, StyleSheet } from 'react-native';
+import { Text, View } from './Themed';
 
+import DataServices from '../DataStore/DataService';
 interface MemberProp {
     img: any,
     name: String
-}
+};
 
 function Member(props: MemberProp) {
     return (
@@ -15,13 +15,11 @@ function Member(props: MemberProp) {
             <Text style={styles.serviceName}>{props.name}</Text>
         </View>
     );
-}
-
+};
 interface serviceProp {
     name: String,
     img: any
-}
-
+};
 interface listOfServicesProp {
     serviceList: serviceProp[]
 }
@@ -29,12 +27,12 @@ interface listOfServicesProp {
 function ListOfServices(props: listOfServicesProp) {
     return (
         <>
-            {props.serviceList.map((s: serviceProp) => (
-                <Member name={s.name} img={s.img} />
+            {props.serviceList.map((s: serviceProp, i) => (
+                <Member key={i} name={s.name} img={s.img} />
             ))}
         </>
     );
-}
+};
 
 const SuggestionServies = () => {
     return (
@@ -45,7 +43,6 @@ const SuggestionServies = () => {
         </ScrollView>
     );
 };
-
 
 const styles = StyleSheet.create({
     serviceList: {

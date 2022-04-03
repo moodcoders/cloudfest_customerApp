@@ -1,13 +1,14 @@
 import React from 'react'
-import { StyleSheet, SafeAreaView } from 'react-native';
-import SearchInput from '../components/Search/SearchBar';
-import SuggestionServies from '../components/SuggestionServies';
-import { View, Text } from '../components/Themed';
+import { SafeAreaView, StyleSheet, TextInput } from 'react-native';
+import { Text, View } from '../components/Themed';
+import { Feather } from '@expo/vector-icons';
 
+import SuggestionServies from '../components/SuggestionServies';
 
 function ServicePage() {
+    const [searchQuery, setSearchQuery] = React.useState('');
+    const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
     return (
-
         <SafeAreaView >
             <View >
                 <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
@@ -17,15 +18,30 @@ function ServicePage() {
                 <Text style={styles.locationSelection}>
                     implement later
                 </Text>
-                <SearchInput />
+
+                <View style={[styles.container, styles.shadowProp]}>
+                    {/* Search Icon */}
+                    <Feather
+                        name="search"
+                        size={20}
+                        color="#599bd8"
+                        style={{ marginLeft: 10 }}
+                    />
+                    {/* Search Input field */}
+                    <TextInput
+                        style={styles.serviceInput}
+                        placeholder="Service Name"
+                        onChangeText={onChangeSearch}
+                        value={searchQuery}
+                    />
+                </View>
+
                 <Text style={styles.subTitle}>Get your work done.{"\n"}Choose Services</Text>
                 <SuggestionServies />
             </View>
         </SafeAreaView >
     );
 };
-
-export default ServicePage;
 
 const styles = StyleSheet.create({
     title: {
@@ -59,6 +75,28 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: "#333",
     },
+    container: {
+        margin: 15,
+        justifyContent: "flex-start",
+        alignItems: "center",
+        flexDirection: "row",
+        width: "92%",
+        marginRight: 20,
+        height: 50,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+    },
+    serviceInput: {
+        fontSize: 20,
+        marginLeft: 10,
+        color: '#a6b0c5',
+    },
+    shadowProp: {
+        shadowColor: '#171717',
+        shadowOffset: { width: -2, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+    },
     subTitle: {
         color: '#234c7d',
         fontSize: 25,
@@ -66,3 +104,5 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     },
 });
+
+export default ServicePage;
