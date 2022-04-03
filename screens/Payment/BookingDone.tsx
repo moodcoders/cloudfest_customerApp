@@ -1,11 +1,19 @@
-import { View, Text } from "../../components/Themed"
-import { Button, StyleSheet, Image, TouchableOpacity } from "react-native"
+import { Button, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/AntDesign';
-
+import { View, Text } from "../../components/Themed";
 
 interface BookingInterface {
     navigation: any,
-}
+};
+
+/**
+ * Alerts the user when booking is done.
+ *
+ * @param navigation - object that contains react-navigation methods
+ * 
+ * @returns JSX.Element
+ *
+ */
 
 const BookingDone = ({ navigation }: BookingInterface) => {
     return (
@@ -16,9 +24,13 @@ const BookingDone = ({ navigation }: BookingInterface) => {
                 color='#36475A'
                 style={{ fontSize: 35, alignSelf: 'flex-end', margin: "5%" }}
             />
-            <Text style={styles.bookingText}><Image source={require('../../pictures/mobile.jpg')} /> Booking {'\n'}                Confirmed ! </Text>
+            <Text style={styles.bookingText}><Image source={require('../../pictures/mobile.jpg')} />
+                Booking {'\n'}                Confirmed !
+            </Text>
             <Image source={require('../../pictures/ty.jpg')} />
-            <Text style={styles.thanksText}> Thank you for Booking.<Text style={{ color: 'black' }}> {'\n'}Your Booking Number is bg6789p0</Text>  </Text>
+            <Text style={styles.thanksText}> Thank you for Booking.
+                <Text style={{ color: 'black' }}> {'\n'}Your Booking Number is bg6789p0</Text>
+            </Text>
             <View style={styles.Bbutton}>
                 <TouchableOpacity>
                     <Button title='Back to Home Page' onPress={() => navigation.navigate("PayPage")} />
@@ -31,11 +43,9 @@ const BookingDone = ({ navigation }: BookingInterface) => {
             </View>
         </View>
     )
-}
+};
 
-export default BookingDone
-
-
+export default BookingDone;
 
 const styles = StyleSheet.create({
     bookingPage: {
@@ -61,4 +71,4 @@ const styles = StyleSheet.create({
         width: '80%',
         height: '10%'
     }
-})
+});

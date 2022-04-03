@@ -1,16 +1,20 @@
 import { StripeProvider } from '@stripe/stripe-react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-
 import useCachedResources from './hooks/useCachedResources';
-
 import NavigationTwo from './navigation/Navigation';
 
+/**
+ * Contains the nescessary parent components and navigation component
+ *
+ * @returns JSX.Element
+ *
+ */
 
 export default function App() {
 
   const isLoadingComplete = useCachedResources();
 
-  if (!isLoadingComplete) {
+  if (isLoadingComplete === false) {
     return null;
   } else {
     return (
@@ -21,4 +25,4 @@ export default function App() {
       </SafeAreaProvider>
     );
   }
-}
+};

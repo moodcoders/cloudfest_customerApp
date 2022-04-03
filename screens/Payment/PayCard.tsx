@@ -1,7 +1,6 @@
-import { StyleSheet } from "react-native" // ' text and view from '../components/themed'
+import { StyleSheet } from "react-native";
 import Icon2  from 'react-native-vector-icons/FontAwesome';
-import { View, Text } from "../../components/Themed"
-
+import { View, Text } from "../../components/Themed";
 
 interface PayCardParams {
     icon: string,
@@ -11,7 +10,20 @@ interface PayCardParams {
     setBookingDone ?: any,
     n ?: string,
     navigation : any
-}
+};
+
+/**
+ * Displayes individual card components using the params passed 
+ *
+ * @param icon - the icon displayed on the card
+ * @param name - name of the card
+ * @param color - color of the icon
+ * @param n - determines the current active card
+ * @param navigation - object that contains react-navigation methods
+ * 
+ * @returns JSX.Element
+ *
+ */
 
 const PayCard = ({icon, name, color, n, navigation}: PayCardParams ) =>{
     return(
@@ -24,12 +36,9 @@ const PayCard = ({icon, name, color, n, navigation}: PayCardParams ) =>{
             }
         </View>
     )
-}
+};
 
-export default PayCard
-
-
-
+export default PayCard;
 
 const styles = StyleSheet.create({
     cardContainer :{
@@ -53,4 +62,4 @@ const styles = StyleSheet.create({
     cardIcon :{
         fontSize: 35
     }
-})
+});

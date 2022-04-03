@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import Icons from 'react-native-vector-icons/Ionicons';
 import { StyleSheet, TextInput, Button, Alert } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
-import { View, Text } from "../../components/Themed"
-
+import { View, Text } from "../../components/Themed";
 
 const API_URL = "http://192.168.0.113:3000";
+
+/**
+ * Carries out card payment logic in stripe also provides stripe card UI
+ *
+ * @param navigation - object that contains react-navigation methods
+ * @returns JSX.Element
+ *
+ */
 
 const StripeApp = ({ navigation }) => {
   const [email, setEmail] = useState();
@@ -45,7 +52,7 @@ const StripeApp = ({ navigation }) => {
         } else if (paymentIntent) {
           alert("Payment Successful");
           console.log("Payment successful ", paymentIntent);
-          navigation.navigate("BookingDone")
+          navigation.navigate("BookingDone");
         }
       }
     } catch (e) {
@@ -88,8 +95,6 @@ const StripeApp = ({ navigation }) => {
   );
 };
 export default StripeApp;
-
-
 
 const styles = StyleSheet.create({
   container: {

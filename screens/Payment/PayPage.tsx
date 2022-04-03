@@ -1,11 +1,18 @@
 import Icons from 'react-native-vector-icons/Ionicons';
-import { StyleSheet } from "react-native"
-import { View, Text } from "../../components/Themed"
+import { StyleSheet } from "react-native";
+import { View, Text } from "../../components/Themed";
 
 import PayCard from "./PayCard";
 
-const PayPage = ({ navigation }: any) => {
+/**
+ * Displayes The card components for payment and the total payment information
+ * 
+ * @param navigation - object that contains react-navigation methods
+ * 
+ * @returns JSX.Element
+ */
 
+const PayPage = ({ navigation }: any) => {
     return (
         <>
             <Text style={styles.payHeading}>
@@ -33,12 +40,9 @@ const PayPage = ({ navigation }: any) => {
             </View>
         </>
     )
-}
+};
 
-export default PayPage
-
-
-
+export default PayPage;
 
 const styles = StyleSheet.create({
     payHeading: {
