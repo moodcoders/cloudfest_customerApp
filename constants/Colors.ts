@@ -1,6 +1,11 @@
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
-
+/**
+ *Colors Component contain all the colors used in this project 
+ * 
+ * @returns Colors.{colorsname}
+ *
+ */
 export default {
   light: {
     text: '#000',
@@ -34,9 +39,5 @@ export default {
   FABEBOOK_BLUE: '#4A61A8',
   GOOGLE_BLUE: '#53A0F4',
   INACTIVE_GREY: '#A3A3A3',
-  DARK_ONE: '#121212',
-  DARK_TWO: '#181818',
-  DARK_THREE: '#404040',
-  DARK_FOUR: '#282828',
-  DARK_FIVE: '#B3B3B3',
+  Button_Blue: '#35B2E6'
 };

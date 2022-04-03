@@ -7,6 +7,7 @@ interface SeparatorParams {
   extraProps?: any;
 }
 
+/**Separator component can be used to separate the statusbar from the body */
 const Separator = (props: SeparatorParams) => <View style={props} />;
 
 Separator.defaultProps = {

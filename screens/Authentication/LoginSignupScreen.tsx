@@ -1,14 +1,25 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Dimensions, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
-import NumberVerification from '../components/Verification/NumberVerification';
-import Smartservice from '../assets/images/smartservice.png';
-import HandymanImg from '../assets/images/handymanImg.png';
-const LoginSignupScreen = () => {
+import NumberVerification from '../../components/NumberVerification';
+import Smartservice from '../../assets/images/smartservice.png';
+import HandymanImg from '../../assets/images/handymanImg.png';
+import { Display } from '../../constants';
+import Colors from '../../constants/Colors';
+
+/**
+ *LoginSignupScreen is the authentication page of the App
+ *
+ * @param navigation - object that contains react-navigation methods
+ *
+ * @returns JSX Elements
+ */
+const LoginSignupScreen = ({ navigation }: any) => {
+  const windowHeight = Dimensions.get('window').height;
   return (
     <SafeAreaView>
-      <View style={styles.container}>
+      <View style={[styles.container, { height: windowHeight }]}>
         <Image style={styles.image} source={Smartservice} />
         <Text style={styles.primaryText}>Smart. Resonable. Trusted</Text>
         <Text style={[styles.primaryText, styles.secondaryText]}>
@@ -23,7 +34,8 @@ const LoginSignupScreen = () => {
           style={(styles.image, styles.handymanImg)}
           source={HandymanImg}
         />
-        <NumberVerification />
+
+        <NumberVerification navigation={navigation} />
 
         <View style={styles.borderContainer}>
           <View style={styles.border} />
@@ -36,8 +48,12 @@ const LoginSignupScreen = () => {
           Sign Up With
         </Text>
         <View style={[styles.borderContainer, styles.socialIcon]}>
-          <FontAwesome name="google" size={34} color="black" />
-          <MaterialIcons name="facebook" size={34} color="blue" />
+          <FontAwesome name='google' size={40} color={Colors.GOOGLE_BLUE} />
+          <MaterialIcons
+            name='facebook'
+            size={40}
+            color={Colors.FABEBOOK_BLUE}
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -48,14 +64,13 @@ export default LoginSignupScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0,
-    height: '100%',
+    backgroundColor: Colors.DEFAULT_WHITE,
     alignItems: 'center',
     justifyContent: 'center',
   },
   image: {
-    height: 126,
-    width: 250,
+    height: Display.setHeight(16),
+    width: Display.setWidth(60),
   },
   primaryText: {
     color: 'grey',
@@ -73,8 +88,8 @@ const styles = StyleSheet.create({
   },
   handymanImg: {
     marginTop: '8%',
-    height: 126,
-    width: 112,
+    height: Display.setHeight(16),
+    width: Display.setWidth(28),
   },
   borderContainer: {
     marginTop: '9%',
@@ -91,11 +106,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   borderDown: {
-    marginTop: '3%',
+    marginTop: '3.5%',
     fontSize: 15,
-    fontWeight: 'normal',
+    fontWeight: 'bold',
   },
   socialIcon: {
-    marginTop: '3%',
+    letterSpacing: 200,
+    justifyContent: 'space-between',
+    marginTop: '6%',
   },
 });

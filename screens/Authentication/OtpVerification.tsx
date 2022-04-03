@@ -1,17 +1,25 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
   StatusBar,
+  StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import Colors from '../../constants/Colors';
-import Separator from '../Separator';
+import Separator from '../../components/Separator';
 import { Display } from '../../constants';
 
+/**
+ * OtpVerification Component is verifying the Otp send to the User
+ *
+ * @param navigation - object that contains react-navigation methods
+ *
+ * @returns JSX.Element
+ */
 const OtpVerification = ({ navigation }: any) => {
   const firstInput = useRef<any>(null);
   const secondInput = useRef<any>(null);
@@ -20,18 +28,46 @@ const OtpVerification = ({ navigation }: any) => {
   const fifthInput = useRef<any>(null);
   const sixthInput = useRef<any>(null);
 
+  const [minutes, setMinutes] = useState(4);
+  const [seconds, setSeconds] = useState(59);
+
+  useEffect(() => {
+    let timer = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(timer);
+        } else {
+          setMinutes(minutes - 1);
+          setSeconds(59);
+        }
+      }
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [seconds]);
+
+  const resendfun = () => {
+    setMinutes(4);
+    setSeconds(59);
+    console.log('Resending Otp');
+  };
+
   const [otp, setOtp] = useState({ 1: '', 2: '', 3: '', 4: '', 5: '', 6: '' });
   return (
     <View style={styles.container}>
       <StatusBar
-        barStyle="dark-content"
+        barStyle='dark-content'
         backgroundColor={Colors.DEFAULT_WHITE}
         translucent
       />
       <Separator height={StatusBar.currentHeight} />
       <View style={styles.headerContainer}>
         <Ionicons
-          name="chevron-back-outline"
+          name='chevron-back-outline'
           size={30}
           onPress={() => navigation.goBack()}
         />
@@ -46,7 +82,7 @@ const OtpVerification = ({ navigation }: any) => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType="number-pad"
+            keyboardType='number-pad'
             maxLength={1}
             ref={firstInput}
             onChangeText={(text) => {
@@ -58,7 +94,7 @@ const OtpVerification = ({ navigation }: any) => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType="number-pad"
+            keyboardType='number-pad'
             maxLength={1}
             ref={secondInput}
             onChangeText={(text) => {
@@ -70,7 +106,7 @@ const OtpVerification = ({ navigation }: any) => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType="number-pad"
+            keyboardType='number-pad'
             maxLength={1}
             ref={thirdInput}
             onChangeText={(text) => {
@@ -82,7 +118,7 @@ const OtpVerification = ({ navigation }: any) => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType="number-pad"
+            keyboardType='number-pad'
             maxLength={1}
             ref={fourthInput}
             onChangeText={(text) => {
@@ -94,7 +130,7 @@ const OtpVerification = ({ navigation }: any) => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType="number-pad"
+            keyboardType='number-pad'
             maxLength={1}
             ref={fifthInput}
             onChangeText={(text) => {
@@ -106,7 +142,7 @@ const OtpVerification = ({ navigation }: any) => {
         <View style={styles.otpBox}>
           <TextInput
             style={styles.otpText}
-            keyboardType="number-pad"
+            keyboardType='number-pad'
             maxLength={1}
             ref={sixthInput}
             onChangeText={(text) => {
@@ -116,6 +152,24 @@ const OtpVerification = ({ navigation }: any) => {
           />
         </View>
       </View>
+      <View style={styles.resendController}>
+        {minutes === 0 && seconds === 0 ? (
+          <Text style={styles.resendtext} onPress={resendfun}>
+            Resend
+          </Text>
+        ) : (
+          <Text style={styles.resendtimer}>
+            Please Wait:{'  '}
+            {`0${minutes}`}:{seconds < 10 ? `0${seconds}` : seconds}
+          </Text>
+        )}
+      </View>
+      <TouchableOpacity
+        style={styles.signinButton}
+        onPress={() => console.log(otp)}
+      >
+        <Text style={styles.signinButtonText}>Verify</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -141,9 +195,8 @@ const styles = StyleSheet.create({
   },
   content: {
     fontSize: 20,
-    // fontFamily: Fonts.POPPINS_MEDIUM,
     alignItems: 'center',
-    marginTop: '50%',
+    marginTop: '40%',
     marginBottom: 30,
     marginHorizontal: 20,
   },
@@ -153,18 +206,16 @@ const styles = StyleSheet.create({
     color: Colors.DEFAULT_YELLOW,
   },
   otpContainer: {
-    // marginHorizontal: 20,
-    // marginBottom: 20,
     justifyContent: 'space-evenly',
     alignItems: 'center',
     flexDirection: 'row',
   },
   otpBox: {
     borderBottomWidth: 1,
-    // borderRadius: 5,
-    // borderColor: Colors.DEFAULT_GREEN,
-    // borderWidth: 0.7,
+    borderRadius: 1,
+    borderColor: Colors.DEFAULT_GREEN,
   },
+
   otpText: {
     fontSize: 25,
     color: Colors.DEFAULT_BLACK,
@@ -172,19 +223,35 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
   },
+  resendController: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    paddingHorizontal: '6%',
+    paddingVertical: '5%',
+  },
+  resendtimer: {
+    fontSize: 18,
+    color: '#377BA1',
+    marginLeft: Display.setWidth(2),
+  },
+  resendtext: {
+    fontSize: 18,
+    color: Colors.DEFAULT_GREEN,
+    marginLeft: Display.setWidth(2),
+  },
   signinButton: {
-    backgroundColor: Colors.DEFAULT_GREEN,
+    backgroundColor: Colors.Button_Blue,
     borderRadius: 8,
-    marginHorizontal: 20,
+    marginHorizontal: '10%',
+
     height: Display.setHeight(6),
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: '8%',
   },
   signinButtonText: {
-    fontSize: 18,
-    lineHeight: 18 * 1.4,
+    fontSize: 20,
     color: Colors.DEFAULT_WHITE,
-    // fontFamily: Fonts.POPPINS_MEDIUM,
+    letterSpacing: 0.6,
   },
 });

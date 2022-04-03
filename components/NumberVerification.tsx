@@ -1,73 +1,92 @@
 import React, { useState } from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  StatusBar,
+  Alert,
   Image,
-  TouchableOpacity,
+  KeyboardAvoidingView,
+  StatusBar,
+  StyleSheet,
+  Text,
   TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import Colors from '../../constants/Colors';
-import { Display } from '../../constants';
 
-const NumberVerification = () => {
+import Colors from '../constants/Colors';
+import { Display } from '../constants';
+import IndianFlag from '../assets/images/india.png';
+
+/**
+ * NumberVerification Component is allowing the user to input the number for SignUp/Login
+ *
+ * @param navigation - object that contains react-navigation methods
+ *
+ * @returns JSX.Element
+ */
+const NumberVerification = ({ navigation }: any) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isValidNumberFlag, setValidNumberFlag] = useState<Boolean>(false);
 
+  /**validatePhoneNumber is a function for checking(for any special character) */
   function validatePhoneNumber(number: string): Boolean {
     const regexp = new RegExp('^[0-9]{1,10}$');
     return regexp.test(number);
   }
 
+  /**onChangeHandler is checking(for any special character) in the number entered by the user */
   function onChangeHandler(text: string) {
-    // console.log(text);
     let res = validatePhoneNumber(text);
     setValidNumberFlag(res);
     setPhoneNumber(text);
   }
 
+  /**onPressCheck is navigating the user to OtpVerification page by checking the
+   * correct format and length of a number
+   */
+  function onPressCheck() {
+    isValidNumberFlag === true && phoneNumber.length === 10
+      ? navigation.navigate('OtpVerification', { phoneNumber })
+      : Alert.alert('Enter Your Correct Phone Number');
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar
-        barStyle="dark-content"
+        barStyle='dark-content'
         backgroundColor={Colors.DEFAULT_WHITE}
         translucent
       />
-      <View style={styles.inputsContainer}>
-        <View style={{ flexDirection: 'row' }}>
-          <TouchableOpacity style={styles.countryListContainer}>
-            <Image
-              style={styles.image}
-              source={require('../../assets/images/india.png')}
-            />
-            <Text style={styles.countryCodeText}>{'+91'}</Text>
-          </TouchableOpacity>
-          <View style={styles.phoneInputContainer}>
-            <TextInput
-              maxLength={10}
-              placeholder="Phone Number"
-              placeholderTextColor={Colors.DEFAULT_GREY}
-              selectionColor={Colors.DEFAULT_GREY}
-              keyboardType="number-pad"
-              style={styles.inputText}
-              // value={inputNumber}
-              onChangeText={onChangeHandler}
-            />
+      <KeyboardAvoidingView style={styles.container} behavior='padding'>
+        <View style={styles.inputsContainer}>
+          <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity style={styles.countryListContainer}>
+              <Image style={styles.image} source={IndianFlag} />
+              <Text style={styles.countryCodeText}>{'+91'}</Text>
+            </TouchableOpacity>
+            <View style={styles.phoneInputContainer}>
+              <TextInput
+                maxLength={10}
+                placeholder='Phone Number'
+                placeholderTextColor={Colors.DEFAULT_GREY}
+                selectionColor={Colors.DEFAULT_GREY}
+                keyboardType='number-pad'
+                style={styles.inputText}
+                onChangeText={onChangeHandler}
+              />
+            </View>
           </View>
+          <Text style={styles.verificationText}>
+            {phoneNumber.length !== 0
+              ? isValidNumberFlag
+                ? ''
+                : 'Invalid'
+              : null}
+          </Text>
         </View>
-        <Text style={styles.verificationText}>
-          {phoneNumber.length !== 0
-            ? isValidNumberFlag
-              ? ''
-              : 'Invalid'
-            : null}
-        </Text>
-      </View>
+      </KeyboardAvoidingView>
       <TouchableOpacity
         style={[styles.signinButton, { alignSelf: 'center' }]}
         activeOpacity={0.8}
-        // onPress={() => navigation.navigate('Verification', { phoneNumber })}
+        onPress={onPressCheck}
       >
         <Text style={styles.signinButtonText}>Contiue</Text>
       </TouchableOpacity>
@@ -79,7 +98,6 @@ export default NumberVerification;
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     backgroundColor: Colors.DEFAULT_WHITE,
   },
   inputsContainer: {
