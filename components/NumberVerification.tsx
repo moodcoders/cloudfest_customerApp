@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Alert,
   Image,
@@ -15,6 +15,8 @@ import Colors from '../constants/Colors';
 import { Display } from '../constants';
 import IndianFlag from '../assets/images/india.png';
 
+const OtpAPI = 'http://192.168.1.11:4000/auth/otp/generate-otp';
+
 /**
  * NumberVerification Component is allowing the user to input the number for SignUp/Login
  *
@@ -25,6 +27,20 @@ import IndianFlag from '../assets/images/india.png';
 const NumberVerification = ({ navigation }: any) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isValidNumberFlag, setValidNumberFlag] = useState<Boolean>(false);
+
+  const generateOtpAPI = async () => {
+    const response = await fetch(OtpAPI, {
+      method: 'Post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        mobileNumber: phoneNumber,
+      }),
+    }).then((response) => response.json());
+    Alert.alert('OTP send to your Given Number');
+  };
 
   /**validatePhoneNumber is a function for checking(for any special character) */
   function validatePhoneNumber(number: string): Boolean {
@@ -43,7 +59,11 @@ const NumberVerification = ({ navigation }: any) => {
    * correct format and length of a number
    */
   function onPressCheck() {
-    isValidNumberFlag === true && phoneNumber.length === 10
+    (
+      isValidNumberFlag === true && phoneNumber.length === 10
+        ? generateOtpAPI()
+        : null
+    )
       ? navigation.navigate('OtpVerification', { phoneNumber })
       : Alert.alert('Enter Your Correct Phone Number');
   }
