@@ -1,14 +1,16 @@
-import React from 'react'
-import { StyleSheet, SafeAreaView, Image, ScrollView } from 'react-native';
-import ButtonComponents from '../components/Button';
+import React from 'react';
+// import all the components we are going to use
+import { StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { View, Text } from '../components/Themed';
-import handymanIcon from '../assets/images/handyman.png'
+
+import handymanIcon from '../assets/images/handyman.png';
+
 import ServicesList from '../components/ServicesList';
 import HandymanList from '../components/HandymanList';
 
 const HomePage = () => {
     return (
-        <SafeAreaView>
+        <View>
             <View >
                 <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(0, 0, 0, 0.22)" />
@@ -17,7 +19,9 @@ const HomePage = () => {
                 <View style={styles.homePadding} lightColor="#fff" darkColor="rgba(0, 0, 0, 0.22)">
                     <Text style={styles.ClintName}> Hi! Md Ghazanfar</Text>
                     <Text style={styles.subTitle}>What service do{"\n"}you need?</Text>
-                    <ButtonComponents />
+                    <TouchableOpacity style={styles.serviceBtn}>
+                        <Text style={styles.btnName}>Get Started</Text>
+                    </TouchableOpacity>
                     <Image source={handymanIcon} style={styles.serviceImage} />
                     <Text style={styles.listName} >Category</Text>
                     <ServicesList />
@@ -25,14 +29,13 @@ const HomePage = () => {
                     <HandymanList />
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 };
 
-export default HomePage;
-
 const styles = StyleSheet.create({
     title: {
+
         color: '#234c7d',
         textAlign: 'center',
         fontSize: 20,
@@ -67,9 +70,25 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         marginTop: -100
     },
+    serviceBtn: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        borderRadius: 20,
+        backgroundColor: '#c9dafa',
+        width: '50%',
+        marginTop: 15,
+    },
+    btnName: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#333',
+    },
     listName: {
         fontSize: 25,
         color: "#335580",
         fontWeight: 'bold',
     }
 });
+
+export default HomePage;

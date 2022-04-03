@@ -16,14 +16,10 @@ import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import TabThreeScreen from '../screens/TabThreeScreen';
-import Home from '../screens/Home';
-
-
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import HomePage from '../screens/HomePage';
-import { View } from '../components/Themed';
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     return (
@@ -66,7 +62,6 @@ function BottomTabNavigator() {
 
         <BottomTab.Navigator
             initialRouteName="TabOne"
-
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: Colors[colorScheme].tint,
@@ -75,11 +70,11 @@ function BottomTabNavigator() {
             <BottomTab.Screen
                 name="TabOne"
                 component={TabOneScreen}
-                options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+                options={{
                     title: 'Tab One',
                     tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
 
-                })}
+                }}
             />
 
             <BottomTab.Screen
@@ -90,24 +85,7 @@ function BottomTabNavigator() {
                     tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
                 }}
             />
-            <BottomTab.Screen
-                name="TabThree"
-                component={TabThreeScreen}
-                options={{
-                    title: 'Tab three',
-                    tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-                }}
-            />
-            <BottomTab.Screen
-                name="Home"
-                component={HomePage}
 
-                options={{
-                    title: 'Home',
-                    // headerShown: false,
-                    tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-                }}
-            />
         </BottomTab.Navigator>
     );
 }

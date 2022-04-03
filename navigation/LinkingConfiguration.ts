@@ -6,7 +6,6 @@
 
 import { LinkingOptions } from '@react-navigation/native';
 import * as Linking from 'expo-linking';
-import { View } from '../components/Themed';
 
 import { RootStackParamList } from '../types';
 
@@ -24,16 +23,6 @@ const linking: LinkingOptions<RootStackParamList> = {
           TabTwo: {
             screens: {
               TabTwoScreen: 'two',
-            },
-          },
-          TabThree: {
-            screens: {
-              TabThreeScreen: 'Three',
-            },
-          },
-          Home:{
-            screens:{
-                Home:'HomeScreen'
             },
           },
         },
