@@ -13,8 +13,8 @@ import {
 
 import Colors from '../constants/Colors';
 import { Display } from '../constants';
-import IndianFlag from '../assets/images/india.png';
 import { generateOtpAPI } from '../services/otp';
+import IndianFlag from '../assets/images/india.png';
 
 /**
  * NumberVerification Component is allowing the user to input the number for SignUp/Login
