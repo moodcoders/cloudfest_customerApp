@@ -1,6 +1,7 @@
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, StyleSheet } from 'react-native';
+import { Text, View } from '../../components/Themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 import NumberVerification from '../../components/NumberVerification';
 import Smartservice from '../../assets/images/smartservice.png';
@@ -16,7 +17,7 @@ import Colors from '../../constants/Colors';
  * @returns JSX Elements
  */
 const LoginSignupScreen = ({ navigation }: any) => {
-  const windowHeight = Dimensions.get('window').height;
+  const windowHeight: number = Dimensions.get('window').height;
   return (
     <SafeAreaView>
       <View style={[styles.container, { height: windowHeight }]}>
@@ -48,12 +49,13 @@ const LoginSignupScreen = ({ navigation }: any) => {
           Sign Up With
         </Text>
         <View style={[styles.borderContainer, styles.socialIcon]}>
-          <FontAwesome name='google' size={40} color={Colors.GOOGLE_BLUE} />
-          <MaterialIcons
+          <FontAwesome name='google' size={50} color={Colors.GOOGLE_BLUE} />
+          {/**Implement later if required */}
+          {/* <MaterialIcons
             name='facebook'
             size={40}
             color={Colors.FABEBOOK_BLUE}
-          />
+          /> */}
         </View>
       </View>
     </SafeAreaView>

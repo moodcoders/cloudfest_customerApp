@@ -1,16 +1,24 @@
 import { Dimensions } from 'react-native';
 const { height, width } = Dimensions.get('window');
 
-const setHeight = (h: any) => (height / 100) * h;
-const setWidth = (w: number) => (width / 100) * w;
-
-/**Display Component is used to give the required dimension to an element 
+/**Used for setting the height of an element 
  * 
- * @param height - Height of an element/tag
- * @param width - width of an element/tag
+ * @param height - height of an element/tag
  * 
- * @returns setHeight  and setWidth:- 
- * Return the height and width of an element/tag respective to the size of the screen
+ * @returns setHeight 
+ * Return the height of an element/tag respective to the size of the screen
  * 
  * */
+const setHeight = (h: number) => (height / 100) * h;
+
+/**Used for setting the width of an element 
+ * 
+ * @param width - width of an element/tag
+ * 
+ * @returns setWidth 
+ * Return the width of an element/tag respective to the size of the screen
+ * 
+ * */
+const setWidth = (w: number) => (width / 100) * w;
+
 export default { setHeight, setWidth };

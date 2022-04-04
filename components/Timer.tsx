@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { View, Text } from '../components/Themed';
+
 import Colors from '../constants/Colors';
 import { Display } from '../constants';
 import { generateOtpAPI } from '../services/otp';
@@ -15,21 +17,12 @@ interface timerProp {
  * @returns JSX Elements
  */
 const Timer = ({ mobileNumber }: timerProp) => {
-  const [minutes, setMinutes] = useState(4);
-  const [seconds, setSeconds] = useState(59);
+  const [seconds, setSeconds] = useState(300);
 
   useEffect(() => {
     let timer = setInterval(() => {
       if (seconds > 0) {
         setSeconds(seconds - 1);
-      }
-      if (seconds === 0) {
-        if (minutes === 0) {
-          clearInterval(timer);
-        } else {
-          setMinutes(minutes - 1);
-          setSeconds(59);
-        }
       }
     }, 1000);
     return () => {
@@ -38,22 +31,22 @@ const Timer = ({ mobileNumber }: timerProp) => {
   }, [seconds]);
 
   const resendfun = () => {
-    setMinutes(4);
-    setSeconds(59);
+    setSeconds(300);
     generateOtpAPI(mobileNumber);
     console.log('Resending');
   };
 
   return (
     <View>
-      {minutes === 0 && seconds === 0 ? (
+      {seconds === 0 ? (
         <Text style={styles.resendtext} onPress={resendfun}>
           Resend
         </Text>
       ) : (
         <Text style={styles.resendtimer}>
           Please Wait:{'  '}
-          {`0${minutes}`}:{seconds < 10 ? `0${seconds}` : seconds}
+          {`0${Math.floor(seconds / 60)}`}:
+          {seconds % 60 < 10 ? `0${seconds % 60}` : seconds % 60}
         </Text>
       )}
     </View>

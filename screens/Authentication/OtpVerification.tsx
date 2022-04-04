@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import {
   StatusBar,
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
-  View,
 } from 'react-native';
+import { Text, View } from '../../components/Themed';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Colors from '../../constants/Colors';

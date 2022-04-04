@@ -5,12 +5,10 @@ import {
   KeyboardAvoidingView,
   StatusBar,
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
-  View,
 } from 'react-native';
-
+import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import { Display } from '../constants';
 import { generateOtpAPI } from '../services/otp';
@@ -27,9 +25,9 @@ const NumberVerification = ({ navigation }: any) => {
   const [mobileNumber, setmobileNumber] = useState('');
   const [isValidNumberFlag, setValidNumberFlag] = useState<Boolean>(false);
 
-  /**validatemobileNumber is a function for checking(for any special character) */
+  /**validatemobileNumber is a function for checking(if the input value is number or not) */
   function validatemobileNumber(number: string): Boolean {
-    const regexp = new RegExp('^[0-9]{1,10}$');
+    const regexp = new RegExp('^[0-9]{0,10}$');
     return regexp.test(number);
   }
 
@@ -37,7 +35,9 @@ const NumberVerification = ({ navigation }: any) => {
   function onChangeHandler(text: string) {
     let res = validatemobileNumber(text);
     setValidNumberFlag(res);
-    setmobileNumber(text);
+    if (res === true) {
+      setmobileNumber(text);
+    }
   }
 
   /**onPressCheck is navigating the user to OtpVerification page by checking the
@@ -78,6 +78,7 @@ const NumberVerification = ({ navigation }: any) => {
                 keyboardType='number-pad'
                 style={styles.inputText}
                 onChangeText={onChangeHandler}
+                value={mobileNumber}
               />
             </View>
           </View>
@@ -95,7 +96,7 @@ const NumberVerification = ({ navigation }: any) => {
         activeOpacity={0.8}
         onPress={onPressCheck}
       >
-        <Text style={styles.signinButtonText}>Contiue</Text>
+        <Text style={styles.signinButtonText}>Continue</Text>
       </TouchableOpacity>
     </View>
   );
