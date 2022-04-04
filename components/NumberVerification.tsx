@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   Image,
@@ -14,8 +14,7 @@ import {
 import Colors from '../constants/Colors';
 import { Display } from '../constants';
 import IndianFlag from '../assets/images/india.png';
-
-const OtpAPI = 'http://192.168.1.11:4000/auth/otp/generate-otp';
+import { generateOtpAPI } from '../services/otp';
 
 /**
  * NumberVerification Component is allowing the user to input the number for SignUp/Login
@@ -25,34 +24,20 @@ const OtpAPI = 'http://192.168.1.11:4000/auth/otp/generate-otp';
  * @returns JSX.Element
  */
 const NumberVerification = ({ navigation }: any) => {
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [mobileNumber, setmobileNumber] = useState('');
   const [isValidNumberFlag, setValidNumberFlag] = useState<Boolean>(false);
 
-  const generateOtpAPI = async () => {
-    const response = await fetch(OtpAPI, {
-      method: 'Post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        mobileNumber: phoneNumber,
-      }),
-    }).then((response) => response.json());
-    Alert.alert('OTP send to your Given Number');
-  };
-
-  /**validatePhoneNumber is a function for checking(for any special character) */
-  function validatePhoneNumber(number: string): Boolean {
+  /**validatemobileNumber is a function for checking(for any special character) */
+  function validatemobileNumber(number: string): Boolean {
     const regexp = new RegExp('^[0-9]{1,10}$');
     return regexp.test(number);
   }
 
   /**onChangeHandler is checking(for any special character) in the number entered by the user */
   function onChangeHandler(text: string) {
-    let res = validatePhoneNumber(text);
+    let res = validatemobileNumber(text);
     setValidNumberFlag(res);
-    setPhoneNumber(text);
+    setmobileNumber(text);
   }
 
   /**onPressCheck is navigating the user to OtpVerification page by checking the
@@ -60,11 +45,13 @@ const NumberVerification = ({ navigation }: any) => {
    */
   function onPressCheck() {
     (
-      isValidNumberFlag === true && phoneNumber.length === 10
-        ? generateOtpAPI()
+      isValidNumberFlag === true && mobileNumber.length === 10
+        ? generateOtpAPI(mobileNumber)
         : null
     )
-      ? navigation.navigate('OtpVerification', { phoneNumber })
+      ? navigation.navigate('OtpVerification', {
+          mobileNumber,
+        })
       : Alert.alert('Enter Your Correct Phone Number');
   }
 
@@ -95,7 +82,7 @@ const NumberVerification = ({ navigation }: any) => {
             </View>
           </View>
           <Text style={styles.verificationText}>
-            {phoneNumber.length !== 0
+            {mobileNumber.length !== 0
               ? isValidNumberFlag
                 ? ''
                 : 'Invalid'

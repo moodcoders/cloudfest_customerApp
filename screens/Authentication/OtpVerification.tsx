@@ -12,6 +12,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Colors from '../../constants/Colors';
 import Separator from '../../components/Separator';
 import { Display } from '../../constants';
+import { generateOtpAPI, validateOtp } from '../../services/otp';
 
 /**
  * OtpVerification Component is verifying the Otp send to the User
@@ -20,7 +21,9 @@ import { Display } from '../../constants';
  *
  * @returns JSX.Element
  */
-const OtpVerification = ({ navigation }: any) => {
+const OtpVerification = ({ navigation, route }: any) => {
+  const { mobileNumber } = route.params;
+
   const firstInput = useRef<any>(null);
   const secondInput = useRef<any>(null);
   const thirdInput = useRef<any>(null);
@@ -53,6 +56,7 @@ const OtpVerification = ({ navigation }: any) => {
   const resendfun = () => {
     setMinutes(4);
     setSeconds(59);
+    generateOtpAPI(mobileNumber);
     console.log('Resending Otp');
   };
 
@@ -76,7 +80,7 @@ const OtpVerification = ({ navigation }: any) => {
 
       <Text style={styles.content}>
         Enter the OTP number just sent you at{' '}
-        <Text style={styles.phoneNumberText}>phoneNumber</Text>
+        <Text style={styles.mobileNumberText}>{mobileNumber}</Text>
       </Text>
       <View style={styles.otpContainer}>
         <View style={styles.otpBox}>
@@ -166,8 +170,9 @@ const OtpVerification = ({ navigation }: any) => {
       </View>
       <TouchableOpacity
         style={styles.signinButton}
-        onPress={() => console.log(otp)}
+        onPress={() => validateOtp(mobileNumber, Object.values(otp).join(''))}
       >
+        {console.log(otp)}
         <Text style={styles.signinButtonText}>Verify</Text>
       </TouchableOpacity>
     </View>
@@ -200,7 +205,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginHorizontal: 20,
   },
-  phoneNumberText: {
+  mobileNumberText: {
     fontSize: 18,
     lineHeight: 18 * 1.4,
     color: Colors.DEFAULT_YELLOW,
