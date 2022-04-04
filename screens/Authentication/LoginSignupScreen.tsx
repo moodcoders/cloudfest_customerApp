@@ -1,13 +1,13 @@
 import { Dimensions, Image, StyleSheet } from 'react-native';
-import { Text, View } from '../../components/Themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
 
+import { Text, View } from '../../components/Themed';
 import NumberVerification from '../../components/NumberVerification';
 import Smartservice from '../../assets/images/smartservice.png';
-import HandymanImg from '../../assets/images/handymanImg.png';
 import { Display } from '../../constants';
 import Colors from '../../constants/Colors';
+import HandymanImg from '../../assets/images/handymanImg.png';
 
 /**
  *LoginSignupScreen is the authentication page of the App

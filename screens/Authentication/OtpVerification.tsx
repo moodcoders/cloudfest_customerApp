@@ -5,9 +5,9 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import { Text, View } from '../../components/Themed';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import { Text, View } from '../../components/Themed';
 import Colors from '../../constants/Colors';
 import { Display } from '../../constants';
 import Separator from '../../components/Separator';

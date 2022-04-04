@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { View, Text } from '../components/Themed';
 
+import { View, Text } from '../components/Themed';
 import Colors from '../constants/Colors';
 import { Display } from '../constants';
 import { generateOtpAPI } from '../services/otp';
@@ -30,7 +30,7 @@ const Timer = ({ mobileNumber }: timerProp) => {
     };
   }, [seconds]);
 
-  const resendfun = () => {
+  const resendOtp = () => {
     setSeconds(300);
     generateOtpAPI(mobileNumber);
     console.log('Resending');
@@ -39,7 +39,7 @@ const Timer = ({ mobileNumber }: timerProp) => {
   return (
     <View>
       {seconds === 0 ? (
-        <Text style={styles.resendtext} onPress={resendfun}>
+        <Text style={styles.resendtext} onPress={resendOtp}>
           Resend
         </Text>
       ) : (

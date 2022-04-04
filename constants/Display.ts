@@ -9,7 +9,7 @@ const { height, width } = Dimensions.get('window');
  * Return the height of an element/tag respective to the size of the screen
  * 
  * */
-const setHeight = (h: number) => (height / 100) * h;
+const setHeight = (elementHeight: number) => (height / 100) * elementHeight;
 
 /**Used for setting the width of an element 
  * 
@@ -19,6 +19,6 @@ const setHeight = (h: number) => (height / 100) * h;
  * Return the width of an element/tag respective to the size of the screen
  * 
  * */
-const setWidth = (w: number) => (width / 100) * w;
+const setWidth = (elementWidth: number) => (width / 100) * elementWidth;
 
 export default { setHeight, setWidth };
