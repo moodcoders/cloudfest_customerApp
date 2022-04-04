@@ -12,6 +12,8 @@ import useCachedResources from './hooks/useCachedResources';
  */
 const StripeProvider2 : any = StripeProvider
 
+import HomePage from './screens/HomePage';
+
 export default function App() {
 
   const isLoadingComplete = useCachedResources();
