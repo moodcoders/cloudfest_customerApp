@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Foundation';
 import Rupee from 'react-native-vector-icons/FontAwesome';
-import { View, Text } from '../components/Themed';
+
+import { Text, View } from '../components/Themed';
 
 import DataServices from '../DataStore/DataService';
 

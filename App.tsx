@@ -3,7 +3,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StripeProvider } from '@stripe/stripe-react-native';
 import NavigationTwo from './navigation/Navigation';
 import useCachedResources from './hooks/useCachedResources';
-import HandymanAvailable from './screens/HandymanAvailable';
+
 
 /**
  * Contains the nescessary parent components and navigation component
@@ -24,7 +24,6 @@ export default function App() {
         <StripeProvider2 publishableKey='pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5'>
           <NavigationTwo />
         </StripeProvider2>
-        {/* <HandymanAvailable /> */}
       </SafeAreaProvider>
     );
   }

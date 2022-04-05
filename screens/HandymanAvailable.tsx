@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
-import { View, Text } from '../components/Themed';
+import { Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, } from '../components/Themed';
 import EletricianIcon from '../assets/images/electricianIcon.png';
 import Icon from 'react-native-vector-icons/EvilIcons';
+
 import HandymanDetails from '../components/HandymanDetails';
 
 const HandymanAvailable = ({ navigation }: any) => {
