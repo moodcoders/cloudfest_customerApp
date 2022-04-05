@@ -11,41 +11,81 @@ const DataServices = [
   {
     img: electrician,
     name: 'Electrician',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250
   },
   {
     img: plumber,
     name: 'Plumber',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250
   },
   {
     img: gardener,
     name: 'Gardener',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250
   },
   {
     img: barber,
     name: 'Barber',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250
   },
   {
     img: cleaner,
     name: 'Cleaner',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250
   },
   {
     img: photography,
     name: 'Photographer',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250
   },
   {
     img: electrician,
     name: 'Plumber',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250
   },
   {
     img: barber,
     name: 'Plumber',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250
   },
   {
     img: electrician,
     name: 'Plumber',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250
   }, {
     img: gardener,
     name: 'Plumber',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250
   },
 ];
 

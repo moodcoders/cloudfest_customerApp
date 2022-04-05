@@ -1,14 +1,11 @@
 import React from 'react';
-// import all the components we are going to use
 import { StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { View, Text } from '../components/Themed';
-
 import handymanIcon from '../assets/images/handyman.png';
-
 import ServicesList from '../components/ServicesList';
 import HandymanList from '../components/HandymanList';
 
-const HomePage = () => {
+const HomePage = ({ navigation }: any) => {
     return (
         <View>
             <View >
@@ -19,7 +16,9 @@ const HomePage = () => {
                 <View style={styles.homePadding} lightColor="#fff" darkColor="rgba(0, 0, 0, 0.22)">
                     <Text style={styles.ClintName}> Hi! Md Ghazanfar</Text>
                     <Text style={styles.subTitle}>What service do{"\n"}you need?</Text>
-                    <TouchableOpacity style={styles.serviceBtn}>
+                    <TouchableOpacity style={styles.serviceBtn}
+                        onPress={() => navigation.navigate("ServicePage")}
+                    >
                         <Text style={styles.btnName}>Get Started</Text>
                     </TouchableOpacity>
                     <Image source={handymanIcon} style={styles.serviceImage} />
@@ -53,6 +52,7 @@ const styles = StyleSheet.create({
     },
     homePadding: {
         padding: 15,
+        paddingBottom: 30,
     },
     ClintName: {
         fontSize: 20,
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: "#335580",
         fontWeight: 'bold',
+        margin: 5,
     }
 });
 

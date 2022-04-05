@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 
 import PayCard from "./PayCard";
 import { Text, View } from "../../components/Themed";
+import HomePage from '../HomePage';
 
 /**
  * Displayes The card components for payment and the total payment information
@@ -20,7 +21,7 @@ const PayPage = ({ navigation }: any) => {
             </Text>
             <Icons
                 name='chevron-back-circle'
-                onPress={() => console.log('back button press')}
+                onPress={() => navigation.navigate("HomePage")}
                 color='#BBD0FA'
                 style={{ fontSize: 35, margin: 10, marginBottom: 0 }}
             />
@@ -29,7 +30,7 @@ const PayPage = ({ navigation }: any) => {
             </Text>
             <View style={styles.payContainer}>
                 <PayCard icon='cc-mastercard' name='Credit Card' color='#FF5E02' page='StripeCard' navigation={navigation} />
-                <PayCard icon='google' name='Google Pay' color='#4285F4' navigation={navigation} page='BookingDone'/>
+                <PayCard icon='google' name='Google Pay' color='#4285F4' navigation={navigation} page='BookingDone' />
                 <PayCard icon='inr' name='UPI' color='#599BD8' navigation={navigation} page='BookingDone' />
                 <PayCard icon='money' name='Cash' color='#65CF53' page='BookingDone' navigation={navigation} />
                 <View style={styles.paymentSlip}>
