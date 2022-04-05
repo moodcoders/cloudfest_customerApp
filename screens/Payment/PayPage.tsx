@@ -1,8 +1,10 @@
 import Icons from 'react-native-vector-icons/Ionicons';
-import { StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 
 import PayCard from './PayCard';
 import { Text, View } from '../../components/Themed';
+import Colors from '../../constants/Colors';
+import Separator from '../../components/Separator';
 
 /**
  * Displayes The card components for payment and the total payment information
@@ -14,6 +16,12 @@ import { Text, View } from '../../components/Themed';
 const PayPage = ({ navigation }: any) => {
   return (
     <>
+      <StatusBar
+        barStyle='dark-content'
+        backgroundColor={Colors.DEFAULT_WHITE}
+        translucent
+      />
+      <Separator height={StatusBar.currentHeight} />
       <Text style={styles.payHeading}>
         <Text style={{ fontWeight: 'bold' }}>SMART</Text>
         SERVICES

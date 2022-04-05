@@ -25,6 +25,11 @@ import { validateOtp } from '../../services/otp';
 const OtpVerification = ({ navigation, route }: any) => {
   const { mobileNumber } = route.params;
 
+  const checkValidation = () => {
+    validateOtp(mobileNumber, otp);
+    navigation.navigate('Root');
+  };
+
   const [otp, setOtp] = useState('');
   return (
     <View style={styles.container}>
@@ -61,10 +66,7 @@ const OtpVerification = ({ navigation, route }: any) => {
       <View style={styles.resendController}>
         <Timer mobileNumber={mobileNumber} />
       </View>
-      <TouchableOpacity
-        style={styles.signinButton}
-        onPress={() => validateOtp(mobileNumber, otp)}
-      >
+      <TouchableOpacity style={styles.signinButton} onPress={checkValidation}>
         <Text style={styles.signinButtonText}>Verify</Text>
       </TouchableOpacity>
     </View>
