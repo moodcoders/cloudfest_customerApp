@@ -1,18 +1,27 @@
-import React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { Image, StyleSheet } from 'react-native';
+import { Text, View } from './Themed';
+
 import Icon from 'react-native-vector-icons/Foundation';
 import Rupee from 'react-native-vector-icons/FontAwesome';
 
-import { Text, View } from '../components/Themed';
+import "../DataStore/HandyData";
 
-import DataServices from '../DataStore/DataService';
+function HandymanDetail() {
+    let [electrician, setElectrician] = useState([])
 
-const HandymanDetails = () => {
+    useEffect(() => {
+        fetch("/api/electrician")
+            .then((response) => response.json())
+            .then((json) => setElectrician(json.electrician))
+            .catch((err) => console.log(err))
+    }, [])
+
     return (
         <View style={{ backgroundColor: 'transparent', }} >
-            {DataServices.map((handyman, index) => {
+            {electrician.map((handyman: any) => {
                 return (
-                    <View key={index} style={[styles.card]} >
+                    <View key={handyman.id} style={[styles.card]} >
                         <View>
                             <Image
                                 style={styles.image}
@@ -49,6 +58,8 @@ const HandymanDetails = () => {
     );
 };
 
+export default HandymanDetail;
+
 const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
@@ -77,5 +88,3 @@ const styles = StyleSheet.create({
         margin: 3,
     }
 });
-
-export default HandymanDetails;

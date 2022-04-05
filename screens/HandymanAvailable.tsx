@@ -1,10 +1,11 @@
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Text, View, } from '../components/Themed';
-import EletricianIcon from '../assets/images/electricianIcon.png';
 import Icon from 'react-native-vector-icons/EvilIcons';
+import EletricianIcon from '../assets/images/electricianIcon.png';
 
-import HandymanDetails from '../components/HandymanDetails';
+import HandymanDetail from '../components/HandymanDetails';
+
 
 const HandymanAvailable = ({ navigation }: any) => {
     return (
@@ -34,7 +35,7 @@ const HandymanAvailable = ({ navigation }: any) => {
                     <Text style={styles.ClintName}>Eletricians</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'transparent' }}>
                         <Text style={styles.subTitle}>30
-                            <Text style={{ color: '#234c7d', fontWeight: 'bold' }}>Smart Pro</Text>
+                            <Text style={{ color: '#234c7d', fontWeight: 'bold' }}> Smart Pro</Text>
                             Available in  Newtown
                             <Icon
                                 name='location'
@@ -44,7 +45,7 @@ const HandymanAvailable = ({ navigation }: any) => {
                         </Text>
                         <Image source={EletricianIcon} style={styles.serviceImage} />
                     </View>
-                    <HandymanDetails />
+                    <HandymanDetail />
                 </View>
             </ScrollView>
         </View>
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     subTitle: {
         color: '#335580',
         fontSize: 25,
-        width: '45%',
+        width: '40%',
         alignSelf: 'center',
 
     },
