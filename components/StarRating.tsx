@@ -7,7 +7,7 @@ import StarIconUnFilled from "../assets/fonts/star_corner.png";
 
 
 const StarRating = () => {
-    const [defaultRating, setDefaultRating] = useState("");
+    const [defaultRating, setDefaultRating] = useState(0);
     const [maxRating, setMaxRating] = useState([1, 2, 3, 4, 5]);
 
     return (

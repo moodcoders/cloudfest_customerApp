@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, Image, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/EvilIcons';
 import { Text, View } from '../components/Themed';
+
+import Icon from 'react-native-vector-icons/EvilIcons';
+
 import DataServices from '../DataStore/DataService';
 import StarRating from './StarRating';
 
 
-const BookindDetails = ({ navigation }: any) => {
+const BookindDetails = () => {
 
     return (
         <View style={{ backgroundColor: 'transparent', }} >
