@@ -1,4 +1,4 @@
-import { Dimensions, Image, StyleSheet } from 'react-native';
+import { Dimensions, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -8,6 +8,7 @@ import Smartservice from '../../assets/images/smartservice.png';
 import { Display } from '../../constants';
 import Colors from '../../constants/Colors';
 import HandymanImg from '../../assets/images/handymanImg.png';
+import { googleAuth } from '../../services/otp';
 
 /**
  *LoginSignupScreen is the authentication page of the App
@@ -35,9 +36,7 @@ const LoginSignupScreen = ({ navigation }: any) => {
           style={(styles.image, styles.handymanImg)}
           source={HandymanImg}
         />
-
         <NumberVerification navigation={navigation} />
-
         <View style={styles.borderContainer}>
           <View style={styles.border} />
           <Text style={styles.borderText}>Or</Text>
@@ -48,15 +47,12 @@ const LoginSignupScreen = ({ navigation }: any) => {
         >
           Sign Up With
         </Text>
-        <View style={[styles.borderContainer, styles.socialIcon]}>
+        <TouchableOpacity
+          style={[styles.borderContainer, styles.socialIcon]}
+          onPress={() => googleAuth()}
+        >
           <FontAwesome name='google' size={50} color={Colors.GOOGLE_BLUE} />
-          {/**Implement later if required */}
-          {/* <MaterialIcons
-            name='facebook'
-            size={40}
-            color={Colors.FABEBOOK_BLUE}
-          /> */}
-        </View>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

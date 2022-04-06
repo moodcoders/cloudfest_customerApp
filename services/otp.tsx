@@ -1,10 +1,9 @@
-const GENERATE_OTP_API = 'http://192.168.1.11:4000/auth/otp/generate-otp';
-const VALIDATE_OTP_API = 'http://192.168.1.11:4000/auth/otp/login';
+const AUTH_API = 'http://192.168.1.11:4000';
 
 /**generateOtpAPI is generating OTP for the user */
 export const generateOtpAPI = async (mobileNumber: string) => {
   try {
-    const response = await fetch(GENERATE_OTP_API, {
+    const response = await fetch(`${AUTH_API}/auth/otp/generate-otp`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -24,7 +23,7 @@ export const generateOtpAPI = async (mobileNumber: string) => {
 /**validateOtp is generating token for the user */
 export const validateOtp = async (mobileNumber: string, otp: string) => {
   try {
-    const response = await fetch(VALIDATE_OTP_API, {
+    const response = await fetch(`${AUTH_API}/auth/otp/login`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -38,5 +37,21 @@ export const validateOtp = async (mobileNumber: string, otp: string) => {
     console.log(await response.json());
   } catch (err) {
     alert(err);
+  }
+};
+
+/**googleAuth is used for Google Authentication */
+export const googleAuth = async () => {
+  try {
+    const response = await fetch(`${AUTH_API}/auth/google/login`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log(await response.json());
+  } catch (err) {
+    console.log(err);
   }
 };
