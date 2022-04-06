@@ -1,5 +1,5 @@
-import electrician from "../assets/images/electrician.png";
-import plumber from "../assets/images/plumber.png";
+import Electrician from "../assets/images/electrician.png";
+import Plumber from "../assets/images/plumber.png";
 import gardener from "../assets/images/gardener.png";
 import barber from "../assets/images/barber.png";
 import cleaner from "../assets/images/cleaner.png";
@@ -10,21 +10,24 @@ import photography from "../assets/images/photography.png";
 const DataServices = [
   {
     id: "1",
-    img: electrician,
+    img: Electrician,
     name: 'Shams',
+    jobName: "Electrician",
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
-    rate: 250
+    rate: 250,
   },
   {
     id: "2",
-    img: plumber,
-    name: 'Ghazanfar',
+    img: Plumber,
+    name: 'Ghazwanfar',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
-    rate: 250
+    rate: 250,
+    jobName: 'Electrician',
+
   },
   {
     id: "3",
@@ -33,7 +36,9 @@ const DataServices = [
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
-    rate: 250
+    rate: 250,
+    jobName: 'Electrician',
+
   },
   {
     id: "4",
@@ -51,7 +56,9 @@ const DataServices = [
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
-    rate: 250
+    rate: 250,
+    jobName: 'Cleaner',
+
   },
   {
     id: "6",
@@ -60,16 +67,20 @@ const DataServices = [
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
-    rate: 250
+    rate: 250,
+    jobName: 'Photography',
+
   },
   {
     id: "7",
-    img: electrician,
+    img: Electrician,
     name: 'Ehtasham',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
-    rate: 250
+    rate: 250,
+    jobName: 'Electrician',
+
   },
   {
     id: "8",
@@ -78,16 +89,19 @@ const DataServices = [
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
-    rate: 250
+    rate: 250,
+    jobName: "Barber",
   },
   {
     id: "9",
-    img: electrician,
+    img: Electrician,
     name: 'Sucheta',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
-    rate: 250
+    rate: 250,
+    jobName: 'Electrician',
+
   },
   {
     id: "10",
@@ -96,7 +110,8 @@ const DataServices = [
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
-    rate: 250
+    rate: 250,
+    jobName: 'Gardener',
   },
 ];
 
