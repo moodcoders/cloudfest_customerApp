@@ -29,7 +29,7 @@ const PayCard = ({ icon, name, color, page, navigation }: PayCardParams) => {
             <Icon2 name={icon} size={30} color={color} style={styles.cardIcon} />
             <Text style={styles.cardText}> {name} </Text>
             <Icon2 name='circle-thin' color='#E7EBED' style={styles.cardIcon}
-                    onPress={() => navigation.navigate(page)} /> 
+                onPress={() => navigation.navigate(page)} />
         </View>
     )
 };

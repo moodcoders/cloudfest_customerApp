@@ -4,9 +4,7 @@ import {
   StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar
 } from 'react-native';
 import { View, Text } from '../components/Themed';
-
 import handymanIcon from '../assets/images/handyman.png';
-
 import ServicesList from '../components/ServicesList';
 import HandymanList from '../components/HandymanList';
 import Separator from '../components/Separator';
