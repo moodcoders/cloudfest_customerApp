@@ -1,10 +1,13 @@
 import React from 'react';
-import { Image, StyleSheet, ScrollView, TouchableOpacity, View } from 'react-native';
-import { Text, } from '../components/Themed';
+import { StatusBar } from 'expo-status-bar';
+import { Image, StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import CalendarPicker from 'react-native-calendar-picker';
+
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Fridge from '../assets/Icons/refrigerator.png';
 
-
+import ApplicanceServices from '../components/ApplicancesServices';
+import Calenders from '../components/Calender';
 
 const HomeApplicances = ({ navigation }: any) => {
     return (
@@ -40,6 +43,13 @@ const HomeApplicances = ({ navigation }: any) => {
                 </View>
                 <View style={styles.serviceItems}>
                     <Text style={[styles.ClintName, { fontSize: 18 }]}>Select Service</Text>
+                    <ApplicanceServices />
+                    <Text style={[styles.ClintName, { fontSize: 18 }]}>Date &#38; Time</Text>
+                    {/* <View style={styles.container}>
+                        <StatusBar style="auto" />
+                        <CalendarPicker />
+                    </View> */}
+                    <Calenders />
                 </View>
             </View>
 
@@ -65,7 +75,6 @@ const styles = StyleSheet.create({
         color: "#335580",
     },
     backgroundColor: {
-        // height: '100%',
         width: '93%',
         alignSelf: 'center',
         borderRadius: 30,
@@ -75,7 +84,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: "#335580",
         fontWeight: 'bold',
-        marginVertical: 10,
+        marginVertical: 5,
         letterSpacing: 1,
     },
     subTitle: {
@@ -86,8 +95,8 @@ const styles = StyleSheet.create({
     },
     serviceImage: {
         alignSelf: 'flex-end',
-        width: '50%',
-        height: 160,
+        width: '45%',
+        height: 140,
         borderRadius: 20,
         backgroundColor: '#fff'
     },
@@ -95,7 +104,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         borderRadius: 15,
         padding: 10,
-    }
+    },
+    container: {
+        width: "100%",
+        backgroundColor: '#fff',
+        alignItems: 'center',
+    },
 });
 
 export default HomeApplicances;

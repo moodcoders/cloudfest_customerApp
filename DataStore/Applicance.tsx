@@ -1,23 +1,24 @@
 import Fridge from '../assets/Icons/fridge.png';
+import WashingMachine from '../assets/Icons/washingMachine.png';
 
 const Applicance = [
     {
-        img: Fridge,
-        name: 'Fridge',
+        img: WashingMachine,
+        name: 'Washing Machine',
     }, {
-        img: Fridge,
+        img: WashingMachine,
         name: 'Tv',
     }, {
-        img: Fridge,
+        img: WashingMachine,
         name: 'PC',
     }, {
-        img: Fridge,
+        img: WashingMachine,
         name: 'Microwave',
     }, {
-        img: Fridge,
+        img: WashingMachine,
         name: 'Washing machine',
     }, {
-        img: Fridge,
+        img: WashingMachine,
         name: 'Air-condition',
     },
 ];
