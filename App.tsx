@@ -1,9 +1,11 @@
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StripeProvider } from '@stripe/stripe-react-native';
 
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import useCachedResources from './hooks/useCachedResources';
+import MyBooking from './screens/MyBooking';
+
 
 /**
  * Contains the nescessary parent components and navigation component
@@ -21,12 +23,13 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
-        <StripeProvider2 publishableKey='pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5'>
+      <SafeAreaView>
+        {/* <StripeProvider2 publishableKey='pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5'>
           <Navigation colorScheme={colorScheme} />
-          {/* <NavigationTwo /> */}
-        </StripeProvider2>
-      </SafeAreaProvider>
+          <NavigationTwo />
+        </StripeProvider2> */}
+        <MyBooking />
+      </SafeAreaView>
     );
   }
 }
