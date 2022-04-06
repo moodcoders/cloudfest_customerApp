@@ -1,28 +1,32 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StripeProvider } from '@stripe/stripe-react-native';
 
-import useCachedResources from "./hooks/useCachedResources";
-import useColorScheme from "./hooks/useColorScheme";
-import Navigation from "./navigation";
+import useColorScheme from './hooks/useColorScheme';
+import Navigation from './navigation';
+import useCachedResources from './hooks/useCachedResources';
 
-import UserDetails from "./screens/UserDetails";
-import UserProfileView from "./screens/UserProfile";
+/**
+ * Contains the nescessary parent components and navigation component
+ *
+ * @returns JSX.Element
+ *
+ */
+const StripeProvider2: any = StripeProvider;
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
-  if (!isLoadingComplete) {
+  if (isLoadingComplete === false) {
     return null;
   } else {
     return (
-      <SafeAreaView>
-        {/* <Navigation colorScheme={colorScheme} /> */}
-        <UserDetails />
-        {/* <UserProfileView /> */}
-        <StatusBar />
-      </SafeAreaView>
+      <SafeAreaProvider>
+        <StripeProvider2 publishableKey='pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5'>
+          <Navigation colorScheme={colorScheme} />
+          {/* <NavigationTwo /> */}
+        </StripeProvider2>
+      </SafeAreaProvider>
     );
   }
 }
