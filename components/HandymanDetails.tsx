@@ -6,20 +6,12 @@ import Icon from 'react-native-vector-icons/Foundation';
 import Rupee from 'react-native-vector-icons/FontAwesome';
 
 import "../DataStore/HandyData";
+import DataServices from "../DataStore/DataService";
 
 function HandymanDetail() {
-    let [electrician, setElectrician] = useState([])
-
-    useEffect(() => {
-        fetch("/api/electrician")
-            .then((response) => response.json())
-            .then((json) => setElectrician(json.electrician))
-            .catch((err) => console.log(err))
-    }, [])
-
     return (
         <View style={{ backgroundColor: 'transparent', }} >
-            {electrician.map((handyman: any) => {
+            {DataServices.map((handyman) => {
                 return (
                     <View key={handyman.id} style={[styles.card]} >
                         <View>

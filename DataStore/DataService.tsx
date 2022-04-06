@@ -9,79 +9,90 @@ import photography from "../assets/images/photography.png";
 
 const DataServices = [
   {
+    id: "1",
     img: electrician,
-    name: 'Electrician',
+    name: 'Shams',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
     rate: 250
   },
   {
+    id: "2",
     img: plumber,
-    name: 'Plumber',
+    name: 'Ghazanfar',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
     rate: 250
   },
   {
+    id: "3",
     img: gardener,
-    name: 'Gardener',
+    name: 'osama',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
     rate: 250
   },
   {
+    id: "4",
     img: barber,
-    name: 'Barber',
+    name: 'Huzefa',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
     rate: 250
   },
   {
+    id: "5",
     img: cleaner,
-    name: 'Cleaner',
+    name: 'pritom',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
     rate: 250
   },
   {
+    id: "6",
     img: photography,
-    name: 'Photographer',
+    name: 'Shahid',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
     rate: 250
   },
   {
+    id: "7",
     img: electrician,
-    name: 'Plumber',
+    name: 'Ehtasham',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
     rate: 250
   },
   {
+    id: "8",
     img: barber,
-    name: 'Plumber',
+    name: 'Mahaboob',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
     rate: 250
   },
   {
+    id: "9",
     img: electrician,
-    name: 'Plumber',
+    name: 'Sucheta',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
     rate: 250
-  }, {
+  },
+  {
+    id: "10",
     img: gardener,
-    name: 'Plumber',
+    name: 'Janvi',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
