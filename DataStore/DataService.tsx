@@ -11,42 +11,98 @@ const DataServices = [
   {
     img: electrician,
     name: 'Electrician',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250,
+    working: "Electrician Service"
   },
   {
     img: plumber,
     name: 'Plumber',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250,
+    working: "Plumbing Service"
   },
   {
     img: gardener,
     name: 'Gardener',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250,
+    working: "Garding Service"
   },
   {
     img: barber,
     name: 'Barber',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250,
+    working: "Garding Service"
   },
   {
     img: cleaner,
     name: 'Cleaner',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250,
+    working: "cleaning Service"
+
   },
   {
     img: photography,
     name: 'Photographer',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250,
+    working: "cleaning Service"
   },
   {
     img: electrician,
     name: 'Plumber',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250,
+    working: "cleaning Service"
   },
   {
     img: barber,
     name: 'Plumber',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250,
+    working: "cleaning Service"
   },
   {
     img: electrician,
     name: 'Plumber',
-  }, {
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250,
+    working: "cleaning Service"
+
+  },
+  {
     img: gardener,
     name: 'Plumber',
+    exp: "2 years of Exprience",
+    rating: 4.3,
+    totalJobs: 35,
+    rate: 250,
+    working: "cleaning Service"
   },
 ];
 
 export default DataServices;
+
+
+
