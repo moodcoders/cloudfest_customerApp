@@ -26,7 +26,7 @@ const BookingCards = () => {
                         </View>
                         <View style={{ alignItems: 'center' }}>
                             <Text style={styles.bookingDate}> Booking On Oct 28,2022</Text>
-                            <Text style={styles.workServices}>{handyman.rate}</Text>
+                            <Text style={styles.workServices}>{handyman.working}</Text>
                             <StarRating />
                         </View>
                         <TouchableOpacity >

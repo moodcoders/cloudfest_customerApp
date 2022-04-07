@@ -17,6 +17,7 @@ const DataServices = [
     rating: 4.3,
     totalJobs: 35,
     rate: 250,
+    working: "Electrician Service"
   },
   {
     id: "2",
@@ -27,6 +28,7 @@ const DataServices = [
     totalJobs: 35,
     rate: 250,
     jobName: 'Electrician',
+    working: "Electrician Service"
 
   },
   {
@@ -38,6 +40,7 @@ const DataServices = [
     totalJobs: 35,
     rate: 250,
     jobName: 'Electrician',
+    working: "Plumbing Service"
 
   },
   {
@@ -47,7 +50,10 @@ const DataServices = [
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
-    rate: 250
+    rate: 250,
+    working: "Garding Service"
+
+
   },
   {
     id: "5",
@@ -58,6 +64,8 @@ const DataServices = [
     totalJobs: 35,
     rate: 250,
     jobName: 'Cleaner',
+    working: "Garding Service"
+
 
   },
   {
@@ -69,6 +77,8 @@ const DataServices = [
     totalJobs: 35,
     rate: 250,
     jobName: 'Photography',
+    working: "cleaning Service"
+
 
   },
   {
@@ -80,6 +90,7 @@ const DataServices = [
     totalJobs: 35,
     rate: 250,
     jobName: 'Electrician',
+    working: "cleaning Service"
 
   },
   {
@@ -91,6 +102,7 @@ const DataServices = [
     totalJobs: 35,
     rate: 250,
     jobName: "Barber",
+    working: "Electrician Service"
   },
   {
     id: "9",
@@ -101,6 +113,7 @@ const DataServices = [
     totalJobs: 35,
     rate: 250,
     jobName: 'Electrician',
+    working: "cleaning Service"
 
   },
   {
@@ -112,6 +125,8 @@ const DataServices = [
     totalJobs: 35,
     rate: 250,
     jobName: 'Gardener',
+    working: "cleaning Service"
+
   },
 ];
 
