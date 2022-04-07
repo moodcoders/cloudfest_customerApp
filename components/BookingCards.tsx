@@ -1,14 +1,16 @@
 import React from 'react';
 import { StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { Text, View } from './Themed';
 
 import Icon from 'react-native-vector-icons/EvilIcons';
+import { useNavigation } from '@react-navigation/native';
 
 import DataServices from '../DataStore/DataService';
 import StarRating from './StarRating';
 
 
-const BookindDetails = () => {
+const BookingCards = () => {
+    const navigation = useNavigation();
 
     return (
         <View style={{ backgroundColor: 'transparent', }} >
@@ -24,13 +26,13 @@ const BookindDetails = () => {
                         </View>
                         <View style={{ alignItems: 'center' }}>
                             <Text style={styles.bookingDate}> Booking On Oct 28,2022</Text>
-                            <Text style={styles.workServices}>{handyman.working}</Text>
+                            <Text style={styles.workServices}>{handyman.rate}</Text>
                             <StarRating />
                         </View>
                         <TouchableOpacity >
                             <Icon
                                 name='chevron-right'
-                                onPress={() => console.log('click btn')}
+                                onPress={() => navigation.navigate("BookingDetails" as any)}
                                 color='#333'
                                 style={styles.rightIcon}
                             />
@@ -88,4 +90,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default BookindDetails;
+export default BookingCards;

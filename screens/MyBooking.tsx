@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons';
 
 import FilterList from "../assets/fonts/filter.png";
 
-import BookindDetails from '../components/BookingDetails';
+import BookingCards from '../components/BookingCards';
 
 const MyBooking = ({ navigation }: any) => {
     const [searchQuery, setSearchQuery] = React.useState('');
@@ -23,7 +23,7 @@ const MyBooking = ({ navigation }: any) => {
                     <TouchableOpacity >
                         <Icon
                             name='chevron-left'
-                            onPress={() => console.log("back key press")}
+                            onPress={() => navigation.navigate("Home")}
                             color='#333'
                             style={{ fontSize: 40, backgroundColor: '#fff', borderRadius: 5, width: 30 }}
                         />
@@ -60,7 +60,7 @@ const MyBooking = ({ navigation }: any) => {
                 </View>
 
                 <ScrollView>
-                    <BookindDetails />
+                    <BookingCards />
                 </ScrollView>
             </View>
         </View >

@@ -20,7 +20,7 @@ const HandymanAvailable = ({ navigation }: any) => {
                         <TouchableOpacity >
                             <Icon
                                 name='chevron-left'
-                                onPress={() => navigation.navigate("ServicePage")}
+                                onPress={() => navigation.navigate("ServicePage" as any)}
                                 color='#fff'
                                 style={{ fontSize: 35, backgroundColor: '#bbd0fa', borderRadius: 5, width: 30 }}
                             />

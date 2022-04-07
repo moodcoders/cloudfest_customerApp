@@ -25,6 +25,9 @@ import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
 import OtpVerification from '../screens/Authentication/OtpVerification';
 import HomePage from '../screens/HomePage';
 import ServicePage from '../screens/ServicePage';
+import HandymanAvailable from '../screens/HandymanAvailable';
+import MyBooking from '../screens/MyBooking';
+import BookingDetails from '../screens/BookingDetails';
 
 export default function Navigation({
   colorScheme,
@@ -57,14 +60,16 @@ function RootNavigator() {
     >
       <Stack.Screen name='LoginSignupScreen' component={LoginSignupScreen} />
       <Stack.Screen name='OtpVerification' component={OtpVerification} />
+      <Stack.Screen name='HandymanAvailable' component={HandymanAvailable} />
+
       <Stack.Screen
         name='Root'
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name='NotFound'
-        component={NotFoundScreen}
+        name='BookingDetails'
+        component={BookingDetails}
         options={{ title: 'Oops!' }}
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
@@ -118,7 +123,7 @@ function BottomTabNavigator() {
 
       <BottomTab.Screen
         name='Booking'
-        component={TabTwoScreen}
+        component={MyBooking}
         options={{
           title: 'Booking',
           tabBarIcon: ({ color }) => (
@@ -127,7 +132,7 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name='Services'
+        name='ServicePage'
         component={ServicePage}
         options={{
           title: 'Services',

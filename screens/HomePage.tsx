@@ -40,7 +40,7 @@ const HomePage = ({ navigation }: any) => {
           <Text style={styles.subTitle}>What service do{'\n'}you need?</Text>
           <TouchableOpacity
             style={styles.serviceBtn}
-            onPress={() => navigation.navigate('Services')}
+            onPress={() => navigation.navigate('ServicePage')}
           >
             <Text style={styles.btnName}>Get Started</Text>
           </TouchableOpacity>

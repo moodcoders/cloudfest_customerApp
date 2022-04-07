@@ -10,7 +10,7 @@ import Message from '../assets/fonts/message.png';
 import Data from "../DataStore/DataService";
 import HandymanDetails from '../components/BookingHandymanDetails';
 
-const BookingDetails = () => {
+const BookingDetails = ({ navigation }: any) => {
     return (
         <View>
             <View >
@@ -22,7 +22,7 @@ const BookingDetails = () => {
                     <TouchableOpacity >
                         <Icon
                             name='chevron-left'
-                            onPress={() => console.log("back  key press")}
+                            onPress={() => navigation.navigate("Booking" as any)}
                             color='#333'
                             style={styles.backIcon} />
                     </TouchableOpacity>
