@@ -21,7 +21,7 @@ const DataServices = [
   {
     id: "2",
     img: Plumber,
-    name: 'Ghazwanfar',
+    name: 'Ghazanfar',
     exp: "2 years of Exprience",
     rating: 4.3,
     totalJobs: 35,
