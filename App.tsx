@@ -6,6 +6,8 @@ import Navigation from './navigation';
 import useCachedResources from './hooks/useCachedResources';
 import HomeApplicances from './screens/HomeApplicances';
 
+
+
 /**
  * Contains the nescessary parent components and navigation component
  *

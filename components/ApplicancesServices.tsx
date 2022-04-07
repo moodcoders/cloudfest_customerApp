@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, ScrollView, Image } from 'react-native';
 import { View, Text } from './Themed';
-import Applicance from '../DataStore/Applicance';
+import Applicance from '../DataStore/HomeApplicanceData';
 
 import DataServices from '../DataStore/DataService';
 interface MemberProp {
@@ -50,18 +50,18 @@ const styles = StyleSheet.create({
         margin: 8,
         backgroundColor: '#EDF1FB',
         borderRadius: 15,
-        width: 125,
-        height: 125,
+        width: 120,
+        height: 110,
     },
     serviceImage: {
-        width: 80,
-        height: 80,
+        width: 60,
+        height: 60,
         margin: 8
     },
     serviceName: {
         fontSize: 15,
         color: "#5e8abf",
-        letterSpacing: -.5,
+        letterSpacing: -.6,
     },
 
 });

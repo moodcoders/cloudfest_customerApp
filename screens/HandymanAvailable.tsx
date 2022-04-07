@@ -1,25 +1,26 @@
-import { Image, StyleSheet, TouchableOpacity, Text, View } from 'react-native';
-
+import React from 'react';
+import { Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, } from '../components/Themed';
 import Icon from 'react-native-vector-icons/EvilIcons';
-import Fridge from '../assets/Icons/refrigerator.png';
+import EletricianIcon from '../assets/images/electricianIcon.png';
 
-import ApplicanceServices from '../components/ApplicancesServices';
-import Calenders from '../components/Calender';
+import HandymanDetail from '../components/HandymanDetails';
 
-const HomeApplicances = ({ navigation }: any) => {
+
+const HandymanAvailable = ({ navigation }: any) => {
     return (
         <View>
             <View>
                 <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
-                <View style={[styles.separator, { backgroundColor: '#eee' }]} />
+                <View style={styles.separator} lightColor="#eee" darkColor="rgba(0, 0, 0, 0.22)" />
             </View>
-            <View style={[styles.backgroundColor, { backgroundColor: "#EDF1FB" }]}>
-                <View style={{ padding: 10, backgroundColor: 'transparent' }}>
+            <ScrollView >
+                <View style={styles.homePadding}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'transparent' }}>
                         <TouchableOpacity >
                             <Icon
                                 name='chevron-left'
-                                onPress={() => navigation.navigate("ServicePage")}
+                                onPress={() => navigation.navigate("ServicePage" as any)}
                                 color='#fff'
                                 style={{ fontSize: 35, backgroundColor: '#bbd0fa', borderRadius: 5, width: 30 }}
                             />
@@ -31,22 +32,22 @@ const HomeApplicances = ({ navigation }: any) => {
                             style={{ fontSize: 35, }}
                         />
                     </View>
-                    <Text style={styles.ClintName}>Home Applicances</Text>
+                    <Text style={styles.ClintName}>Eletricians</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'transparent' }}>
-                        <Text style={styles.subTitle}>Rs. 100/hr </Text>
-                        <Image source={Fridge} style={styles.serviceImage} />
+                        <Text style={styles.subTitle}>30
+                            <Text style={{ color: '#234c7d', fontWeight: 'bold' }}> Smart Pro</Text>
+                            Available in  Newtown
+                            <Icon
+                                name='location'
+                                color='#234c7d'
+                                style={{ fontSize: 35, }}
+                            />
+                        </Text>
+                        <Image source={EletricianIcon} style={styles.serviceImage} />
                     </View>
+                    <HandymanDetail />
                 </View>
-                <View style={styles.serviceItems}>
-                    <Text style={[styles.ClintName, { fontSize: 18 }]}>Select Service</Text>
-                    <ApplicanceServices />
-                    <Text style={[styles.ClintName, { fontSize: 18 }]}>Date &#38; Time</Text>
-                    <Calenders />
-                    <View>
-                        <Text style={[styles.ClintName, { fontSize: 18 }]}>Time</Text>
-                    </View>
-                </View>
-            </View>
+            </ScrollView>
         </View>
     );
 };
@@ -68,42 +69,33 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: "#335580",
     },
-    backgroundColor: {
-        width: '93%',
-        alignSelf: 'center',
-        borderRadius: 30,
-        padding: 10
+    homePadding: {
+        marginTop: 5,
+        padding: 20,
+        paddingBottom: 30,
+        backgroundColor: '#EDF1FB',
     },
     ClintName: {
         fontSize: 30,
         color: "#335580",
         fontWeight: 'bold',
-        marginVertical: 4,
+        marginVertical: 10,
         letterSpacing: 1,
     },
     subTitle: {
         color: '#335580',
         fontSize: 25,
+        width: '40%',
         alignSelf: 'center',
 
     },
     serviceImage: {
         alignSelf: 'flex-end',
-        width: '45%',
+        marginTop: 10,
+        width: '50%',
         height: 140,
         borderRadius: 20,
-        backgroundColor: '#fff'
-    },
-    serviceItems: {
-        backgroundColor: "#fff",
-        borderRadius: 15,
-        padding: 8,
-    },
-    container: {
-        width: "100%",
-        backgroundColor: '#fff',
-        alignItems: 'center',
     },
 });
 
-export default HomeApplicances;
+export default HandymanAvailable;
