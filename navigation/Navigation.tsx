@@ -5,6 +5,7 @@ import BookingDone from '../screens/Payment/BookingDone';
 import PayPage from '../screens/Payment/PayPage';
 import StripeCard from '../screens/Payment/StripeCard';
 
+
 const Stack = createNativeStackNavigator();
 
 /**
@@ -15,7 +16,7 @@ const Stack = createNativeStackNavigator();
 const NavigationTwo = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="PayPage"
+            <Stack.Navigator initialRouteName="HomePage"
                 screenOptions={{
                     headerShown: false
                 }}>

@@ -1,16 +1,10 @@
 import React from 'react';
 // import all the components we are going to use
 import {
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  StatusBar,
+  StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar
 } from 'react-native';
 import { View, Text } from '../components/Themed';
-
 import handymanIcon from '../assets/images/handyman.png';
-
 import ServicesList from '../components/ServicesList';
 import HandymanList from '../components/HandymanList';
 import Separator from '../components/Separator';
@@ -46,7 +40,7 @@ const HomePage = ({ navigation }: any) => {
           <Text style={styles.subTitle}>What service do{'\n'}you need?</Text>
           <TouchableOpacity
             style={styles.serviceBtn}
-            onPress={() => navigation.navigate('Services')}
+            onPress={() => navigation.navigate('ServicePage')}
           >
             <Text style={styles.btnName}>Get Started</Text>
           </TouchableOpacity>

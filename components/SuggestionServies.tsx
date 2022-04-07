@@ -1,9 +1,10 @@
 import React from 'react';
-import { Image, ScrollView, StyleSheet } from 'react-native';
+import { Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, View } from './Themed';
 
 // Importing  images and name from  dataStore
 import DataServices from '../DataStore/DataService';
+import { useNavigation } from '@react-navigation/native';
 
 interface serviceProp {
     name: String,
@@ -26,7 +27,7 @@ function ListOfServices(props: listOfServicesProp) {
 
 interface MemberProp {
     img: any,
-    name: String
+    name: String,
 };
 
 /**
@@ -34,11 +35,18 @@ interface MemberProp {
  * @param props - Displayes Image and Name in the components using the params passed
  * @returns JSX.Elements
  */
-function Member(props: MemberProp) {
+const Member = (props: MemberProp) => {
+    const navigation = useNavigation();
     return (
         <View style={{ backgroundColor: 'transparent', alignItems: 'center' }}>
-            <Image source={props.img} style={styles.serviceImage} />
-            <Text style={styles.serviceName}>{props.name}</Text>
+            <TouchableOpacity
+                onPress={() => navigation.navigate("HandymanAvailable" as any)}>
+                <Image source={props.img} style={styles.serviceImage} />
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.navigate("HandymanAvailable" as any)}>
+                <Text style={styles.serviceName}>{props.name}</Text>
+            </TouchableOpacity>
         </View>
     );
 };
