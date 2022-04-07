@@ -1,10 +1,6 @@
 // import all the components we are going to use
 import {
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  StatusBar,
+  StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar
 } from 'react-native';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';

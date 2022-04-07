@@ -5,6 +5,8 @@ import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import useCachedResources from './hooks/useCachedResources';
 
+
+
 /**
  * Contains the nescessary parent components and navigation component
  *

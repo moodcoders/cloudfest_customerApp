@@ -3,7 +3,6 @@ import { Dimensions, Image, StyleSheet } from 'react-native';
 import { View, Text } from '../components/Themed';
 import Carousel from 'react-native-snap-carousel';
 
-//
 import DataServices from '../DataStore/DataService';
 
 const renderItem = ({ item }: { item: any }) => {
@@ -18,6 +17,7 @@ const renderItem = ({ item }: { item: any }) => {
         </View>
     );
 };
+
 
 const SLIDER_WIDTH = Dimensions.get('window').width + 5;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
