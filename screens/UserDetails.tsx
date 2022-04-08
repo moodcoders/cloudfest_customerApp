@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, TextInput, Image, SafeAreaView } from "react-native";
 import { View, Text } from "../components/Themed";
-import Calendar from "./Calender";
 import Dropdown from "./dropdown";
 
 const UserDetails = () => {
-  const [text, onChangeText] = React.useState(" Text");
+  // const [text, onChangeText] = useState(" Text");
+
   return (
     <SafeAreaView>
       <View>
         <Text style={styles.title}>
-          {" "}
           SMART<Text style={styles.service}>SERVICE</Text>
         </Text>
         <View
@@ -26,17 +25,23 @@ const UserDetails = () => {
           />
         </View>
       </View>
-      <Image
-        source={require("../assets/images/userprofileIcon.png")}
-        style={{ width: 40, height: 40, marginLeft: 160 }}
-      />
-      <Text style={styles.title}>User Details</Text>
+      <View style={styles.title}>
+        <Image
+          source={require("../assets/images/userprofileIcon.png")}
+          style={{ width: 40, height: 40 }}
+        />
+        <Text style={styles.title}>User Details</Text>
+      </View>
       <View style={styles.rectangle2}>
         <View style={styles.rectangle3}>
           <TextInput placeholder="Name" style={styles.inputContainer} />
         </View>
         <View style={styles.rectangle3}>
-          <TextInput placeholder="Email" style={styles.inputContainer} />
+          <TextInput
+            placeholder="Email"
+            keyboardType={"email-address"}
+            style={styles.inputContainer}
+          />
         </View>
         <View style={{ backgroundColor: "transparent", flexDirection: "row" }}>
           <View style={styles.rectangle4}>
@@ -44,17 +49,15 @@ const UserDetails = () => {
           </View>
           <View style={[styles.rectangle3, { width: 217.5 }]}>
             <TextInput
-              placeholder="Mobile Number"
-              keyboardType="numeric"
               maxLength={10}
+              placeholder="Phone Number"
+              keyboardType="number-pad"
               style={styles.inputContainer}
             />
           </View>
         </View>
 
-        <View style={styles.rectangle3}>
-          <Calendar />
-        </View>
+        <View style={styles.rectangle3}></View>
 
         <View style={styles.rectangle3}>
           <Dropdown />
@@ -69,6 +72,9 @@ const UserDetails = () => {
 
 const styles = StyleSheet.create({
   title: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
     fontSize: 20,
     fontWeight: "bold",
     color: "#234C7D",
@@ -87,20 +93,22 @@ const styles = StyleSheet.create({
   rectangle: {
     height: 40,
     width: 40,
+    marginLeft: 20,
     backgroundColor: "#E7F2FF",
-    left: "5%",
+    alignItems: "flex-start",
     borderRadius: 8,
   },
   rectangle2: {
     height: 516,
     width: 325,
     backgroundColor: "#E7F2FF",
-    left: "5%",
     borderRadius: 12,
+    alignSelf: "center",
   },
   rectangle3: {
     height: 44.12,
     width: 300,
+
     backgroundColor: "#FFFFFF",
     marginTop: 15,
     marginLeft: 12.5,
