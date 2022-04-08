@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 
 import Electrician from "../assets/images/electrician.png";
 import Plumber from "../assets/images/plumber.png";
@@ -6,8 +5,6 @@ import gardener from "../assets/images/gardener.png";
 import barber from "../assets/images/barber.png";
 import cleaner from "../assets/images/cleaner.png";
 import photography from "../assets/images/photography.png";
-
-import { createServer } from "miragejs"
 
 
 let electrician = [
@@ -197,14 +194,3 @@ let plumber = [
     },
 ]
 
-export default createServer({
-    routes() {
-        this.namespace = "api"
-
-        this.get("/electrician", () => {
-            return {
-                electrician
-            }
-        })
-    },
-})
