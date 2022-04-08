@@ -15,10 +15,9 @@ import Colors from '../constants/Colors';
 
 const HomePage = ({ navigation }: any) => {
 
-  const { t, i18n } = useTranslation();
-
+  const { t, i18n } = useTranslation() ;
+  const translate = t
   const [currentLanguage, setLanguage] = useState('en');
-
   const changeLanguage = (value: string) => {
     i18n
       .changeLanguage(value)
@@ -37,7 +36,7 @@ const HomePage = ({ navigation }: any) => {
       <View>
         <Text style={styles.title}>
           {' '}
-          {t('Smart')}<Text style={styles.service}> {t('Services')}</Text>
+          { translate('Smart')}<Text style={styles.service}> {translate('Services') }</Text>
         </Text>
         <View
           style={styles.separator}
@@ -55,20 +54,20 @@ const HomePage = ({ navigation }: any) => {
             style={styles.lang}
             onPress={() => { changeLanguage('hindi') }}
           >
-            <Text>{t('lang')}</Text>
+            <Text>{translate('lang')}</Text>
           </TouchableOpacity>
-          <Text style={styles.ClintName}> {t('hi')}! Md Ghazanfar</Text>
-          <Text style={styles.subTitle}>{t('What service do')}{'\n'}{t('you need?')}</Text>
+          <Text style={styles.ClintName}> {translate('hi')}! Md Ghazanfar</Text>
+          <Text style={styles.subTitle}>{translate('What service do')}{'\n'}{translate('you need?')}</Text>
           <TouchableOpacity
             style={styles.serviceBtn}
             onPress={() => navigation.navigate('Services')}
           >
-            <Text style={styles.btnName}>{t('Get Started')}</Text>
+            <Text style={styles.btnName}>{translate('Get Started')}</Text>
           </TouchableOpacity>
           <Image source={handymanIcon} style={styles.serviceImage} />
-          <Text style={styles.listName}>{t('Category')}</Text>
+          <Text style={styles.listName}>{translate('Category')}</Text>
           <ServicesList />
-          <Text style={styles.listName}>{t("Recommended")}</Text>
+          <Text style={styles.listName}>{translate("Recommended")}</Text>
           <HandymanList />
         </View>
       </ScrollView>
