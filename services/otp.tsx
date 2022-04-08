@@ -3,7 +3,7 @@ const AUTH_API = 'http://192.168.1.11:4000';
 /**generateOtpAPI is generating OTP for the user */
 export const generateOtpAPI = async (mobileNumber: string) => {
   try {
-    const response = await fetch(`${AUTH_API}/auth/otp/generate-otp`, {
+    const response = await fetch(`${AUTH_API}/auth/userOtp/generate-otp`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -23,7 +23,7 @@ export const generateOtpAPI = async (mobileNumber: string) => {
 /**validateOtp is generating token for the user */
 export const validateOtp = async (mobileNumber: string, otp: string) => {
   try {
-    const response = await fetch(`${AUTH_API}/auth/otp/login`, {
+    const response = await fetch(`${AUTH_API}/auth/userOtp/userlogin`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -44,7 +44,7 @@ export const validateOtp = async (mobileNumber: string, otp: string) => {
 export const googleAuth = async () => {
   try {
     const response = await fetch(`${AUTH_API}/auth/google/login`, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

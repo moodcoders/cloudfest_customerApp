@@ -17,7 +17,7 @@ interface timerProp {
  * @returns JSX Elements
  */
 const Timer = ({ mobileNumber }: timerProp) => {
-  const [seconds, setSeconds] = useState(300);
+  const [seconds, setSeconds] = useState(360);
 
   useEffect(() => {
     let timer = setInterval(() => {
