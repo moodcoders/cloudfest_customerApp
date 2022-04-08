@@ -15,8 +15,8 @@ import Colors from '../constants/Colors';
 
 const HomePage = ({ navigation }: any) => {
 
-  const { t, i18n } = useTranslation() ;
-  const translate = t
+  const { t: translate, i18n } = useTranslation() ;
+
   const [currentLanguage, setLanguage] = useState('en');
   const changeLanguage = (value: string) => {
     i18n
