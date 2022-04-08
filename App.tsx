@@ -6,6 +6,7 @@ import Navigation from "./navigation";
 import useCachedResources from "./hooks/useCachedResources";
 import UserDetails from "./screens/UserDetails";
 import ServicePage from "./screens/ServicePage";
+import LocationService from "./components/Location";
 
 /**
  * Contains the nescessary parent components and navigation component
@@ -24,12 +25,13 @@ export default function App() {
   } else {
     return (
       <SafeAreaView>
-        <StripeProvider2 publishableKey="pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5">
-          {/* <Navigation colorScheme={colorScheme} /> */}
-          {/* <NavigationTwo /> */}
-          <UserDetails />
-          {/* <ServicePage /> */}
-        </StripeProvider2>
+        {/* <StripeProvider2 publishableKey="pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5"> */}
+        {/* <Navigation colorScheme={colorScheme} /> */}
+        {/* <NavigationTwo /> */}
+        <UserDetails />
+        {/* <LocationService /> */}
+        {/* <ServicePage /> */}
+        {/* </StripeProvider2> */}
       </SafeAreaView>
     );
   }

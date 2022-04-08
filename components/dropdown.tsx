@@ -3,8 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
 function Dropdown() {
-  const [gender, setGender] = useState("Unknown");
-
+  const [gender, setGender] = useState("");
   return (
     <View style={styles.screen}>
       <Picker
@@ -13,7 +12,7 @@ function Dropdown() {
         mode="dropdown"
         style={styles.picker}
       >
-        <Picker.Item label="Please select your gender" value="Unknown" />
+        <Picker.Item label="Select your gender" />
         <Picker.Item label="Male" value="Male" />
         <Picker.Item label="Female" value="Female" />
         <Picker.Item label="Trans" value="Trans" />
