@@ -25,7 +25,7 @@ const linking: LinkingOptions<RootStackParamList> = {
               TabTwoScreen: 'two',
             },
           },
-          Services: {
+          ServicePage: {
             screens: {
               TabThreeScreen: 'three',
             },
