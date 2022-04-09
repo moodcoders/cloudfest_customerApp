@@ -10,7 +10,6 @@ import Separator from '../components/Separator';
 import Colors from '../constants/Colors';
 import LocationMenu from "../components/LocationMenu";
 
-
 const ServicePage = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [searchQuery, setSearchQuery] = React.useState('');
@@ -26,7 +25,7 @@ const ServicePage = () => {
             <Separator height={StatusBar.currentHeight} />
             <View >
                 <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
-            </View>
+            </View >
             <View style={{ backgroundColor: '#EDF1FB', height: '92%' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: 25 }}>
                     <Ionicons name="location-sharp" size={40} color="#234c7d" />
