@@ -1,10 +1,9 @@
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StripeProvider } from '@stripe/stripe-react-native';
 
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import useCachedResources from './hooks/useCachedResources';
-
 
 
 /**
@@ -29,6 +28,7 @@ export default function App() {
           {/* <NavigationTwo /> */}
         </StripeProvider2>
       </SafeAreaProvider>
+
     );
   }
 }

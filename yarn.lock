@@ -2879,6 +2879,15 @@
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.4.tgz"
   "version" "15.7.4"
 
+"@types/react-native-calendar-picker@^7.0.2":
+  version "7.0.2"
+  resolved "https://registry.npmjs.org/@types/react-native-calendar-picker/-/react-native-calendar-picker-7.0.2.tgz"
+  integrity sha512-vM97SJXE0sgNEMKV6uH7KfkbuJRe1v/0EuyHjqRHe2WVhKDG/3qYklAtO1aQTs29wYzpA2hN+0ZvMIOOQsUi/w==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+    moment ">=2.0.0"
+
 "@types/react-native-popup-dialog@^0.16.4":
   "integrity" "sha512-FHgW0dR2vsZji88pXi/Kt9RcQ+KBuyIZqFhqxk5i+AZT1dWK4P8/K4o3hojB87LRJxKjxtH8tGdm7BZVxX4dhQ=="
   "resolved" "https://registry.npmjs.org/@types/react-native-popup-dialog/-/react-native-popup-dialog-0.16.4.tgz"

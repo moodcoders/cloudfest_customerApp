@@ -1,7 +1,10 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, TextInput } from 'react-native';
+import { SafeAreaView, StyleSheet, TextInput, StatusBar } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { Feather } from '@expo/vector-icons';
+
+import Separator from '../components/Separator';
+import Colors from '../constants/Colors';
 
 import SuggestionServies from '../components/SuggestionServies';
 
@@ -15,14 +18,27 @@ const ServicePage = () => {
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
     return (
-        <SafeAreaView >
+        <View >
+            <StatusBar
+                barStyle='dark-content'
+                backgroundColor={Colors.DEFAULT_WHITE}
+                translucent
+            />
+            <Separator height={StatusBar.currentHeight} />
             <View >
-                <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
-                <View style={styles.separator} lightColor="#eee" darkColor="rgba(0, 0, 0, 0.22)" />
+                <Text style={styles.title}>
+                    {' '}
+                    SMART<Text style={styles.service}> SERVICES</Text>
+                </Text>
+                <View
+                    style={styles.separator}
+                    lightColor='#eee'
+                    darkColor='rgba(0, 0, 0, 0.22)'
+                />
             </View>
             <View style={styles.backgroundColor} lightColor="#edf1fb" darkColor="rgba(0, 0, 0, 0.22)">
                 <Text style={styles.locationSelection}>
-                    implement later
+                    show PopUp
                 </Text>
                 <View style={[styles.container, styles.shadowProp]}>
                     {/* Search Icon */}
@@ -43,7 +59,7 @@ const ServicePage = () => {
                 <Text style={styles.subTitle}>Get your work done.{"\n"}Choose Services</Text>
                 <SuggestionServies />
             </View>
-        </SafeAreaView >
+        </View >
     );
 };
 

@@ -15,7 +15,7 @@ import Colors from '../constants/Colors';
 
 const HomePage = ({ navigation }: any) => {
 
-  const { t: translate, i18n } = useTranslation() ;
+  const { t: translate, i18n } = useTranslation();
 
   const [currentLanguage, setLanguage] = useState('en');
   const changeLanguage = (value: string) => {
@@ -36,7 +36,7 @@ const HomePage = ({ navigation }: any) => {
       <View>
         <Text style={styles.title}>
           {' '}
-          { translate('Smart')}<Text style={styles.service}> {translate('Services') }</Text>
+          {translate('Smart')}<Text style={styles.service}> {translate('Services')}</Text>
         </Text>
         <View
           style={styles.separator}
