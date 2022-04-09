@@ -1,24 +1,22 @@
-import React from 'react'
-import { SafeAreaView, StyleSheet, TextInput, StatusBar } from 'react-native';
-import { Text, View } from '../components/Themed';
-import { Feather } from '@expo/vector-icons';
+import React, { useState } from "react";
+import { Modal, StyleSheet, Text, View, StatusBar, TextInput } from "react-native";
 
-import Separator from '../components/Separator';
-import Colors from '../constants/Colors';
+import { Feather } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import SuggestionServies from '../components/SuggestionServies';
-
-/**
- * Servicespage Displayes  Services provided by the platform
- * 
- * @returns JSX.Elements
- */
+import Separator from '../components/Separator';
+import Colors from '../constants/Colors';
+import LocationMenu from "../components/LocationMenu";
 
 const ServicePage = () => {
+    const [modalVisible, setModalVisible] = useState(false);
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
+
     return (
-        <View >
+        <>
             <StatusBar
                 barStyle='dark-content'
                 backgroundColor={Colors.DEFAULT_WHITE}
@@ -26,20 +24,26 @@ const ServicePage = () => {
             />
             <Separator height={StatusBar.currentHeight} />
             <View >
-                <Text style={styles.title}>
-                    {' '}
-                    SMART<Text style={styles.service}> SERVICES</Text>
-                </Text>
-                <View
-                    style={styles.separator}
-                    lightColor='#eee'
-                    darkColor='rgba(0, 0, 0, 0.22)'
-                />
-            </View>
-            <View style={styles.backgroundColor} lightColor="#edf1fb" darkColor="rgba(0, 0, 0, 0.22)">
-                <Text style={styles.locationSelection}>
-                    show PopUp
-                </Text>
+                <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
+            </View >
+            <View style={{ backgroundColor: '#EDF1FB', height: '92%' }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: 25 }}>
+                    <Ionicons name="location-sharp" size={40} color="#234c7d" />
+                    <View style={{ flexDirection: 'column' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Text style={[styles.textStyle,]}>Home</Text>
+                            <AntDesign
+                                onPress={() => setModalVisible(true)}
+                                name="down" size={24} color="#234c7d"
+                            />
+                        </View>
+                        <View >
+                            <Text ellipsizeMode='tail' numberOfLines={1} style={{ width: '50%', color: "#234c7d" }}>
+                                DC 250, Street 314, New Town, Action Area 1, DC Block, West Bengal.
+                            </Text>
+                        </View>
+                    </View>
+                </View>
                 <View style={[styles.container, styles.shadowProp]}>
                     {/* Search Icon */}
                     <Feather
@@ -56,10 +60,35 @@ const ServicePage = () => {
                         value={searchQuery}
                     />
                 </View>
-                <Text style={styles.subTitle}>Get your work done.{"\n"}Choose Services</Text>
+                <View>
+                    <Text style={styles.subTitle}>Get your work done.{"\n"}Choose Services</Text>
+                </View>
                 <SuggestionServies />
+                <View>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => {
+                            setModalVisible(!modalVisible);
+                        }}
+                    >
+                        <View style={[{ marginTop: '20%', backgroundColor: 'transparent' }]}>
+                            <View style={{ backgroundColor: '#333', width: 50, alignSelf: 'center', borderRadius: 55 }}>
+                                <Text
+                                    onPress={() => setModalVisible(!modalVisible)}
+                                    style={styles.closeBtn}>
+                                    X
+                                </Text>
+                            </View>
+                            <View style={styles.modalView}>
+                                <LocationMenu />
+                            </View>
+                        </View>
+                    </Modal>
+                </View>
             </View>
-        </View >
+        </>
     );
 };
 
@@ -67,7 +96,7 @@ const styles = StyleSheet.create({
     title: {
         color: '#234c7d',
         textAlign: 'center',
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: "bold"
     },
     service: {
@@ -79,13 +108,7 @@ const styles = StyleSheet.create({
         width: '80%',
         alignSelf: 'center',
     },
-    backgroundColor: {
-        height: '95%',
-        width: '95%',
-        alignSelf: 'center',
-        borderRadius: 30,
-        margin: 10
-    },
+
     locationSelection: {
         width: '100%',
         height: '10%',
@@ -110,6 +133,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginLeft: 10,
         color: '#a6b0c5',
+        width: '100%'
     },
     shadowProp: {
         shadowColor: '#171717',
@@ -123,6 +147,24 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginLeft: 20,
     },
+    modalView: {
+        height: '90%',
+        width: "100%",
+        borderRadius: 40,
+        backgroundColor: "#fff",
+    },
+    textStyle: {
+        marginRight: 8,
+        color: "#234c7d",
+        fontSize: 25,
+    },
+    closeBtn: {
+        color: "#FFF",
+        fontSize: 35,
+        fontWeight: "bold",
+        textAlign: "center",
+    }
 });
 
 export default ServicePage;
+
