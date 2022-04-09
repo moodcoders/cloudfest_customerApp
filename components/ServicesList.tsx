@@ -1,5 +1,6 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react'
-import { StyleSheet, ScrollView, Image } from 'react-native';
+import { StyleSheet, ScrollView, Image, TouchableOpacityBase, TouchableOpacity } from 'react-native';
 import { View, Text } from '../components/Themed';
 
 import DataServices from '../DataStore/DataService';
@@ -9,10 +10,17 @@ interface MemberProp {
 }
 
 function Category(props: MemberProp) {
+    const navigation = useNavigation();
     return (
         <View style={{ alignItems: 'center', margin: 10 }}>
-            <Image source={props.img} style={styles.serviceImage} />
-            <Text style={styles.serviceName}>{props.name}</Text>
+            <TouchableOpacity
+                onPress={() => navigation.navigate("HandymanAvailable" as any)}>
+                <Image source={props.img} style={styles.serviceImage} />
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.navigate("HandymanAvailable" as any)}>
+                <Text style={styles.serviceName}>{props.name}</Text>
+            </TouchableOpacity>
         </View>
     );
 };
