@@ -1,54 +1,62 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, View, Text, ScrollView } from 'react-native';
-import CalendarPicker from 'react-native-calendar-picker';
+import React, { useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import DatePicker from "@react-native-community/datetimepicker";
+import Platform from "expo-modules-core/build/Platform";
 
-const Calenders = () => {
-    return (
-        <SafeAreaView>
-            <View style={styles.container}>
-                <StatusBar style="auto" />
-                <CalendarPicker
-                    startFromMonday={true}
-                    minDate={new Date(2018, 1, 1)}
-                    maxDate={new Date(2050, 6, 3)}
-                    width={340}
-                    height={342}
-                    weekdays={['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']}
-                    months={[
-                        'January',
-                        'Febraury',
-                        'March',
-                        'April',
-                        'May',
-                        'June',
-                        'July',
-                        'August',
-                        'September',
-                        'October',
-                        'November',
-                        'December',
-                    ]}
-                    previousTitle="<<"
-                    nextTitle=">>"
-                    todayBackgroundColor="#e6ffe6"
-                    selectedDayColor="#66ff33"
-                    selectedDayTextColor="#000000"
-                    scaleFactor={375}
-                    textStyle={{
-                        color: 'black',
-                    }}
+const DatePickerApp = () => {
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState("date");
+  const [show, setShow] = useState(false);
 
-                />
-            </View>
-        </SafeAreaView>
+  const onChange = (event: any, selectedDate: Date) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === "ios");
+    setDate(currentDate);
 
-    );
+    let tempDate = new Date(currentDate);
+    let fDate =
+      tempDate.getDate() +
+      "/" +
+      (tempDate.getMonth() + 1) +
+      "/" +
+      tempDate.getFullYear();
+
+    console.log(fDate);
+  };
+
+  const showMode = (currentMode: React.SetStateAction<string>) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  return (
+    <View style={styles.container}>
+      <View></View>
+      <TouchableOpacity
+        onPress={() => showMode("date")}
+        style={styles.serviceBtn}
+      >
+        <Text style={styles.btnName}>Select Date of Birth</Text>
+      </TouchableOpacity>
+      {show && <DatePicker value={date} mode={mode} onChange={onChange} />}
+    </View>
+  );
 };
-export default Calenders;
+
+export default DatePickerApp;
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#ffffff',
-    },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  serviceBtn: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+  },
+  btnName: {
+    fontSize: 15,
+    color: "#90AAC9",
+  },
 });

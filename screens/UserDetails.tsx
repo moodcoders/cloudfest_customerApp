@@ -2,19 +2,36 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   TextInput,
-  Image,
   SafeAreaView,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import { View, Text } from "../components/Themed";
 import Dropdown from "../components/dropdown";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import Toggle from "../components/ToggleSwitch";
+import Calenders from "../components/Calender";
+import Constants from "expo-constants";
+import * as Location from "expo-location";
+
+const getLocation = async () => {
+  if (Platform.OS === "android" && !Constants.isDevice) {
+    throw new Error(
+      "Oops, this will not work on Snack in an Android emulator. Try it on your device!"
+    );
+  }
+  let { status } = await Location.requestForegroundPermissionsAsync();
+  if (status !== "granted") {
+    throw new Error("Permission to access location was denied");
+  }
+  return await Location.getCurrentPositionAsync({});
+};
 
 const UserDetails = () => {
   const [mobileNumber, setmobileNumber] = useState("");
   const [isValidNumberFlag, setValidNumberFlag] = useState<Boolean>(false);
+  const [userLocation, setuserLocation] = useState<any>();
 
   function validatemobileNumber(number: string): Boolean {
     const regexp = new RegExp("^[0-9]{0,10}$");
@@ -28,6 +45,7 @@ const UserDetails = () => {
       setmobileNumber(text);
     }
   }
+
   return (
     <SafeAreaView>
       <Text style={styles.title}>
@@ -77,12 +95,7 @@ const UserDetails = () => {
           </View>
 
           <View style={styles.rectangle3}>
-            <TextInput
-              placeholder="DD-MM-YY"
-              keyboardType="number-pad"
-              onChangeText={onChangeHandler}
-              style={styles.inputContainer}
-            />
+            <Calenders />
           </View>
 
           <View style={styles.rectangle3}>
@@ -103,13 +116,21 @@ const UserDetails = () => {
           >
             <Ionicons name="location-outline" size={24} color="black" />
             <Text style={{ fontSize: 18 }}>Set Location</Text>
-            <Toggle />
+            <Toggle
+              onClick={async () => {
+                const location = await getLocation();
+                setuserLocation(location);
+              }}
+            />
           </View>
         </View>
         <View style={{ alignItems: "center" }}>
           <TouchableOpacity style={styles.serviceBtn}>
             <Text style={styles.btnName}>Next</Text>
           </TouchableOpacity>
+        </View>
+        <View style={{ alignItems: "center" }}>
+          <Text>{JSON.stringify(userLocation)}</Text>
         </View>
       </View>
     </SafeAreaView>

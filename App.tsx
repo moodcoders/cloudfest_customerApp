@@ -25,10 +25,11 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <StripeProvider2 publishableKey="pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5">
-          <Navigation colorScheme={colorScheme} />
-          {/* <NavigationTwo /> */}
-        </StripeProvider2>
+        {/* <StripeProvider2 publishableKey="pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5"> */}
+        {/* <Navigation colorScheme={colorScheme} /> */}
+
+        <UserDetails />
+        {/* </StripeProvider2> */}
       </SafeAreaProvider>
     );
   }

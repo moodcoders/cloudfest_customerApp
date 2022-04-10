@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { View, Switch, StyleSheet } from "react-native";
 import LocationService from "../components/Location";
 
-const Toggle = () => {
+const Toggle = (props: any) => {
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const toggleSwitch = () => {
+    if (isEnabled === false) {
+      props.onClick();
+    }
+    setIsEnabled((previousState) => !previousState);
+  };
 
   return (
     <View style={styles.container}>
@@ -15,7 +20,6 @@ const Toggle = () => {
         onValueChange={toggleSwitch}
         value={isEnabled}
       />
-      {isEnabled ? console.log(<LocationService />) : null}
     </View>
   );
 };
