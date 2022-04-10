@@ -17,7 +17,9 @@ export const generateOtpAPI = async (mobileNumber: string) => {
     const jsonResponse = await response.json();
     notifyMessage(JSON.stringify(jsonResponse.message));
   } catch (err) {
-    notifyMessage(err);
+    if (err instanceof Error) {
+      notifyMessage(err.message);
+    }
   }
 };
 

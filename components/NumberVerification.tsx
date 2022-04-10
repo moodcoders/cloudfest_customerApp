@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import {
   Alert,
   Image,
-  KeyboardAvoidingView,
-  StatusBar,
   StyleSheet,
   TextInput,
   TouchableOpacity,
