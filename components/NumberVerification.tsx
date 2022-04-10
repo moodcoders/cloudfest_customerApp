@@ -27,7 +27,7 @@ const NumberVerification = ({ navigation }: any) => {
 
   /**validatemobileNumber is a function for checking(if the input value is number or not) */
   function validatemobileNumber(number: string): Boolean {
-    const regexp = new RegExp('^[0-9]{0,10}$');
+    const regexp = new RegExp(/^[0-9]+$/);
     return regexp.test(number);
   }
 

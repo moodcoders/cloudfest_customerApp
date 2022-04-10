@@ -52,8 +52,6 @@ const DataServices = [
     totalJobs: 35,
     rate: 250,
     working: "Garding Service"
-
-
   },
   {
     id: "5",

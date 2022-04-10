@@ -28,7 +28,6 @@ const OtpVerification = ({ navigation, route }: any) => {
   const checkValidation = async () => {
     try {
       const userToken = await validateOtp(mobileNumber, otp);
-      console.log(userToken.user.token);
       signIn(userToken.user.token);
     } catch (error) {
       console.log(error);
