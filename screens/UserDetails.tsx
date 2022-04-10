@@ -17,9 +17,7 @@ import * as Location from "expo-location";
 
 const getLocation = async () => {
   if (Platform.OS === "android" && !Constants.isDevice) {
-    throw new Error(
-      "Oops, this will not work on Snack in an Android emulator. Try it on your device!"
-    );
+    throw new Error("Oops, this will not work.");
   }
   let { status } = await Location.requestForegroundPermissionsAsync();
   if (status !== "granted") {
@@ -45,6 +43,20 @@ const UserDetails = () => {
       setmobileNumber(text);
     }
   }
+  const [email, setEmail] = useState("");
+  const [emailValidError, setEmailValidError] = useState("");
+
+  const handleValidEmail = (val) => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+    if (val.length === 0) {
+      setEmailValidError("Enter email");
+    } else if (reg.test(val) === false) {
+      setEmailValidError("Enter valid email address");
+    } else if (reg.test(val) === true) {
+      setEmailValidError("");
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -67,10 +79,17 @@ const UserDetails = () => {
           </View>
           <View style={styles.rectangle3}>
             <TextInput
-              placeholder="Email"
-              keyboardType={"email-address"}
               style={styles.inputContainer}
+              placeholder="Email"
+              value={email}
+              autoCorrect={false}
+              autoCapitalize="none"
+              onChangeText={(value) => {
+                setEmail(value);
+                handleValidEmail(value);
+              }}
             />
+            {emailValidError ? <Text>{emailValidError}</Text> : null}
           </View>
           <View
             style={{
@@ -104,7 +123,7 @@ const UserDetails = () => {
           <View style={styles.rectangle3}>
             <TextInput placeholder="Address" style={styles.inputContainer} />
           </View>
-          <Text style={[styles.title]}>OR</Text>
+          <Text style={[styles.title, { marginTop: "5%" }]}>OR</Text>
 
           <View
             style={{
@@ -120,6 +139,7 @@ const UserDetails = () => {
               onClick={async () => {
                 const location = await getLocation();
                 setuserLocation(location);
+                console.log(userLocation);
               }}
             />
           </View>
@@ -128,9 +148,6 @@ const UserDetails = () => {
           <TouchableOpacity style={styles.serviceBtn}>
             <Text style={styles.btnName}>Next</Text>
           </TouchableOpacity>
-        </View>
-        <View style={{ alignItems: "center" }}>
-          <Text>{JSON.stringify(userLocation)}</Text>
         </View>
       </View>
     </SafeAreaView>
@@ -159,10 +176,10 @@ const styles = StyleSheet.create({
   serviceBtn: {
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 12,
+    paddingVertical: 10,
     borderRadius: 20,
     backgroundColor: "#35B2E6",
-    width: "40%",
+    width: "35%",
     marginTop: 15,
   },
   btnName: {
@@ -182,7 +199,6 @@ const styles = StyleSheet.create({
     width: 300,
     backgroundColor: "#FFFFFF",
     marginTop: 15,
-
     borderRadius: 12,
   },
   rectangle4: {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
 function Dropdown() {
@@ -8,7 +8,7 @@ function Dropdown() {
     <View style={styles.screen}>
       <Picker
         selectedValue={gender}
-        onValueChange={(value, index) => setGender(value)}
+        onValueChange={(value) => setGender(value)}
         mode="dropdown"
         style={styles.picker}
       >
