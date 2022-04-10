@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Alert,
   Image,
@@ -7,13 +7,13 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
 
-import { Text, View } from './Themed';
-import Colors from '../constants/Colors';
-import { Display } from '../constants';
-import { generateOtpAPI } from '../services/otp';
-import IndianFlag from '../assets/images/india.png';
+import { Text, View } from "./Themed";
+import Colors from "../constants/Colors";
+import { Display } from "../constants";
+import { generateOtpAPI } from "../services/otp";
+import IndianFlag from "../assets/images/india.png";
 
 /**
  * NumberVerification Component is allowing the user to input the number for SignUp/Login
@@ -23,12 +23,12 @@ import IndianFlag from '../assets/images/india.png';
  * @returns JSX.Element
  */
 const NumberVerification = ({ navigation }: any) => {
-  const [mobileNumber, setmobileNumber] = useState('');
+  const [mobileNumber, setmobileNumber] = useState("");
   const [isValidNumberFlag, setValidNumberFlag] = useState<Boolean>(false);
 
   /**validatemobileNumber is a function for checking(if the input value is number or not) */
   function validatemobileNumber(number: string): Boolean {
-    const regexp = new RegExp('^[0-9]{0,10}$');
+    const regexp = new RegExp(/^[0-9]+$/);
     return regexp.test(number);
   }
 
@@ -50,33 +50,33 @@ const NumberVerification = ({ navigation }: any) => {
         ? generateOtpAPI(mobileNumber)
         : null
     )
-      ? navigation.navigate('OtpVerification', {
+      ? navigation.navigate("OtpVerification", {
           mobileNumber,
         })
-      : Alert.alert('Enter Your Correct Phone Number');
+      : Alert.alert("Enter Your Correct Phone Number");
   }
 
   return (
     <View style={styles.container}>
       <StatusBar
-        barStyle='dark-content'
+        barStyle="dark-content"
         backgroundColor={Colors.DEFAULT_WHITE}
         translucent
       />
-      <KeyboardAvoidingView style={styles.container} behavior='padding'>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <View style={styles.inputsContainer}>
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: "row" }}>
             <TouchableOpacity style={styles.countryListContainer}>
               <Image style={styles.image} source={IndianFlag} />
-              <Text style={styles.countryCodeText}>{'+91'}</Text>
+              <Text style={styles.countryCodeText}>{"+91"}</Text>
             </TouchableOpacity>
             <View style={styles.phoneInputContainer}>
               <TextInput
                 maxLength={10}
-                placeholder='Phone Number'
+                placeholder="Phone Number"
                 placeholderTextColor={Colors.DEFAULT_GREY}
                 selectionColor={Colors.DEFAULT_GREY}
-                keyboardType='number-pad'
+                keyboardType="number-pad"
                 style={styles.inputText}
                 onChangeText={onChangeHandler}
                 value={mobileNumber}
@@ -86,14 +86,14 @@ const NumberVerification = ({ navigation }: any) => {
           <Text style={styles.verificationText}>
             {mobileNumber.length !== 0
               ? isValidNumberFlag
-                ? ''
-                : 'Invalid'
+                ? ""
+                : "Invalid"
               : null}
           </Text>
         </View>
       </KeyboardAvoidingView>
       <TouchableOpacity
-        style={[styles.signinButton, { alignSelf: 'center' }]}
+        style={[styles.signinButton, { alignSelf: "center" }]}
         activeOpacity={0.8}
         onPress={onPressCheck}
       >
@@ -110,19 +110,19 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.DEFAULT_WHITE,
   },
   inputsContainer: {
-    alignItems: 'center',
-    flexDirection: 'column',
-    marginVertical: '5%',
+    alignItems: "center",
+    flexDirection: "column",
+    marginVertical: "5%",
   },
   countryListContainer: {
     backgroundColor: Colors.LIGHT_GREY,
     width: Display.setWidth(22),
     marginRight: 5,
     borderRadius: 8,
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
+    justifyContent: "space-evenly",
+    alignItems: "center",
     borderColor: Colors.LIGHT_GREY2,
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   image: {
     height: 35,
@@ -137,8 +137,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.LIGHT_GREY,
     borderRadius: 8,
     borderColor: Colors.LIGHT_GREY2,
-    width: '70%',
-    height: '100%',
+    width: "70%",
+    height: "100%",
   },
   inputText: {
     fontSize: 18,
@@ -149,8 +149,8 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   verificationText: {
-    color: 'red',
-    fontWeight: 'bold',
+    color: "red",
+    fontWeight: "bold",
   },
   signinButton: {
     backgroundColor: Colors.DEFAULT_GREEN,
@@ -158,8 +158,8 @@ const styles = StyleSheet.create({
     height: Display.setHeight(6),
     width: Display.setWidth(50),
 
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   signinButtonText: {
     fontSize: 18,

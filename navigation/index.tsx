@@ -1,33 +1,33 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
-} from '@react-navigation/native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ColorSchemeName, Pressable, SafeAreaView } from 'react-native';
+} from "@react-navigation/native";
+import { MaterialIcons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { ColorSchemeName, Pressable, SafeAreaView } from "react-native";
 
 import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
-} from '../types';
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import NotFoundScreen from '../screens/NotFoundScreen';
+} from "../types";
+import Colors from "../constants/Colors";
+import useColorScheme from "../hooks/useColorScheme";
+import NotFoundScreen from "../screens/NotFoundScreen";
 // import TabOneScreen from '../screens/TabOneScreen';
-import ModalScreen from '../screens/ModalScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import LinkingConfiguration from './LinkingConfiguration';
-import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
-import OtpVerification from '../screens/Authentication/OtpVerification';
-import HomePage from '../screens/HomePage';
-import ServicePage from '../screens/ServicePage';
-import HandymanAvailable from '../screens/HandymanAvailable';
-import MyBooking from '../screens/MyBooking';
-import BookingDetails from '../screens/BookingDetails';
+import ModalScreen from "../screens/ModalScreen";
+import TabTwoScreen from "../screens/TabTwoScreen";
+import LinkingConfiguration from "./LinkingConfiguration";
+import LoginSignupScreen from "../screens/Authentication/LoginSignupScreen";
+import OtpVerification from "../screens/Authentication/OtpVerification";
+import HomePage from "../screens/HomePage";
+import ServicePage from "../screens/ServicePage";
+import HandymanAvailable from "../screens/HandymanAvailable";
+import MyBooking from "../screens/MyBooking";
+import BookingDetails from "../screens/BookingDetails";
 
 export default function Navigation({
   colorScheme,
@@ -37,7 +37,7 @@ export default function Navigation({
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
     </NavigationContainer>
@@ -53,27 +53,27 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName='LoginSignupScreen'
+      initialRouteName="LoginSignupScreen"
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name='LoginSignupScreen' component={LoginSignupScreen} />
-      <Stack.Screen name='OtpVerification' component={OtpVerification} />
-      <Stack.Screen name='HandymanAvailable' component={HandymanAvailable} />
+      <Stack.Screen name="LoginSignupScreen" component={LoginSignupScreen} />
+      <Stack.Screen name="OtpVerification" component={OtpVerification} />
+      <Stack.Screen name="HandymanAvailable" component={HandymanAvailable} />
 
       <Stack.Screen
-        name='Root'
+        name="Root"
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name='BookingDetails'
+        name="BookingDetails"
         component={BookingDetails}
-        options={{ title: 'Oops!' }}
+        options={{ title: "Oops!" }}
       />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name='Modal' component={ModalScreen} />
+      <Stack.Group screenOptions={{ presentation: "modal" }}>
+        <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -90,28 +90,28 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName='Home'
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}
     >
       <BottomTab.Screen
-        name='Home'
+        name="Home"
         component={HomePage}
-        options={({ navigation }: RootTabScreenProps<'Home'>) => ({
-          title: 'Home',
+        options={({ navigation }: RootTabScreenProps<"Home">) => ({
+          title: "Home",
           headerShown: false,
-          tabBarIcon: ({ color }) => <TabBarIcon name='home' color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Modal')}
+              onPress={() => navigation.navigate("Modal")}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}
             >
               <MaterialIcons
-                name='home'
+                name="home"
                 size={25}
                 color={Colors[colorScheme].text}
                 style={{ marginRight: 15 }}
@@ -122,32 +122,32 @@ function BottomTabNavigator() {
       />
 
       <BottomTab.Screen
-        name='Booking'
+        name="Booking"
         component={MyBooking}
         options={{
-          title: 'Booking',
+          title: "Booking",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name='handyman' color={color} />
+            <TabBarIcon name="handyman" color={color} />
           ),
         }}
       />
       <BottomTab.Screen
-        name='ServicePage'
+        name="ServicePage"
         component={ServicePage}
         options={{
-          title: 'Services',
+          title: "Services",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name='miscellaneous-services' color={color} />
+            <TabBarIcon name="miscellaneous-services" color={color} />
           ),
         }}
       />
       <BottomTab.Screen
-        name='Profile'
+        name="Profile"
         component={TabTwoScreen}
         options={{
-          title: 'Profile',
+          title: "Profile",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name='account-circle' color={color} />
+            <TabBarIcon name="account-circle" color={color} />
           ),
         }}
       />
@@ -159,7 +159,7 @@ function BottomTabNavigator() {
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof MaterialIcons>['name'];
+  name: React.ComponentProps<typeof MaterialIcons>["name"];
   color: string;
 }) {
   return <MaterialIcons size={30} style={{ marginBottom: -3 }} {...props} />;
