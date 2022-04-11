@@ -7,7 +7,7 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ColorSchemeName, Pressable, SafeAreaView } from 'react-native';
+import { ColorSchemeName, Pressable } from 'react-native';
 
 import {
   RootStackParamList,
@@ -17,12 +17,9 @@ import {
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import NotFoundScreen from '../screens/NotFoundScreen';
-// import TabOneScreen from '../screens/TabOneScreen';
 import ModalScreen from '../screens/ModalScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import LinkingConfiguration from './LinkingConfiguration';
-import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
-import OtpVerification from '../screens/Authentication/OtpVerification';
 import HomePage from '../screens/HomePage';
 import ServicePage from '../screens/ServicePage';
 import HandymanAvailable from '../screens/HandymanAvailable';
@@ -58,18 +55,16 @@ function RootNavigator() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name='LoginSignupScreen' component={LoginSignupScreen} />
-      <Stack.Screen name='OtpVerification' component={OtpVerification} />
-      <Stack.Screen name='HandymanAvailable' component={HandymanAvailable} />
-
       <Stack.Screen
         name='Root'
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
+      <Stack.Screen name='HandymanAvailable' component={HandymanAvailable} />
+      <Stack.Screen name='BookingDetails' component={BookingDetails} />
       <Stack.Screen
-        name='BookingDetails'
-        component={BookingDetails}
+        name='NotFound'
+        component={NotFoundScreen}
         options={{ title: 'Oops!' }}
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>

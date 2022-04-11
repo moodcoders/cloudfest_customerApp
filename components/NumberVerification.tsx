@@ -14,6 +14,7 @@ import Colors from '../constants/Colors';
 import { Display } from '../constants';
 import { generateOtpAPI } from '../services/otp';
 import IndianFlag from '../assets/images/india.png';
+import Google from '../assets/images/google.png';
 
 /**
  * NumberVerification Component is allowing the user to input the number for SignUp/Login
@@ -58,46 +59,48 @@ const NumberVerification = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar
-        barStyle='dark-content'
-        backgroundColor={Colors.DEFAULT_WHITE}
-        translucent
-      />
-      <KeyboardAvoidingView style={styles.container} behavior='padding'>
-        <View style={styles.inputsContainer}>
-          <View style={{ flexDirection: 'row' }}>
-            <TouchableOpacity style={styles.countryListContainer}>
-              <Image style={styles.image} source={IndianFlag} />
-              <Text style={styles.countryCodeText}>{'+91'}</Text>
-            </TouchableOpacity>
-            <View style={styles.phoneInputContainer}>
-              <TextInput
-                maxLength={10}
-                placeholder='Phone Number'
-                placeholderTextColor={Colors.DEFAULT_GREY}
-                selectionColor={Colors.DEFAULT_GREY}
-                keyboardType='number-pad'
-                style={styles.inputText}
-                onChangeText={onChangeHandler}
-                value={mobileNumber}
-              />
-            </View>
+      <Text style={styles.primaryText}>Login Or SignUp</Text>
+      <View style={styles.inputsContainer}>
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity style={styles.countryListContainer}>
+            <Image style={styles.image} source={IndianFlag} />
+            <Text style={styles.countryCodeText}>{'+91'}</Text>
+          </TouchableOpacity>
+          <View style={styles.phoneInputContainer}>
+            <TextInput
+              maxLength={10}
+              placeholder='Phone Number'
+              placeholderTextColor={Colors.DEFAULT_GREY}
+              selectionColor={Colors.DEFAULT_GREY}
+              keyboardType='number-pad'
+              style={styles.inputText}
+              onChangeText={onChangeHandler}
+              value={mobileNumber}
+            />
           </View>
-          <Text style={styles.verificationText}>
-            {mobileNumber.length !== 0
-              ? isValidNumberFlag
-                ? ''
-                : 'Invalid'
-              : null}
-          </Text>
         </View>
-      </KeyboardAvoidingView>
+        <Text style={styles.verificationText}>
+          {mobileNumber.length !== 0
+            ? isValidNumberFlag
+              ? ''
+              : 'Invalid'
+            : null}
+        </Text>
+      </View>
       <TouchableOpacity
         style={[styles.signinButton, { alignSelf: 'center' }]}
         activeOpacity={0.8}
         onPress={onPressCheck}
       >
         <Text style={styles.signinButtonText}>Continue</Text>
+      </TouchableOpacity>
+      <View style={styles.borderContainer}>
+        <View style={styles.border} />
+        <Text style={styles.borderText}>Or</Text>
+        <View style={styles.border} />
+      </View>
+      <TouchableOpacity style={[styles.borderContainer, styles.socialIcon]}>
+        <Image style={styles.google} source={Google} />
       </TouchableOpacity>
     </View>
   );
@@ -108,8 +111,11 @@ export default NumberVerification;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.DEFAULT_WHITE,
+    display: 'flex',
+    // justifyContent: 'space-evenly',
   },
   inputsContainer: {
+    backgroundColor: Colors.DEFAULT_WHITE,
     alignItems: 'center',
     flexDirection: 'column',
     marginVertical: '5%',
@@ -153,7 +159,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   signinButton: {
-    backgroundColor: Colors.DEFAULT_GREEN,
+    backgroundColor: Colors.Button_Blue,
     borderRadius: 8,
     height: Display.setHeight(6),
     width: Display.setWidth(50),
@@ -165,5 +171,45 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 18 * 1.4,
     color: Colors.DEFAULT_WHITE,
+  },
+
+  primaryText: {
+    color: 'grey',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  secondaryText: {
+    color: 'black',
+    marginTop: '10%',
+  },
+  thirdText: {
+    color: 'blue',
+    marginTop: '3%',
+  },
+  borderContainer: {
+    marginTop: '3%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  border: {
+    backgroundColor: Colors.DEFAULT_WHITE,
+    width: '46%',
+    borderBottomWidth: 1,
+  },
+  borderText: {
+    backgroundColor: Colors.DEFAULT_WHITE,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  borderDown: {
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  socialIcon: {
+    justifyContent: 'space-around',
+  },
+  google: {
+    height: Display.setHeight(6),
+    width: Display.setWidth(15),
   },
 });

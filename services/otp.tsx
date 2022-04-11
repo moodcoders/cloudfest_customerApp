@@ -1,4 +1,5 @@
 const AUTH_API = 'http://192.168.1.11:4000';
+import { notifyMessage } from '../constants/NotifyMessage';
 
 /**generateOtpAPI is generating OTP for the user */
 export const generateOtpAPI = async (mobileNumber: string) => {
@@ -14,9 +15,9 @@ export const generateOtpAPI = async (mobileNumber: string) => {
       }),
     });
     const jsonResponse = await response.json();
-    alert(JSON.stringify(jsonResponse.message));
+    notifyMessage(JSON.stringify(jsonResponse.message));
   } catch (err) {
-    alert(err);
+    notifyMessage(err);
   }
 };
 
@@ -34,24 +35,13 @@ export const validateOtp = async (mobileNumber: string, otp: string) => {
         password: otp,
       }),
     });
-    console.log(await response.json());
+    const jsonResponse = await response.json();
+    if (!response.ok) {
+      throw new Error(jsonResponse.message);
+    }
+    return jsonResponse;
   } catch (err) {
-    alert(err);
-  }
-};
-
-/**googleAuth is used for Google Authentication */
-export const googleAuth = async () => {
-  try {
-    const response = await fetch(`${AUTH_API}/auth/google/login`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-    console.log(await response.json());
-  } catch (err) {
-    console.log(err);
+    notifyMessage('Wrong Otp');
+    throw err;
   }
 };
