@@ -8,7 +8,7 @@ import Calling from '../assets/fonts/callingIcon.png';
 import Message from '../assets/fonts/message.png';
 
 import Data from "../DataStore/DataService";
-import HandymanDetails from '../components/BookingHandymanDetails';
+import BookingHandymanDetails from '../components/BookingHandymanDetails';
 
 const BookingDetails = ({ navigation }: any) => {
     return (
@@ -28,7 +28,7 @@ const BookingDetails = ({ navigation }: any) => {
                     </TouchableOpacity>
                     <Text style={styles.subTitle}>Booking Details</Text>
                 </View>
-                <HandymanDetails {...Data[0]} />
+                <BookingHandymanDetails {...Data[0]} />
                 <View style={{ backgroundColor: 'transparent', padding: 20 }}>
                     <View style={styles.smartIcon}>
                         <TouchableOpacity>
