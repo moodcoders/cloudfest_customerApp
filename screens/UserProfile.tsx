@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { StyleSheet, TouchableOpacity, Image, StatusBar } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
@@ -9,12 +10,26 @@ import {
 } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/Foundation';
 
+import Separator from '../components/Separator';
+import Colors from '../constants/Colors';
 import { View, Text } from '../components/Themed';
 import { Display } from '../constants';
+import { AuthContext } from '../constants/Context';
 
+interface ctx {
+  signIn: void | any;
+}
 const UserProfileView = () => {
+  const { signOut } = useContext<ctx | any>(AuthContext);
+
   return (
-    <View>
+    <View style={styles.main}>
+      <StatusBar
+        barStyle='dark-content'
+        backgroundColor={Colors.DEFAULT_WHITE}
+        translucent
+      />
+      <Separator height={StatusBar.currentHeight} />
       <Text style={styles.title}>
         {' '}
         SMART<Text style={styles.service}>SERVICE</Text>
@@ -80,7 +95,7 @@ const UserProfileView = () => {
           <AntDesign name='sharealt' size={34} color='black' />
           <Text style={styles.textStyle}>Share</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.viewStyle}>
+        <TouchableOpacity style={styles.viewStyle} onPress={() => signOut()}>
           <MaterialIcons name='logout' size={34} color='black' />
           <Text style={styles.textStyle}>Logout</Text>
         </TouchableOpacity>
@@ -90,6 +105,9 @@ const UserProfileView = () => {
 };
 
 const styles = StyleSheet.create({
+  main: {
+    height: Display.setHeight(100),
+  },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
