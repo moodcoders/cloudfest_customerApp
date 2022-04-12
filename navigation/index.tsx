@@ -25,6 +25,7 @@ import ServicePage from '../screens/ServicePage';
 import HandymanAvailable from '../screens/HandymanAvailable';
 import MyBooking from '../screens/MyBooking';
 import BookingDetails from '../screens/BookingDetails';
+import UserProfileView from '../screens/UserProfile';
 
 export default function Navigation({
   colorScheme,
@@ -138,7 +139,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name='Profile'
-        component={TabTwoScreen}
+        component={UserProfileView}
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => (
