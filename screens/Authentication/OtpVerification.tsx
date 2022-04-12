@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import {
-  StatusBar,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import React, { useState, useContext } from 'react';
+import { StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import * as Animatable from 'react-native-animatable';
 
+import { AuthContext } from '../../constants/Context';
 import { Text, View } from '../../components/Themed';
 import Colors from '../../constants/Colors';
 import { Display } from '../../constants';
-import Separator from '../../components/Separator';
 import Timer from '../../components/Timer';
 import { validateOtp } from '../../services/otp';
 
+interface ctx {
+  signIn: void | any;
+}
 /**
  * OtpVerification Component is verifying the Otp send to the User
  *
@@ -24,51 +23,54 @@ import { validateOtp } from '../../services/otp';
  */
 const OtpVerification = ({ navigation, route }: any) => {
   const { mobileNumber } = route.params;
+  const { signIn } = useContext<ctx | any>(AuthContext);
 
-  const checkValidation = () => {
-    validateOtp(mobileNumber, otp);
-    navigation.navigate('Root');
+  const checkValidation = async () => {
+    try {
+      const userToken = await validateOtp(mobileNumber, otp);
+      signIn(userToken.user.token);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const [otp, setOtp] = useState('');
   return (
     <View style={styles.container}>
-      <StatusBar
-        barStyle='dark-content'
-        backgroundColor={Colors.DEFAULT_WHITE}
-        translucent
-      />
-      <Separator height={StatusBar.currentHeight} />
-      <View style={styles.headerContainer}>
-        <Ionicons
-          name='chevron-back-outline'
-          size={30}
-          onPress={() => navigation.goBack()}
-        />
-        <Text style={styles.headerTitle}>OTP Verification</Text>
+      <View style={styles.header}>
+        <View style={styles.headerContainer}>
+          <Ionicons
+            name='chevron-back-outline'
+            size={30}
+            onPress={() => navigation.goBack()}
+          />
+          <Text style={styles.headerTitle}>OTP Verification</Text>
+        </View>
+        <Text style={styles.text_header}>Welcome!</Text>
       </View>
-
-      <Text style={styles.content}>
-        Enter the OTP number just sent you at{' '}
-        <Text style={styles.mobileNumberText}>{mobileNumber}</Text>
-      </Text>
-      <View style={styles.otpContainer}>
-        <TextInput
-          style={[styles.otpBox, styles.otpText]}
-          keyboardType='number-pad'
-          maxLength={6}
-          onChangeText={(text) => {
-            setOtp(text);
-          }}
-          defaultValue={otp}
-        />
-      </View>
-      <View style={styles.resendController}>
-        <Timer mobileNumber={mobileNumber} />
-      </View>
-      <TouchableOpacity style={styles.signinButton} onPress={checkValidation}>
-        <Text style={styles.signinButtonText}>Verify</Text>
-      </TouchableOpacity>
+      <Animatable.View animation='fadeInUpBig' style={styles.footer}>
+        <Text style={styles.content}>
+          Enter the OTP number just sent you at{' '}
+          <Text style={styles.mobileNumberText}>{mobileNumber}</Text>
+        </Text>
+        <View style={styles.otpContainer}>
+          <TextInput
+            style={[styles.otpBox, styles.otpText]}
+            keyboardType='number-pad'
+            maxLength={6}
+            onChangeText={(text) => {
+              setOtp(text);
+            }}
+            defaultValue={otp}
+          />
+        </View>
+        <View style={styles.resendController}>
+          <Timer mobileNumber={mobileNumber} />
+        </View>
+        <TouchableOpacity style={styles.signinButton} onPress={checkValidation}>
+          <Text style={styles.signinButtonText}>Verify</Text>
+        </TouchableOpacity>
+      </Animatable.View>
     </View>
   );
 };
@@ -78,16 +80,35 @@ export default OtpVerification;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.DEFAULT_WHITE,
+    backgroundColor: Colors.LIGHT_GREY2,
+  },
+  header: {
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+    backgroundColor: 'transparent',
+  },
+  footer: {
+    flex: 2,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+  },
+  text_header: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 30,
   },
   headerContainer: {
     flexDirection: 'row',
-    marginTop: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 20,
+    backgroundColor: 'transparent',
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 25,
     lineHeight: 20 * 1.4,
     width: Display.setWidth(80),
     textAlign: 'center',
@@ -95,7 +116,7 @@ const styles = StyleSheet.create({
   content: {
     fontSize: 20,
     alignItems: 'center',
-    marginTop: '40%',
+    marginTop: '20%',
     marginBottom: 30,
     marginHorizontal: 20,
   },
@@ -105,6 +126,7 @@ const styles = StyleSheet.create({
     color: Colors.DEFAULT_YELLOW,
   },
   otpContainer: {
+    backgroundColor: Colors.DEFAULT_WHITE,
     justifyContent: 'space-evenly',
     alignItems: 'center',
     flexDirection: 'row',
@@ -126,6 +148,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   resendController: {
+    backgroundColor: Colors.DEFAULT_WHITE,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     paddingHorizontal: '6%',
