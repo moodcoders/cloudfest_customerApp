@@ -26,6 +26,7 @@ import HandymanAvailable from '../screens/HandymanAvailable';
 import MyBooking from '../screens/MyBooking';
 import BookingDetails from '../screens/BookingDetails';
 import UserProfileView from '../screens/UserProfile';
+import Settings from '../screens/Settings';
 
 export default function Navigation({
   colorScheme,
@@ -63,6 +64,7 @@ function RootNavigator() {
       />
       <Stack.Screen name='HandymanAvailable' component={HandymanAvailable} />
       <Stack.Screen name='BookingDetails' component={BookingDetails} />
+      <Stack.Screen name='Settings' component={Settings} />
       <Stack.Screen
         name='NotFound'
         component={NotFoundScreen}
