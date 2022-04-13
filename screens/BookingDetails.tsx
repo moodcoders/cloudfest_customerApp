@@ -9,10 +9,11 @@ import Message from '../assets/fonts/message.png';
 
 import Data from "../DataStore/DataService";
 import BookingHandymanDetails from '../components/BookingHandymanDetails';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const BookingDetails = ({ navigation }: any) => {
     return (
-        <View>
+        <SafeAreaView>
             <View >
                 <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(0, 0, 0, 0.22)" />
@@ -56,7 +57,7 @@ const BookingDetails = ({ navigation }: any) => {
                     </View>
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 

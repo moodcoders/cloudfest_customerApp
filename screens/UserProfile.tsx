@@ -32,7 +32,7 @@ const UserProfileView = () => {
       <Separator height={StatusBar.currentHeight} />
       <Text style={styles.title}>
         {' '}
-        SMART<Text style={styles.service}>SERVICE</Text>
+        SMART<Text style={styles.service}> SERVICE</Text>
       </Text>
       <View
         style={styles.separator}
@@ -44,7 +44,7 @@ const UserProfileView = () => {
         <Ionicons
           name='chevron-back-outline'
           size={30}
-          // onPress={() => navigation.goBack()}
+        // onPress={() => navigation.goBack()}
         />
       </View>
       <View style={styles.header}>
