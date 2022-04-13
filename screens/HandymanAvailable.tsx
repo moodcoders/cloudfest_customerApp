@@ -5,11 +5,12 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 import EletricianIcon from '../assets/images/electricianIcon.png';
 
 import HandymanDetail from '../components/HandymanDetails';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const HandymanAvailable = ({ navigation }: any) => {
     return (
-        <View>
+        <SafeAreaView>
             <View>
                 <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(0, 0, 0, 0.22)" />
@@ -48,7 +49,7 @@ const HandymanAvailable = ({ navigation }: any) => {
                     <HandymanDetail />
                 </View>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 };
 

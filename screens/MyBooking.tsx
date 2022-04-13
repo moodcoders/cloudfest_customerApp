@@ -7,13 +7,14 @@ import { Feather } from '@expo/vector-icons';
 import FilterList from "../assets/fonts/filter.png";
 
 import BookingCards from '../components/BookingCards';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MyBooking = ({ navigation }: any) => {
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
 
     return (
-        <View >
+        <SafeAreaView >
             <View >
                 <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(0, 0, 0, 0.22)" />
@@ -63,7 +64,7 @@ const MyBooking = ({ navigation }: any) => {
                     <BookingCards />
                 </ScrollView>
             </View>
-        </View >
+        </SafeAreaView >
     );
 };
 
