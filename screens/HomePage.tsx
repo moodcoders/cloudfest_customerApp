@@ -1,12 +1,15 @@
 // import all the components we are going to use
 import {
-  StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  StatusBar,
 } from 'react-native';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text } from '../components/Themed';
 
-import '../i18n'
 import handymanIcon from '../assets/images/handyman.png';
 import ServicesList from '../components/ServicesList';
 import HandymanList from '../components/HandymanList';
@@ -14,17 +17,7 @@ import Separator from '../components/Separator';
 import Colors from '../constants/Colors';
 
 const HomePage = ({ navigation }: any) => {
-
-  const { t: translate, i18n } = useTranslation();
-
-  const [currentLanguage, setLanguage] = useState('en');
-  const changeLanguage = (value: string) => {
-    i18n
-      .changeLanguage(value)
-      .then(() => setLanguage(value))
-      .catch((err) => console.log(err));
-  };
-
+  const { t: translate } = useTranslation();
   return (
     <View>
       <StatusBar
@@ -36,7 +29,8 @@ const HomePage = ({ navigation }: any) => {
       <View>
         <Text style={styles.title}>
           {' '}
-          {translate('Smart')}<Text style={styles.service}> {translate('Services')}</Text>
+          {translate('Smart')}
+          <Text style={styles.service}> {translate('Services')}</Text>
         </Text>
         <View
           style={styles.separator}
@@ -50,14 +44,12 @@ const HomePage = ({ navigation }: any) => {
           lightColor='#fff'
           darkColor='rgba(0, 0, 0, 0.22)'
         >
-          <TouchableOpacity
-            style={styles.lang}
-            onPress={() => { changeLanguage('hindi') }}
-          >
-            <Text>{translate('lang')}</Text>
-          </TouchableOpacity>
           <Text style={styles.ClintName}> {translate('hi')}! Md Ghazanfar</Text>
-          <Text style={styles.subTitle}>{translate('What service do')}{'\n'}{translate('you need?')}</Text>
+          <Text style={styles.subTitle}>
+            {translate('What service do')}
+            {'\n'}
+            {translate('you need?')}
+          </Text>
           <TouchableOpacity
             style={styles.serviceBtn}
             onPress={() => navigation.navigate('ServicePage')}
@@ -67,7 +59,7 @@ const HomePage = ({ navigation }: any) => {
           <Image source={handymanIcon} style={styles.serviceImage} />
           <Text style={styles.listName}>{translate('Category')}</Text>
           <ServicesList />
-          <Text style={styles.listName}>{translate("Recommended")}</Text>
+          <Text style={styles.listName}>{translate('Recommended')}</Text>
           <HandymanList />
         </View>
       </ScrollView>
@@ -136,7 +128,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#c9dafa',
     width: '18%',
-  }
+  },
 });
 
 export default HomePage;

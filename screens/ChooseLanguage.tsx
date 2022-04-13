@@ -1,23 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { View, Text } from '../components/Themed';
 import { Display } from '../constants';
 import Colors from '../constants/Colors';
-export default function ChooseLanguage() {
+import { useTranslation } from 'react-i18next';
+import '../i18n';
+
+export default function ChooseLanguage({ navigation }: any) {
+  const { t: translate, i18n } = useTranslation();
+
+  const [currentLanguage, setLanguage] = useState('en');
+  const changeLanguage = (value: string) => {
+    i18n
+      .changeLanguage(value)
+      .then(() => setLanguage(value))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <View style={[styles.langButtonflex, { justifyContent: 'space-around' }]}>
       <Text style={styles.textStyle}>Choose Your Preffed Language</Text>
       <TouchableOpacity
         style={styles.signinButton}
         activeOpacity={0.8}
-        // onPress={onPressCheck}
+        onPress={() => {
+          changeLanguage('en');
+          navigation.navigate('LoginSignupScreen');
+        }}
       >
         <Text style={styles.signinButtonText}>English</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.signinButton}
         activeOpacity={0.8}
-        // onPress={onPressCheck}
+        onPress={() => {
+          changeLanguage('hindi');
+          navigation.navigate('LoginSignupScreen');
+        }}
       >
         <Text style={styles.signinButtonText}>हिन्दी</Text>
       </TouchableOpacity>

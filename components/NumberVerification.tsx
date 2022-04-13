@@ -103,7 +103,6 @@ const NumberVerification = ({ navigation }: any) => {
     </View>
   );
 };
-
 export default NumberVerification;
 
 const styles = StyleSheet.create({
