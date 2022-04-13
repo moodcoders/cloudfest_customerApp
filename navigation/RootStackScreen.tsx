@@ -20,6 +20,7 @@ const RootStackScreen = () => (
     >
       <Stack.Screen name='LoginSignupScreen' component={LoginSignupScreen} />
       <Stack.Screen name='OtpVerification' component={OtpVerification} />
+      <Stack.Screen name="OauthVerification" component={OauthVerification}/>
     </Stack.Navigator>
   </NavigationContainer>
 );
