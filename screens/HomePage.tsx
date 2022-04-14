@@ -5,6 +5,7 @@ import {
   Image,
   ScrollView,
   StatusBar,
+  Button,
 } from 'react-native';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +16,8 @@ import ServicesList from '../components/ServicesList';
 import HandymanList from '../components/HandymanList';
 import Separator from '../components/Separator';
 import Colors from '../constants/Colors';
+
+import { openBrowserAsync } from 'expo-web-browser';
 
 const HomePage = ({ navigation }: any) => {
   const { t: translate } = useTranslation();
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#234c7d',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   service: {

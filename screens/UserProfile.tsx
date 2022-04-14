@@ -18,10 +18,10 @@ import { AuthContext } from '../constants/Context';
 import Navigation from '../navigation';
 
 interface ctx {
-  signIn: void | any;
+  signIn: void;
 }
 const UserProfileView = ({ navigation }: any) => {
-  const { signOut } = useContext<ctx | any>(AuthContext);
+  const { authContext } = useContext<ctx | any>(AuthContext);
 
   return (
     <View style={styles.main}>
@@ -33,7 +33,7 @@ const UserProfileView = ({ navigation }: any) => {
       <Separator height={StatusBar.currentHeight} />
       <Text style={styles.title}>
         {' '}
-        SMART<Text style={styles.service}>SERVICE</Text>
+        SMART<Text style={styles.service}> SERVICE</Text>
       </Text>
       <View
         style={styles.separator}
@@ -99,7 +99,10 @@ const UserProfileView = ({ navigation }: any) => {
           <AntDesign name='sharealt' size={34} color='black' />
           <Text style={styles.textStyle}>Share</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.viewStyle} onPress={() => signOut()}>
+        <TouchableOpacity
+          style={styles.viewStyle}
+          onPress={() => authContext.signOut()}
+        >
           <MaterialIcons name='logout' size={34} color='black' />
           <Text style={styles.textStyle}>Logout</Text>
         </TouchableOpacity>

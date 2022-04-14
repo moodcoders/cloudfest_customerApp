@@ -6,10 +6,11 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Img from '../assets/images/photography.png';
 import ToggleBtn from '../components/ToggleBtn';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Settings = ({ navigation }: any) => {
   return (
-    <View>
+    <SafeAreaView>
       <View>
         <Text style={styles.title}>
           {' '}
@@ -110,7 +111,7 @@ const Settings = ({ navigation }: any) => {
           </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

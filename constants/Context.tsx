@@ -4,6 +4,7 @@ import { createContext } from 'react';
 interface ctx {
   signIn: void | any;
   signOut: void | any;
+  authState: any;
 }
 
-export const AuthContext = createContext<ctx | null>(null);
+export const AuthContext = createContext<ctx | any>(null);

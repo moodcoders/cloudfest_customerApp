@@ -31,7 +31,7 @@ const UserDetails = () => {
   return (
     <SafeAreaView>
       <Text style={styles.title}>
-        SMART<Text style={styles.service}>SERVICE</Text>
+        SMART<Text style={styles.service}> SERVICE</Text>
       </Text>
       <View
         style={styles.separator}
