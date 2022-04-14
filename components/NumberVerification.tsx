@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Alert,
   Image,
@@ -7,12 +7,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import { openBrowserAsync } from 'expo-web-browser';
+
 import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import { Display } from '../constants';
 import { generateOtpAPI } from '../services/otp';
 import IndianFlag from '../assets/images/india.png';
 import Google from '../assets/images/google.png';
+import { AuthContext } from '../constants/Context';
 
 /**
  * NumberVerification Component is allowing the user to input the number for SignUp/Login
@@ -24,6 +27,8 @@ import Google from '../assets/images/google.png';
 const NumberVerification = ({ navigation }: any) => {
   const [mobileNumber, setmobileNumber] = useState('');
   const [isValidNumberFlag, setValidNumberFlag] = useState<Boolean>(false);
+  const { signIn } = useContext<any>(AuthContext);
+
 
   /**validatemobileNumber is a function for checking(if the input value is number or not) */
   function validatemobileNumber(number: string): Boolean {
@@ -38,6 +43,11 @@ const NumberVerification = ({ navigation }: any) => {
     if (res === true) {
       setmobileNumber(text);
     }
+  }
+
+  function handleOnPress(){
+    openBrowserAsync('http://192.168.1.12.xip.io:4000/auth/google/login')
+    // signIn('abc')
   }
 
   /**onPressCheck is navigating the user to OtpVerification page by checking the
@@ -97,7 +107,7 @@ const NumberVerification = ({ navigation }: any) => {
         <Text style={styles.borderText}>Or</Text>
         <View style={styles.border} />
       </View>
-      <TouchableOpacity style={[styles.borderContainer, styles.socialIcon]}>
+      <TouchableOpacity style={[styles.borderContainer, styles.socialIcon]} onPress ={handleOnPress}>
         <Image style={styles.google} source={Google} />
       </TouchableOpacity>
     </View>

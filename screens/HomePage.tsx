@@ -1,6 +1,6 @@
 // import all the components we are going to use
 import {
-  StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar
+  StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar, Button
 } from 'react-native';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +12,8 @@ import ServicesList from '../components/ServicesList';
 import HandymanList from '../components/HandymanList';
 import Separator from '../components/Separator';
 import Colors from '../constants/Colors';
+
+import  { openBrowserAsync } from "expo-web-browser"
 
 const HomePage = ({ navigation }: any) => {
 

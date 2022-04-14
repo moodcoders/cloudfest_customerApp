@@ -39,6 +39,8 @@ const linking: LinkingOptions<RootStackParamList> = {
       },
       Modal: 'modal',
       NotFound: '*',
+      OauthVerification: 'OauthVerification',
+      HandymanAvailable: 'HandymanAvailable'
     },
   },
 };

@@ -11,7 +11,7 @@ import Timer from '../../components/Timer';
 import { validateOtp } from '../../services/otp';
 
 interface ctx {
-  signIn: void | any;
+  signIn: void;
 }
 /**
  * OtpVerification Component is verifying the Otp send to the User
@@ -23,12 +23,12 @@ interface ctx {
  */
 const OtpVerification = ({ navigation, route }: any) => {
   const { mobileNumber } = route.params;
-  const { signIn } = useContext<ctx | any>(AuthContext);
+  const { authContext } = useContext<ctx | any>(AuthContext);
 
   const checkValidation = async () => {
     try {
       const userToken = await validateOtp(mobileNumber, otp);
-      signIn(userToken.user.token);
+      authContext.signIn(userToken.user.token);
     } catch (error) {
       console.log(error);
     }

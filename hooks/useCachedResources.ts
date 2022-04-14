@@ -14,8 +14,8 @@ interface authType {
  */
 export default function useCachedResources() {
   const initialAuthState: authType = {
-    isLoadingComplete: true,
-    userToken: null
+    userToken: null,
+    isLoadingComplete: true
   }
 
   const authReducer = (prevState: any, action: any) => {
@@ -72,7 +72,7 @@ export default function useCachedResources() {
   useEffect(() => {
     setTimeout(async () => {
       async function loadResourcesAndDataAsync() {
-        let token: null | string = null;
+        let token: null | any = null;
         token = null
         try {
           SplashScreen.preventAutoHideAsync();
@@ -84,7 +84,7 @@ export default function useCachedResources() {
           }
           );
           try {
-            token = await AsyncStorage.getItem('token')
+            token = await AsyncStorage.removeItem('token')
           } catch (e) {
             console.log(e)
           }

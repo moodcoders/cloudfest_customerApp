@@ -35,18 +35,18 @@ export default function App() {
         translucent={false}
         backgroundColor='transparent'
       />
-      {authState.userToken === null ? (
+      {/* {authState.userToken === null ? (
         <AuthContext.Provider value={authContext}>
           <RootStackScreen />
         </AuthContext.Provider>
-      ) : (
-        <StripeProvider2 publishableKey='pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5'>
-          <AuthContext.Provider value={authContext}>
-            <Navigation colorScheme={colorScheme} />
-          </AuthContext.Provider>
-          {/* <NavigationTwo /> */}
-        </StripeProvider2>
-      )}
+      ) : ( */}
+      <StripeProvider2 publishableKey='pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5'>
+        <AuthContext.Provider value={{ authContext, authState }}>
+          <Navigation colorScheme={colorScheme} />
+        </AuthContext.Provider>
+        {/* <NavigationTwo /> */}
+      </StripeProvider2>
+      {/* )} */}
     </>
   );
 }
