@@ -16,6 +16,7 @@ import Colors from '../constants/Colors';
 import { View, Text } from '../components/Themed';
 import { Display } from '../constants';
 import { AuthContext } from '../constants/Context';
+import { getProfileDetails } from '../services/profileDetails';
 
 interface ctx {
   signIn: void;
@@ -32,18 +33,21 @@ interface profileDataType {
     state: string,
     country: string
   }
+  providers:[{
+      uid :number
+  }]
 }
 const UserProfileView = ({ navigation }: any) => {
   const { authContext } = useContext<ctx | any>(AuthContext);
   const [profileData, setProfileData] = useState<profileDataType>()
+
   useEffect(() => {
     (async () => {
-      // const data = await getProfile()
-      // if (data) {
-      //   setProfileData(data)
-      // }
       const id = await SecureStore.getItemAsync('id')
-      console.log(id)
+      const data = await getProfileDetails(id)
+      if (data) {
+        setProfileData(data)
+      }
     })()
   }, [])
 
@@ -84,8 +88,8 @@ const UserProfileView = ({ navigation }: any) => {
           </Text>
         </View>
 
-        <Text style={styles.name}>Suchetoo Mahata</Text>
-        <Text style={styles.userInfo}>90******11</Text>
+        <Text style={styles.name}>{profileData?.name}</Text>
+        <Text style={styles.userInfo}>{profileData?.providers[0].uid}</Text>
       </View>
 
       <View style={styles.arrangement}>

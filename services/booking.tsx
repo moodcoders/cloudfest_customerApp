@@ -1,6 +1,6 @@
 export async function getBookingsForUser(userId: string) {
     try {
-        const response = await fetch(`http://192.168.1.10:4001/v1/bookings/?id=${userId}`, {
+        const response = await fetch(`http://192.168.0.113:4001/v1/bookings/?id=${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': "application/json"
@@ -15,7 +15,7 @@ export async function getBookingsForUser(userId: string) {
 
 export async function getBookingDetails(bookingId: string) {
     try {
-        const response = await fetch(`http://192.168.1.10:4001/v1/booking/?id=${bookingId}`, {
+        const response = await fetch(`http://192.168.0.113:4001/v1/booking/?id=${bookingId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': "application/json"
