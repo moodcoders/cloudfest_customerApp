@@ -17,10 +17,10 @@ import { Display } from '../constants';
 import { AuthContext } from '../constants/Context';
 
 interface ctx {
-  signIn: void | any;
+  signIn: void;
 }
 const UserProfileView = () => {
-  const { signOut } = useContext<ctx | any>(AuthContext);
+  const { authContext } = useContext<ctx | any>(AuthContext);
 
   return (
     <View style={styles.main}>
@@ -95,7 +95,10 @@ const UserProfileView = () => {
           <AntDesign name='sharealt' size={34} color='black' />
           <Text style={styles.textStyle}>Share</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.viewStyle} onPress={() => signOut()}>
+        <TouchableOpacity
+          style={styles.viewStyle}
+          onPress={() => authContext.signOut()}
+        >
           <MaterialIcons name='logout' size={34} color='black' />
           <Text style={styles.textStyle}>Logout</Text>
         </TouchableOpacity>

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../constants/Context';
 import {
   NavigationContainer,
   DefaultTheme,
@@ -32,6 +34,10 @@ import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
 import OtpVerification from '../screens/Authentication/OtpVerification';
 import OauthVerification from '../screens/Authentication/OauthVerification';
 
+interface ctx {
+  authState: object;
+}
+
 export default function Navigation({
   colorScheme,
 }: {
@@ -54,7 +60,7 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-  const { authContext, ...authState } = useCachedResources();
+  const { authState } = useContext<ctx | any>(AuthContext);
   return (
     <Stack.Navigator
       initialRouteName='LoginSignupScreen'
@@ -62,32 +68,40 @@ function RootNavigator() {
         headerShown: false,
       }}
     >
-      {authState.userToken === null  ? (
+      {authState.userToken === null ? (
         <>
-          <Stack.Screen name='LoginSignupScreen' component={LoginSignupScreen} />
+          <Stack.Screen
+            name='LoginSignupScreen'
+            component={LoginSignupScreen}
+          />
           <Stack.Screen name='OtpVerification' component={OtpVerification} />
-          <Stack.Screen name="OauthVerification" component={OauthVerification}/>
+          <Stack.Screen
+            name='OauthVerification'
+            component={OauthVerification}
+          />
         </>
       ) : (
         <>
-        <Stack.Screen
-          name='Root'
-          component={BottomTabNavigator}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name='HandymanAvailable' component={HandymanAvailable} />
-        <Stack.Screen name='BookingDetails' component={BookingDetails} />
-        <Stack.Screen
-          name='NotFound'
-          component={NotFoundScreen}
-          options={{ title: 'Oops!' }}
-        />
-        <Stack.Group screenOptions={{ presentation: 'modal' }}>
-          <Stack.Screen name='Modal' component={ModalScreen} />
-        </Stack.Group>
+          <Stack.Screen
+            name='Root'
+            component={BottomTabNavigator}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='HandymanAvailable'
+            component={HandymanAvailable}
+          />
+          <Stack.Screen name='BookingDetails' component={BookingDetails} />
+          <Stack.Screen
+            name='NotFound'
+            component={NotFoundScreen}
+            options={{ title: 'Oops!' }}
+          />
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen name='Modal' component={ModalScreen} />
+          </Stack.Group>
         </>
-      )
-  }
+      )}
     </Stack.Navigator>
   );
 }
