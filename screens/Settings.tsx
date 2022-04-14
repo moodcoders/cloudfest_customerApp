@@ -6,10 +6,11 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Img from "../assets/images/photography.png";
 import ToggleBtn from '../components/ToggleBtn';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Settings = () => {
     return (
-        <View>
+        <SafeAreaView>
             <View >
                 <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
                 <View style={styles.separator} />
@@ -101,7 +102,7 @@ const Settings = () => {
                     </View>
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 
