@@ -1,7 +1,7 @@
 
 export async function getProfileDetails(id: string| null) {
     try {
-        const response = await fetch(`http://192.168.0.113:4000/auth/customer/?id=624148f116b2022883530518`, {
+        const response = await fetch(`http://192.168.0.113:4000/auth/customer/?id=${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': "application/json"
