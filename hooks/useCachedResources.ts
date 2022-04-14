@@ -115,6 +115,15 @@ export default function useCachedResources() {
             token = await SecureStore.getItemAsync('token')
             lang = await AsyncStorage.getItem('lang')
             dispatch({ type: 'RETRIEVE_TOKEN', token: token, lang: lang })
+            try {
+              if (lang) {
+                i18n
+                  .changeLanguage(lang)
+              }
+            }
+            catch (e) {
+              console.log(e)
+            }
           } catch (e) {
             console.log(e)
           }
