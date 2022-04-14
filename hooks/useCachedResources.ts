@@ -1,8 +1,11 @@
-import { useEffect, useMemo, useReducer } from 'react';
+import { useEffect, useMemo, useReducer, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import '../i18n';
+import { useTranslation } from 'react-i18next';
+
 
 interface authType {
   isLoadingComplete: boolean,
@@ -13,10 +16,12 @@ interface authType {
  * useCachedResources is a hook which is handling SIGNIN SIGNUP and storing the token of a User
  */
 export default function useCachedResources() {
+  const { t: translate, i18n } = useTranslation();
   const initialAuthState: authType = {
     isLoadingComplete: true,
     userToken: null
   }
+  const [currentLanguage, setLanguage] = useState('en');
 
   const authReducer = (prevState: any, action: any) => {
     switch (action.type) {
@@ -47,6 +52,12 @@ export default function useCachedResources() {
   //This method is using cached value and not allowing the function to build from scratch on every render
   const authContext = useMemo(
     () => ({
+      changeLanguage: (value: string) => {
+        i18n
+          .changeLanguage(value)
+          .then(() => setLanguage(value))
+          .catch((err: any) => console.log(err));
+      },
       signIn: async (userToken: string) => {
         try {
           await AsyncStorage.setItem('token', userToken);

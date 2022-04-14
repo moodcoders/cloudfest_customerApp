@@ -1,21 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { View, Text } from '../components/Themed';
 import { Display } from '../constants';
 import Colors from '../constants/Colors';
-import { useTranslation } from 'react-i18next';
-import '../i18n';
-
+import { AuthContext } from '../constants/Context';
+interface ctx {
+  signIn: void | any;
+}
 export default function ChooseLanguage({ navigation }: any) {
-  const { t: translate, i18n } = useTranslation();
-
-  const [currentLanguage, setLanguage] = useState('en');
-  const changeLanguage = (value: string) => {
-    i18n
-      .changeLanguage(value)
-      .then(() => setLanguage(value))
-      .catch((err) => console.log(err));
-  };
+  const { changeLanguage } = useContext<ctx | any>(AuthContext);
 
   return (
     <View style={[styles.langButtonflex, { justifyContent: 'space-around' }]}>
