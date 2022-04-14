@@ -26,6 +26,7 @@ import HandymanAvailable from '../screens/HandymanAvailable';
 import MyBooking from '../screens/MyBooking';
 import BookingDetails from '../screens/BookingDetails';
 import UserProfileView from '../screens/UserProfile';
+import OauthVerification from '../screens/Authentication/OauthVerification';
 
 export default function Navigation({
   colorScheme,
@@ -68,6 +69,7 @@ function RootNavigator() {
         component={NotFoundScreen}
         options={{ title: 'Oops!' }}
       />
+      <Stack.Screen name="OauthVerification" component={OauthVerification}/>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name='Modal' component={ModalScreen} />
       </Stack.Group>

@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
 import OtpVerification from '../screens/Authentication/OtpVerification';
+import OauthVerification from '../screens/Authentication/OauthVerification';
 
 const Stack = createNativeStackNavigator();
 

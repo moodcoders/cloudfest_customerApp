@@ -39,8 +39,14 @@ const linking: LinkingOptions<RootStackParamList> = {
       },
       Modal: 'modal',
       NotFound: '*',
+      OauthVerification: 'OauthVerification',
+      HandymanAvailable: 'HandymanAvailable'
     },
   },
 };
 
 export default linking;
+
+Linking.addEventListener('url',(u) => {
+  console.log(Linking.parse(u.url));
+})

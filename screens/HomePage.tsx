@@ -1,6 +1,6 @@
 // import all the components we are going to use
 import {
-  StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar
+  StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar, Button
 } from 'react-native';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +12,8 @@ import ServicesList from '../components/ServicesList';
 import HandymanList from '../components/HandymanList';
 import Separator from '../components/Separator';
 import Colors from '../constants/Colors';
+
+import  { openBrowserAsync } from "expo-web-browser"
 
 const HomePage = ({ navigation }: any) => {
 
@@ -63,6 +65,9 @@ const HomePage = ({ navigation }: any) => {
             onPress={() => navigation.navigate('ServicePage')}
           >
             <Text style={styles.btnName}>{translate('Get Started')}</Text>
+            <Button onPress={() => {
+    openBrowserAsync('http://192.168.1.12.xip.io:4000/auth/google/login')
+  }} title="clickMe">Hello</Button>
           </TouchableOpacity>
           <Image source={handymanIcon} style={styles.serviceImage} />
           <Text style={styles.listName}>{translate('Category')}</Text>

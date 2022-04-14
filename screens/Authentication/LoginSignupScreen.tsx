@@ -22,6 +22,7 @@ import Handyman from '../../assets/images/handymanImg.png';
  * @returns JSX Elements
  */
 const LoginSignupScreen = ({ navigation }: any) => {
+  console.log(  navigation.getState() )
   const windowHeight: number = Dimensions.get('window').height;
   const [didKeyboardShow, setKeyboardShow] = useState<any>(true);
 

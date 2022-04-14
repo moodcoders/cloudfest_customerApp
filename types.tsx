@@ -22,6 +22,7 @@ export type RootStackParamList = {
   BookingDetails: undefined;
   LoginSignupScreen: undefined;
   OtpVerification: undefined;
+  OauthVerification: undefined,
   HandymanAvailable: undefined;
   NotFound: undefined;
 };
