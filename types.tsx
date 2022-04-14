@@ -24,6 +24,7 @@ export type RootStackParamList = {
   BookingDetails: undefined;
   OauthVerification: undefined;
   HandymanAvailable: undefined;
+  HomeApplicances: undefined;
   Settings: undefined;
   Modal: undefined;
   NotFound: undefined;

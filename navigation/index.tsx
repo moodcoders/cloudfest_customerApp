@@ -35,6 +35,7 @@ import OtpVerification from '../screens/Authentication/OtpVerification';
 import OauthVerification from '../screens/Authentication/OauthVerification';
 import ChooseLanguage from '../screens/ChooseLanguage';
 import Settings from '../screens/Settings';
+import HomeApplicances from '../screens/HomeApplicances';
 
 interface ctx {
   authState: object;
@@ -97,6 +98,7 @@ function RootNavigator() {
             component={HandymanAvailable}
           />
           <Stack.Screen name='BookingDetails' component={BookingDetails} />
+          <Stack.Screen name='HomeApplicances' component={HomeApplicances} />
           <Stack.Screen name='Settings' component={Settings} />
           <Stack.Screen
             name='NotFound'
