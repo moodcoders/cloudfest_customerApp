@@ -2,7 +2,7 @@ import { useEffect, useMemo, useReducer, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
 import '../i18n';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 interface authType {
   isLoadingComplete: boolean,
   userToken: null | string
-  currentLanguage: undefined | string
+  currentLanguage: null | string
 }
 
 /**
@@ -22,9 +22,8 @@ export default function useCachedResources() {
   const initialAuthState: authType = {
     userToken: null,
     isLoadingComplete: true,
-    currentLanguage: undefined
+    currentLanguage: null
   }
-  const [currentLanguage, setLanguage] = useState('en');
 
   const authReducer = (prevState: any, action: any) => {
     switch (action.type) {
@@ -32,7 +31,14 @@ export default function useCachedResources() {
         return {
           ...prevState,
           userToken: action.token,
-          isLoadingComplete: false
+          isLoadingComplete: false,
+          currentLanguage: action.lang
+        }
+      case 'CHANGELANG':
+        return {
+          ...prevState,
+          isLoadingComplete: false,
+          currentLanguage: action.lang
         }
       case 'LOGIN':
         return {
@@ -44,7 +50,8 @@ export default function useCachedResources() {
         return {
           ...prevState,
           userToken: null,
-          isLoadingComplete: false
+          isLoadingComplete: false,
+          // currentLanguage: null
         }
       default:
         throw new Error();
@@ -55,11 +62,16 @@ export default function useCachedResources() {
   //This method is using cached value and not allowing the function to build from scratch on every render
   const authContext = useMemo(
     () => ({
-      changeLanguage: (value: string) => {
-        i18n
-          .changeLanguage(value)
-        // .then(() => setLanguage(value))
-        // .catch((err: any) => console.log(err));
+      changeLanguage: async (value: string) => {
+        try {
+          i18n
+            .changeLanguage(value)
+          await AsyncStorage.setItem('lang', value);
+        }
+        catch (e) {
+          console.log(e)
+        }
+        dispatch({ type: 'CHANGELANG', lang: value })
       },
       signIn: async (userToken: string) => {
         try {
@@ -72,6 +84,7 @@ export default function useCachedResources() {
 
       signOut: async () => {
         try {
+          // await AsyncStorage.removeItem('lang')
           await SecureStore.deleteItemAsync('token')
         } catch (e) {
           console.log(e);
@@ -86,8 +99,7 @@ export default function useCachedResources() {
   useEffect(() => {
     setTimeout(async () => {
       async function loadResourcesAndDataAsync() {
-        let token: null | string = null;
-        token = null
+
         try {
           SplashScreen.preventAutoHideAsync();
 
@@ -98,7 +110,11 @@ export default function useCachedResources() {
           }
           );
           try {
-            token = await SecureStore.getItemAsync('token');
+            let token: null | string = null;
+            let lang: null | string = null;
+            token = await SecureStore.getItemAsync('token')
+            lang = await AsyncStorage.getItem('lang')
+            dispatch({ type: 'RETRIEVE_TOKEN', token: token, lang: lang })
           } catch (e) {
             console.log(e)
           }
@@ -106,13 +122,13 @@ export default function useCachedResources() {
           // We might want to provide this error information to an error reporting service
           console.warn(e);
         } finally {
-          dispatch({ type: 'RETRIEVE_TOKEN', token: token })
           SplashScreen.hideAsync();
         }
       }
       loadResourcesAndDataAsync();
     }, 1000)
   }, []);
+
   return {
     ...authState, authContext
   };

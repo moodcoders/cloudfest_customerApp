@@ -8,7 +8,7 @@ interface ctx {
   signIn: void | any;
 }
 export default function ChooseLanguage({ navigation }: any) {
-  const { changeLanguage } = useContext<ctx | any>(AuthContext);
+  const { authContext } = useContext<ctx | any>(AuthContext);
 
   return (
     <View style={[styles.langButtonflex, { justifyContent: 'space-around' }]}>
@@ -17,7 +17,7 @@ export default function ChooseLanguage({ navigation }: any) {
         style={styles.signinButton}
         activeOpacity={0.8}
         onPress={() => {
-          changeLanguage('en');
+          authContext.changeLanguage('en');
           navigation.navigate('LoginSignupScreen');
         }}
       >
@@ -27,7 +27,7 @@ export default function ChooseLanguage({ navigation }: any) {
         style={styles.signinButton}
         activeOpacity={0.8}
         onPress={() => {
-          changeLanguage('hindi');
+          authContext.changeLanguage('hindi');
           navigation.navigate('LoginSignupScreen');
         }}
       >

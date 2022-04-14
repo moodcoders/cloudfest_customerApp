@@ -41,13 +41,13 @@ const UserProfileView = ({ navigation }: any) => {
         darkColor='rgba(0,0,0,0.22)'
       />
 
-      <View style={styles.rectangle}>
+      <TouchableOpacity style={styles.rectangle}>
         <Ionicons
           name='chevron-back-outline'
           size={30}
-          // onPress={() => navigation.goBack()}
+          onPress={() => navigation.goBack()}
         />
-      </View>
+      </TouchableOpacity>
       <View style={styles.header}>
         <Image
           style={styles.avatar}

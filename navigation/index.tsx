@@ -33,6 +33,8 @@ import useCachedResources from '../hooks/useCachedResources';
 import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
 import OtpVerification from '../screens/Authentication/OtpVerification';
 import OauthVerification from '../screens/Authentication/OauthVerification';
+import ChooseLanguage from '../screens/ChooseLanguage';
+import Settings from '../screens/Settings';
 
 interface ctx {
   authState: object;
@@ -63,11 +65,14 @@ function RootNavigator() {
   const { authState } = useContext<ctx | any>(AuthContext);
   return (
     <Stack.Navigator
-      initialRouteName='LoginSignupScreen'
+      initialRouteName='ChooseLanguage'
       screenOptions={{
         headerShown: false,
       }}
     >
+      {authState.currentLanguage === null ? (
+        <Stack.Screen name='ChooseLanguage' component={ChooseLanguage} />
+      ) : null}
       {authState.userToken === null ? (
         <>
           <Stack.Screen
@@ -92,6 +97,7 @@ function RootNavigator() {
             component={HandymanAvailable}
           />
           <Stack.Screen name='BookingDetails' component={BookingDetails} />
+          <Stack.Screen name='Settings' component={Settings} />
           <Stack.Screen
             name='NotFound'
             component={NotFoundScreen}
