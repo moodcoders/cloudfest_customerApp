@@ -7,6 +7,8 @@ import useCachedResources from "./hooks/useCachedResources";
 import UserDetails from "./screens/UserDetails";
 import ServicePage from "./screens/ServicePage";
 import LocationService from "./components/Location";
+import ProfileView from "./screens/HandymanProfile";
+import TextInANest from "./components/Readmore";
 
 /**
  * Contains the nescessary parent components and navigation component
@@ -24,12 +26,18 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
-        <StripeProvider2 publishableKey="pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5">
-          <Navigation colorScheme={colorScheme} />
-          {/* <NavigationTwo /> */}
-        </StripeProvider2>
-      </SafeAreaProvider>
+      // <SafeAreaProvider>
+      //   <StripeProvider2 publishableKey="pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5">
+      //     <Navigation colorScheme={colorScheme} />
+      //     <NavigationTwo />
+      //     <ProfileView />
+      //   </StripeProvider2>
+      // </SafeAreaProvider>
+      <SafeAreaView>
+        <ProfileView />
+        {/* <UserDetails /> */}
+        {/* <TextInANest /> */}
+      </SafeAreaView>
     );
   }
 }
