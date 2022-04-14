@@ -2,7 +2,8 @@ import { useEffect, useMemo, useReducer, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import '../i18n';
 import { useTranslation } from 'react-i18next';
 
@@ -10,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 interface authType {
   isLoadingComplete: boolean,
   userToken: null | string
+  currentLanguage: undefined | string
 }
 
 /**
@@ -19,7 +21,8 @@ export default function useCachedResources() {
   const { t: translate, i18n } = useTranslation();
   const initialAuthState: authType = {
     userToken: null,
-    isLoadingComplete: true
+    isLoadingComplete: true,
+    currentLanguage: undefined
   }
   const [currentLanguage, setLanguage] = useState('en');
 
@@ -55,12 +58,12 @@ export default function useCachedResources() {
       changeLanguage: (value: string) => {
         i18n
           .changeLanguage(value)
-          .then(() => setLanguage(value))
-          .catch((err: any) => console.log(err));
+        // .then(() => setLanguage(value))
+        // .catch((err: any) => console.log(err));
       },
       signIn: async (userToken: string) => {
         try {
-          await AsyncStorage.setItem('token', userToken);
+          await SecureStore.setItemAsync('token', userToken);
         } catch (e) {
           console.log(e);
         }
@@ -69,7 +72,7 @@ export default function useCachedResources() {
 
       signOut: async () => {
         try {
-          await AsyncStorage.removeItem('token');
+          await SecureStore.deleteItemAsync('token')
         } catch (e) {
           console.log(e);
         }
@@ -83,7 +86,7 @@ export default function useCachedResources() {
   useEffect(() => {
     setTimeout(async () => {
       async function loadResourcesAndDataAsync() {
-        let token: null | any = null;
+        let token: null | string = null;
         token = null
         try {
           SplashScreen.preventAutoHideAsync();
@@ -95,7 +98,7 @@ export default function useCachedResources() {
           }
           );
           try {
-            token = await AsyncStorage.removeItem('token')
+            token = await SecureStore.getItemAsync('token');
           } catch (e) {
             console.log(e)
           }
