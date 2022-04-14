@@ -46,7 +46,7 @@ const NumberVerification = ({ navigation }: any) => {
   }
 
   function handleOnPress(){
-    openBrowserAsync('http://192.168.1.12.xip.io:4000/auth/google/login')
+    openBrowserAsync('http://moodcoders.ddns.net:4000/auth/google/login')
     // signIn('abc')
   }
 
