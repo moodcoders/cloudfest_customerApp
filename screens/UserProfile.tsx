@@ -15,11 +15,12 @@ import Colors from '../constants/Colors';
 import { View, Text } from '../components/Themed';
 import { Display } from '../constants';
 import { AuthContext } from '../constants/Context';
+import Navigation from '../navigation';
 
 interface ctx {
   signIn: void;
 }
-const UserProfileView = () => {
+const UserProfileView = ({ navigation }: any) => {
   const { authContext } = useContext<ctx | any>(AuthContext);
 
   return (
@@ -40,13 +41,13 @@ const UserProfileView = () => {
         darkColor='rgba(0,0,0,0.22)'
       />
 
-      <View style={styles.rectangle}>
+      <TouchableOpacity style={styles.rectangle}>
         <Ionicons
           name='chevron-back-outline'
           size={30}
-        // onPress={() => navigation.goBack()}
+          onPress={() => navigation.goBack()}
         />
-      </View>
+      </TouchableOpacity>
       <View style={styles.header}>
         <Image
           style={styles.avatar}
@@ -87,7 +88,10 @@ const UserProfileView = () => {
           <AntDesign name='message1' size={34} color='black' />
           <Text style={styles.textStyle}>Message</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.viewStyle}>
+        <TouchableOpacity
+          style={styles.viewStyle}
+          onPress={() => navigation.navigate('Settings')}
+        >
           <Feather name='settings' size={34} color='black' />
           <Text style={styles.textStyle}>Settings</Text>
         </TouchableOpacity>

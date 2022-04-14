@@ -12,6 +12,7 @@ import NumberVerification from '../../components/NumberVerification';
 import Smartservice from '../../assets/images/smartservice.png';
 import { Display } from '../../constants';
 import Colors from '../../constants/Colors';
+import { useTranslation } from 'react-i18next';
 import Handyman from '../../assets/images/handymanImg.png';
 
 /**
@@ -22,6 +23,7 @@ import Handyman from '../../assets/images/handymanImg.png';
  * @returns JSX Elements
  */
 const LoginSignupScreen = ({ navigation }: any) => {
+  const { t: translate } = useTranslation();
   const windowHeight: number = Dimensions.get('window').height;
   const [didKeyboardShow, setKeyboardShow] = useState<any>(true);
 
@@ -61,11 +63,13 @@ const LoginSignupScreen = ({ navigation }: any) => {
             style={styles.textFlex}
           >
             <Text style={[styles.primaryText, styles.mainText]}>
-              Smart. Reasonable. Trusted
+              {translate('Smart. Reasonable. Trusted')}
             </Text>
-            <Text style={styles.primaryText}>Home Services By Our</Text>
+            <Text style={styles.primaryText}>
+              {translate('Home Services By Our')}
+            </Text>
             <Text style={[styles.primaryText, styles.secondaryText]}>
-              Smart Pro
+              {translate('Smart Pro')}
             </Text>
           </Animatable.View>
           <Animatable.Image
@@ -91,11 +95,13 @@ const LoginSignupScreen = ({ navigation }: any) => {
             style={styles2.textFlex}
           >
             <Text style={[styles2.primaryText, styles2.mainText]}>
-              Smart. Reasonable. Trusted
+              {translate('Smart. Reasonable. Trusted')}
             </Text>
-            <Text style={styles.primaryText}>Home Services By Our</Text>
+            <Text style={styles.primaryText}>
+              {translate('Home Services By Our')}
+            </Text>
             <Text style={[styles.primaryText, styles.secondaryText]}>
-              Smart Pro
+              {translate('Smart Pro')}
             </Text>
           </Animatable.View>
           <Animatable.Image
