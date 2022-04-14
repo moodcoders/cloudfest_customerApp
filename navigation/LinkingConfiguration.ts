@@ -46,7 +46,3 @@ const linking: LinkingOptions<RootStackParamList> = {
 };
 
 export default linking;
-
-Linking.addEventListener('url',(u) => {
-  console.log(Linking.parse(u.url));
-})

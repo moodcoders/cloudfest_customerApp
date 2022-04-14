@@ -65,9 +65,6 @@ const HomePage = ({ navigation }: any) => {
             onPress={() => navigation.navigate('ServicePage')}
           >
             <Text style={styles.btnName}>{translate('Get Started')}</Text>
-            <Button onPress={() => {
-    openBrowserAsync('http://192.168.1.12.xip.io:4000/auth/google/login')
-  }} title="clickMe">Hello</Button>
           </TouchableOpacity>
           <Image source={handymanIcon} style={styles.serviceImage} />
           <Text style={styles.listName}>{translate('Category')}</Text>
