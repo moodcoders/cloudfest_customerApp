@@ -7045,11 +7045,6 @@ react-native-keyboard-aware-scroll-view@^0.9.5:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
-react-native-read-more-text@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-read-more-text/-/react-native-read-more-text-1.1.2.tgz#3f64aee61ec4d3109437f4125f10e49eccdee65a"
-  integrity sha512-FIQhOpvikUanwPRl9QVBYmx6Wx7IXxXH/jlzElOLcP+NSgFLw2fRzSekQUq0yicymZsi7cAWW5TtIj8FHWtNDw==
-
 react-native-responsive-grid@^0.11.4:
   version "0.11.9"
   resolved "https://registry.npmjs.org/react-native-responsive-grid/-/react-native-responsive-grid-0.11.9.tgz"
