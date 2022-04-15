@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-export default function DateTime() {
-    const [date, setDate] = useState(new Date());
+interface DateTimeProps{
+    date: Date,
+    setDate: (a: Date) => void
+}
+
+export default function DateTime({setDate, date}: DateTimeProps) {
     const [mode, setMode] = useState<any>('date');
     const [show, setShow] = useState(false);
 

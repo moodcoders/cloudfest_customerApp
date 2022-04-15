@@ -21,21 +21,15 @@ import { getProfileDetails } from '../services/profileDetails';
 interface ctx {
   signIn: void;
 }
-interface profileDataType {
-  name: string;
-  gender: string;
-  email: string;
-  DOB: Date;
-  address: {
-    street: string;
-    houseNo: string;
-    pincode: string;
-    state: string;
-    country: string;
-  };
-  providers: [
+export interface profileDataType {
+  name?: string;
+  gender?: string;
+  email?: string;
+  DOB?: string;
+  address?: any,
+  providers?: [
     {
-      uid: number;
+      uid?: number;
     },
   ];
 }
@@ -91,7 +85,7 @@ const UserProfileView = ({ navigation }: any) => {
         </View>
 
         <Text style={styles.name}>{profileData?.name}</Text>
-        <Text style={styles.userInfo}>{profileData?.providers[0].uid}</Text>
+        <Text style={styles.userInfo}>{ profileData?.email}</Text>
       </View>
 
       <View style={styles.arrangement}>

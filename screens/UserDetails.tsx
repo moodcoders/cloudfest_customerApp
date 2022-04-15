@@ -14,6 +14,10 @@ import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import CustomDatePicker from '../components/Calender';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { profileDataType } from './UserProfile';
+import * as SecureStore from 'expo-secure-store';
+import { saveProfileDetails } from '../services/profileDetails';
+
 
 const getLocation = async () => {
   if (Platform.OS === 'android' && !Constants.isDevice) {
@@ -30,6 +34,8 @@ const UserDetails = ({ navigation }: any) => {
   const [mobileNumber, setmobileNumber] = useState('');
   const [isValidNumberFlag, setValidNumberFlag] = useState<Boolean>(false);
   const [userLocation, setuserLocation] = useState<Location.LocationObject>();
+  const [ customerData, setcustomerData] =useState<profileDataType>()
+  
 
   function validatemobileNumber(number: string): Boolean {
     const regexp = new RegExp('^[0-9]{0,10}$');
@@ -75,7 +81,7 @@ const UserDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.rectangle2}>
           <View style={styles.rectangle3}>
-            <TextInput placeholder='Name' style={styles.inputContainer} />
+            <TextInput placeholder='Name'  style={styles.inputContainer} onChangeText={ (value)=> setcustomerData({...customerData, name: value})}/>
           </View>
           <View style={styles.rectangle3}>
             <TextInput
@@ -87,6 +93,7 @@ const UserDetails = ({ navigation }: any) => {
               onChangeText={(value) => {
                 setEmail(value);
                 handleValidEmail(value);
+                setcustomerData({...customerData, email: value})
               }}
             />
             {emailValidError ? <Text>{emailValidError}</Text> : null}
@@ -127,12 +134,12 @@ const UserDetails = ({ navigation }: any) => {
             <Text>Date of Birth</Text>
             <CustomDatePicker
               defaultDate='1985-01-01'
-              onDateChange={(value: string) => console.log(value)}
+              onDateChange={(value: string) => setcustomerData({...customerData, DOB: value})}
             />
           </View>
 
           <View style={styles.rectangle3}>
-            <Dropdown />
+            <Dropdown  setcustomerData={setcustomerData} customerData={customerData}/>
           </View>
           <View style={styles.rectangle3}>
             <TextInput placeholder='Address' style={styles.inputContainer} />
@@ -153,7 +160,7 @@ const UserDetails = ({ navigation }: any) => {
               onClick={async () => {
                 const location = await getLocation();
                 setuserLocation(location);
-                console.log(location);
+                setcustomerData({...customerData, address: location});
               }}
             />
           </View>
@@ -161,8 +168,11 @@ const UserDetails = ({ navigation }: any) => {
         <View style={{ alignItems: 'center' }}>
           <TouchableOpacity
             style={styles.serviceBtn}
-            onPress={() => navigation.navigate('Root')}
-          >
+            onPress={ async () => {
+              const id = await SecureStore.getItemAsync('id');
+              const {data} = await saveProfileDetails(id, customerData);
+              navigation.navigate('Root')
+            } }>
             <Text style={styles.btnName}>Next</Text>
           </TouchableOpacity>
         </View>

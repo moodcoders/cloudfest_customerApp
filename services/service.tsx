@@ -1,7 +1,7 @@
 export async function getServices() {
   try {
     const response = await fetch(
-      `http://192.168.1.11:4001/v1/services/listAll`,
+      `http://192.168.0.113:4001/v1/services/listAll`,
       {
         method: 'GET',
         headers: {
