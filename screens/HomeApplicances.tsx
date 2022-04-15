@@ -1,10 +1,13 @@
+import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Fridge from '../assets/Icons/refrigerator.png';
 
 import ApplicanceServices from '../components/ApplicancesServices';
-import Calenders from '../components/Calender';
+import SuggestionServies from '../components/SuggestionServies';
+import DateTime from './DateTime';
+
 
 const HomeApplicances = ({ navigation }: any) => {
     return (
@@ -38,13 +41,16 @@ const HomeApplicances = ({ navigation }: any) => {
                     </View>
                 </View>
                 <View style={styles.serviceItems}>
-                    <Text style={[styles.ClintName, { fontSize: 18 }]}>Select Service</Text>
+                    <Text style={[styles.ClintName, { fontSize: 18, marginBottom: 15 }]}>Select Service</Text>
                     <ApplicanceServices />
-                    <Text style={[styles.ClintName, { fontSize: 18 }]}>Date &#38; Time</Text>
-                    <Calenders />
-                    <View>
-                        <Text style={[styles.ClintName, { fontSize: 18 }]}>Time</Text>
-                    </View>
+                    <Text style={[styles.ClintName, { fontSize: 18, marginBottom: 15 }]}>Date &#38; Time</Text>
+                    <DateTime />
+                    <TouchableOpacity
+                        style={styles.serviceBtn}
+                    // onPress={() => navigation.navigate('ServicePage')}
+                    >
+                        <Text style={styles.btnName}> Schedule</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -97,12 +103,28 @@ const styles = StyleSheet.create({
     serviceItems: {
         backgroundColor: "#fff",
         borderRadius: 15,
-        padding: 8,
+        padding: 5,
     },
     container: {
         width: "100%",
         backgroundColor: '#fff',
         alignItems: 'center',
+    },
+    serviceBtn: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        borderRadius: 20,
+        backgroundColor: '#c9dafa',
+        marginTop: 15,
+        alignSelf: 'center'
+
+    },
+    btnName: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#333',
+        paddingHorizontal: 15
     },
 });
 
