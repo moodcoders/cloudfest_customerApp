@@ -2,10 +2,15 @@ import { StatusBar, ActivityIndicator } from 'react-native';
 import { StripeProvider } from '@stripe/stripe-react-native';
 import { View, Text } from './components/Themed';
 
-import { AuthContext } from './constants/Context';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import useCachedResources from './hooks/useCachedResources';
+import UserDetails from './screens/UserDetails';
+import ServicePage from './screens/ServicePage';
+import LocationService from './components/Location';
+import ProfileView from './screens/HandymanProfile';
+import TextInANest from './components/Readmore';
+import { AuthContext } from './constants/Context';
 import RootStackScreen from './navigation/RootStackScreen';
 
 /**
@@ -26,7 +31,7 @@ export default function App() {
   if (authState.isLoadingComplete) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size='large' color='#35B2E6' />
+        <ActivityIndicator size="large" color="#35B2E6" />
         <Text>Loading.....</Text>
       </View>
     );
@@ -34,20 +39,21 @@ export default function App() {
   return (
     <>
       <StatusBar
-        barStyle='dark-content'
+        barStyle="dark-content"
         translucent={false}
-        backgroundColor='transparent'
+        backgroundColor="transparent"
       />
       {/* {authState.userToken === null ? (
         <AuthContext.Provider value={authContext}>
           <RootStackScreen />
         </AuthContext.Provider>
       ) : ( */}
-      <StripeProvider2 publishableKey='pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5'>
+      <StripeProvider2 publishableKey="pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5">
         <AuthContext.Provider value={{ authContext, authState }}>
           <Navigation colorScheme={colorScheme} />
         </AuthContext.Provider>
         {/* <NavigationTwo /> */}
+        <ProfileView />
       </StripeProvider2>
       {/* )} */}
     </>
