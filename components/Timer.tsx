@@ -17,7 +17,7 @@ interface timerProp {
  * @returns JSX Elements
  */
 const Timer = ({ mobileNumber }: timerProp) => {
-  const [seconds, setSeconds] = useState(300);
+  const [seconds, setSeconds] = useState(360);
 
   useEffect(() => {
     let timer = setInterval(() => {
@@ -56,9 +56,9 @@ export default Timer;
 
 const styles = StyleSheet.create({
   resendtimer: {
+    backgroundColor: Colors.DEFAULT_WHITE,
     fontSize: 18,
     color: '#377BA1',
-    marginLeft: Display.setWidth(2),
   },
   resendtext: {
     fontSize: 18,

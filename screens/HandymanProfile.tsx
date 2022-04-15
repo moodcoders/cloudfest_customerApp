@@ -88,7 +88,7 @@ const ProfileView = () => {
             <Text
               style={{
                 fontWeight: "bold",
-                marginTop: 5,
+                marginTop: 3,
                 fontSize: 20,
                 color: "#000000",
               }}
@@ -123,9 +123,8 @@ const styles = StyleSheet.create({
     height: "90%",
     width: "95%",
     alignSelf: "center",
-    borderRadius: 30,
+    borderRadius: 20,
     margin: 5,
-    paddingTop: 5,
   },
   handyimage: {
     backgroundColor: "transparent",

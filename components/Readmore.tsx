@@ -40,6 +40,7 @@ export default PostContent;
 const styles = StyleSheet.create({
   postContentContainer: {
     borderWidth: 0.5,
+    borderRadius: 10,
     borderColor: "#35B2E6",
     flexDirection: "column",
   },
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
 
   postDescription: {
     paddingTop: 5,
-    paddingHorizontal: 2,
+    padding: 5,
   },
 
   seeMore: {

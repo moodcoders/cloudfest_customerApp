@@ -1,10 +1,10 @@
-const GENERATE_OTP_API = 'http://192.168.1.11:4000/auth/otp/generate-otp';
-const VALIDATE_OTP_API = 'http://192.168.1.11:4000/auth/otp/login';
+const AUTH_API = 'http://moodcoders.ddns.net:4000';
+import { notifyMessage } from '../constants/NotifyMessage';
 
 /**generateOtpAPI is generating OTP for the user */
 export const generateOtpAPI = async (mobileNumber: string) => {
   try {
-    const response = await fetch(GENERATE_OTP_API, {
+    const response = await fetch(`${AUTH_API}/auth/userOtp/generate-otp`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -15,16 +15,18 @@ export const generateOtpAPI = async (mobileNumber: string) => {
       }),
     });
     const jsonResponse = await response.json();
-    alert(JSON.stringify(jsonResponse.message));
+    notifyMessage(JSON.stringify(jsonResponse.message));
   } catch (err) {
-    alert(err);
+    if (err instanceof Error) {
+      notifyMessage(err.message);
+    }
   }
 };
 
 /**validateOtp is generating token for the user */
 export const validateOtp = async (mobileNumber: string, otp: string) => {
   try {
-    const response = await fetch(VALIDATE_OTP_API, {
+    const response = await fetch(`${AUTH_API}/auth/userOtp/userlogin`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -35,8 +37,13 @@ export const validateOtp = async (mobileNumber: string, otp: string) => {
         password: otp,
       }),
     });
-    console.log(await response.json());
+    const jsonResponse = await response.json();
+    if (!response.ok) {
+      throw new Error(jsonResponse.message);
+    }
+    return jsonResponse;
   } catch (err) {
-    alert(err);
+    notifyMessage('Wrong Otp');
+    throw err;
   }
 };

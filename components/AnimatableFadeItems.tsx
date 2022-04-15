@@ -5,10 +5,16 @@ import ShowRating from "../components/ShowRating";
 
 function AnimatableFadeItems() {
   return (
-    <ScrollView style={{ height: "70%" }}>
+    <ScrollView
+      style={{
+        height: "70%",
+        backgroundColor: "#599BD8",
+        borderRadius: 12,
+      }}
+    >
       {Reviews.map((handyman) => {
         return (
-          <View key={handyman.id}>
+          <View key={handyman.id} style={{}}>
             <View style={styles.item}>
               <View
                 style={{
@@ -44,8 +50,7 @@ export default AnimatableFadeItems;
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: "#599BD8",
-    // marginVertical: 0.5,
+    marginVertical: 0.5,
     paddingBottom: 10,
   },
 });

@@ -17,7 +17,7 @@ const DataServices = [
     rate: 250,
     working: "Electrician Service",
     location: "DC-220,Kolkata-700156",
-    bio: "Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.",
+    bio: "Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.",
   },
   {
     id: "2",

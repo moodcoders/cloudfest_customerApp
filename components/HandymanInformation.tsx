@@ -19,6 +19,26 @@ interface bookingParams {
   bio: string;
 }
 
+<Text
+              style={{
+                fontWeight: "bold",
+                marginTop: 10,
+                fontSize: 20,
+                color: "white",
+              }}
+            >
+              Reviews
+            </Text>
+            <Text
+              style={{
+                fontWeight: "bold",
+                marginTop: 10,
+                fontSize: 20,
+                color: "white",
+              }}
+            >
+              {newReviews[0].Review}
+            </Text>
 const HandymanInformation = (prop: bookingParams) => {
   return (
     <View>
