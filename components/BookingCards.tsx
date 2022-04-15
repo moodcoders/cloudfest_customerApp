@@ -7,40 +7,37 @@ import { useNavigation } from '@react-navigation/native';
 
 import DataServices from '../DataStore/DataService';
 import StarRating from './StarRating';
+import { bookingDataType } from '../screens/MyBooking';
 
-
-const BookingCards = () => {
+interface BookingCardProps {
+    booking: bookingDataType
+}
+const BookingCards = ({ booking }: BookingCardProps) => {
     const navigation = useNavigation();
-
     return (
         <View style={{ backgroundColor: 'transparent', }} >
-            {DataServices.map((handyman, index) => {
-                return (
-                    <View key={index} style={[styles.card]} >
-                        <View>
-                            <Image
+            <View style={[styles.card]} >
+                <View>
+                    {/* <Image
                                 style={styles.image}
                                 resizeMode="cover"
                                 source={handyman.img}
-                            />
-                        </View>
-                        <View style={{ alignItems: 'center' }}>
-                            <Text style={styles.bookingDate}> Booking On Oct 28,2022</Text>
-                            <Text style={styles.workServices}>{handyman.working}</Text>
-                            <StarRating />
-                        </View>
-                        <TouchableOpacity >
-                            <Icon
-                                name='chevron-right'
-                                onPress={() => navigation.navigate("BookingDetails" as any)}
-                                color='#333'
-                                style={styles.rightIcon}
-                            />
-                        </TouchableOpacity>
-
-                    </View>
-                );
-            })}
+                            /> */}
+                </View>
+                <View style={{ alignItems: 'center' }}>
+                    <Text style={styles.bookingDate}> {booking.schedule}</Text>
+                    <Text style={styles.workServices}>{booking.serviceType}</Text>
+                    <StarRating />
+                </View>
+                <TouchableOpacity >
+                    <Icon
+                        name='chevron-right'
+                        onPress={() => navigation.navigate("BookingDetails" as any, booking._id)}
+                        color='#333'
+                        style={styles.rightIcon}
+                    />
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };

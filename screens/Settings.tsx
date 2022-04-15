@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Image, Text, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, Text, View, SafeAreaView } from 'react-native';
 import { } from '../components/Themed';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import { Ionicons } from '@expo/vector-icons';
 
 import Img from "../assets/images/photography.png";
 import ToggleBtn from '../components/ToggleBtn';
-import { SafeAreaView } from 'react-native-safe-area-context';
+// import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Settings = () => {
     return (
