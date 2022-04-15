@@ -1,32 +1,66 @@
-const postTextContent = (props) => {
-const [textShown, setTextShown] = useState(false); //To show ur remaining Text
-const [lengthMore,setLengthMore] = useState(false); //to show the "Read more & Less Line"
-const toggleNumberOfLines = () => { //To toggle the show text or hide it
-    setTextShown(!textShown);
-}
+import React, { useState } from "react";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import Data from "../DataStore/DataService";
 
-const onTextLayout = useCallback(e =>{
-    setLengthMore(e.nativeEvent.lines.length >=4); //to check the text is more than 4 lines or not
-    // console.log(e.nativeEvent);
-},[]);
-    
+const PostContent = () => {
+  const newData = Data.map(function (value) {
+    return value;
+  });
+  const postDescription = newData[0].bio;
+
+  const [showMore, setShowMore] = useState(false);
+
   return (
-      <View style={styles.mainContainer}>
-          <Text
-              onTextLayout={onTextLayout}
-              numberOfLines={textShown ? undefined : 4}
-              style={{ lineHeight: 21 }}>{Your Long Text}</Text>
+    <View style={styles.postContentContainer}>
+      {postDescription.length > 120 ? (
+        showMore ? (
+          <TouchableOpacity onPress={() => setShowMore(!showMore)}>
+            <Text style={styles.postDescription}>
+              {postDescription}
+              <Text style={styles.seeMore}>Show less</Text>
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => setShowMore(!showMore)}>
+            <Text style={styles.postDescription}>
+              {`${postDescription.slice(0, 120)}... `}
+              <Text style={styles.seeMore}>Show more</Text>
+            </Text>
+          </TouchableOpacity>
+        )
+      ) : (
+        <Text style={styles.postDescription}>{postDescription}</Text>
+      )}
+    </View>
+  );
+};
 
-              {
-                  lengthMore ? <Text
-                  onPress={toggleNumberOfLines}
-                  style={{ lineHeight: 21, marginTop: 10 }}>{textShown ? 'Read less...' : 'Read more...'}</Text>
-                  :null
-              }
-      </View>
-  )
-}
+export default PostContent;
 
-function useCallback(arg0: (e: any) => void, arg1: never[]) {
-  throw new Error("Function not implemented.");
-}
+const styles = StyleSheet.create({
+  postContentContainer: {
+    borderWidth: 0.5,
+    borderColor: "#35B2E6",
+    flexDirection: "column",
+  },
+
+  postMedia: {
+    borderWidth: 0.5,
+    borderColor: "#35B2E6",
+    width: "100%",
+    height: 280,
+    resizeMode: "cover",
+  },
+
+  postDescription: {
+    paddingTop: 5,
+    paddingHorizontal: 2,
+  },
+
+  seeMore: {
+    color: "#000000",
+    fontWeight: "bold",
+    fontStyle: "italic",
+    textDecorationLine: "underline",
+  },
+});
