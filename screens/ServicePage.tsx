@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, StyleSheet, StatusBar, TextInput } from "react-native";
 import { Text, View, } from '../components/Themed';
 
@@ -12,11 +12,31 @@ import Separator from '../components/Separator';
 import Colors from '../constants/Colors';
 import LocationMenu from "../components/LocationMenu";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { getServices } from "../services/service";
+
+export interface serviceDataInterface {
+    _id: string,
+    name: string,
+    isDisabled: boolean,
+    imgUrl: string,
+    description: string,
+    price: number,
+}
 
 const ServicePage = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
+    const [serviceData, setserviceData] = useState<serviceDataInterface[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const data = await getServices()
+            if (data) {
+                setserviceData(data)
+            }
+        })()
+    }, [])
 
     return (
         <SafeAreaView>
@@ -61,7 +81,7 @@ const ServicePage = () => {
                 <View style={{ backgroundColor: 'transparent' }}>
                     <Text style={styles.subTitle}>Get your work done.{"\n"}Choose Services</Text>
                 </View>
-                <SuggestionServies />
+                <SuggestionServies serviceData={serviceData} />
                 <View>
                     <Modal
                         animationType="slide"

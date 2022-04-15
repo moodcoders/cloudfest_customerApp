@@ -18,6 +18,9 @@ const StripeProvider2: any = StripeProvider;
 
 export default function App() {
   const { authContext, ...authState } = useCachedResources();
+  {
+    console.log(authState);
+  }
   const colorScheme = useColorScheme();
 
   if (authState.isLoadingComplete) {

@@ -18,14 +18,15 @@ const BookingCards = ({ booking }: BookingCardProps) => {
         <View style={{ backgroundColor: 'transparent', }} >
             <View style={[styles.card]} >
                 <View>
-                    {/* <Image
-                                style={styles.image}
-                                resizeMode="cover"
-                                source={handyman.img}
-                            /> */}
+                    <Image
+                        style={styles.image}
+                        resizeMode="cover"
+                        source={{ uri: booking.serviceUri }}
+                    />
                 </View>
                 <View style={{ alignItems: 'center' }}>
-                    <Text style={styles.bookingDate}> {booking.schedule}</Text>
+                    <Text style={styles.bookingDate}> {(new Date(booking.schedule).toLocaleDateString())}
+                        {`\t`} {(new Date(booking.schedule).toLocaleTimeString())}</Text>
                     <Text style={styles.workServices}>{booking.serviceType}</Text>
                     <StarRating />
                 </View>

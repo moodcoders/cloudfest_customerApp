@@ -1,5 +1,6 @@
 const AUTH_API = 'http://192.168.1.10:4000';
 import { notifyMessage } from '../constants/NotifyMessage';
+import * as SecureStore from 'expo-secure-store';
 
 /**generateOtpAPI is generating OTP for the user */
 export const generateOtpAPI = async (mobileNumber: string) => {
@@ -41,6 +42,7 @@ export const validateOtp = async (mobileNumber: string, otp: string) => {
     if (!response.ok) {
       throw new Error(jsonResponse.message);
     }
+    await SecureStore.setItemAsync('id', jsonResponse.user.user._id);
     return jsonResponse;
   } catch (err) {
     notifyMessage('Wrong Otp');

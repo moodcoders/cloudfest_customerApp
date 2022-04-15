@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity, Image, StatusBar } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
@@ -9,6 +9,7 @@ import {
   AntDesign,
 } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/Foundation';
+import * as SecureStore from 'expo-secure-store';
 
 import Separator from '../components/Separator';
 import Colors from '../constants/Colors';
@@ -19,8 +20,32 @@ import { AuthContext } from '../constants/Context';
 interface ctx {
   signIn: void;
 }
-const UserProfileView = () => {
+interface profileDataType {
+  name: string,
+  gender: string,
+  email: string,
+  DOB: Date,
+  address: {
+    street: string,
+    houseNo: string,
+    pincode: string,
+    state: string,
+    country: string
+  }
+}
+const UserProfileView = ({ navigation }: any) => {
   const { authContext } = useContext<ctx | any>(AuthContext);
+  const [profileData, setProfileData] = useState<profileDataType>()
+  useEffect(() => {
+    (async () => {
+      // const data = await getProfile()
+      // if (data) {
+      //   setProfileData(data)
+      // }
+      const id = await SecureStore.getItemAsync('id')
+      console.log(id)
+    })()
+  }, [])
 
   return (
     <View style={styles.main}>
@@ -40,13 +65,13 @@ const UserProfileView = () => {
         darkColor='rgba(0,0,0,0.22)'
       />
 
-      <View style={styles.rectangle}>
+      <TouchableOpacity style={styles.rectangle}>
         <Ionicons
           name='chevron-back-outline'
           size={30}
-        // onPress={() => navigation.goBack()}
+          onPress={() => navigation.goBack()}
         />
-      </View>
+      </TouchableOpacity>
       <View style={styles.header}>
         <Image
           style={styles.avatar}
@@ -59,7 +84,7 @@ const UserProfileView = () => {
           </Text>
         </View>
 
-        <Text style={styles.name}>Sucheta Mahata</Text>
+        <Text style={styles.name}>Suchetoo Mahata</Text>
         <Text style={styles.userInfo}>90******11</Text>
       </View>
 
@@ -87,7 +112,10 @@ const UserProfileView = () => {
           <AntDesign name='message1' size={34} color='black' />
           <Text style={styles.textStyle}>Message</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.viewStyle}>
+        <TouchableOpacity
+          style={styles.viewStyle}
+          onPress={() => navigation.navigate('Settings')}
+        >
           <Feather name='settings' size={34} color='black' />
           <Text style={styles.textStyle}>Settings</Text>
         </TouchableOpacity>

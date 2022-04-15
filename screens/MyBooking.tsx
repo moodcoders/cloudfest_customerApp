@@ -14,6 +14,7 @@ export interface bookingDataType {
     _id: any,
     location: string
     serviceType: string,
+    serviceUri: string,
     schedule: Date,
     isCompleted: boolean,
     handyman: {
