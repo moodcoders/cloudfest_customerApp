@@ -51,7 +51,7 @@ export default function useCachedResources() {
           ...prevState,
           userToken: null,
           isLoadingComplete: false,
-          // currentLanguage: null
+          currentLanguage: null
         }
       default:
         throw new Error();
@@ -84,7 +84,7 @@ export default function useCachedResources() {
 
       signOut: async () => {
         try {
-          // await AsyncStorage.removeItem('lang')
+          await AsyncStorage.removeItem('lang')
           await SecureStore.deleteItemAsync('token')
         } catch (e) {
           console.log(e);
