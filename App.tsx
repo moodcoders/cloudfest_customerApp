@@ -1,12 +1,12 @@
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { StripeProvider } from "@stripe/stripe-react-native";
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { StripeProvider } from '@stripe/stripe-react-native';
 
-import useColorScheme from "./hooks/useColorScheme";
-import Navigation from "./navigation";
-import useCachedResources from "./hooks/useCachedResources";
-import UserDetails from "./screens/UserDetails";
-import ServicePage from "./screens/ServicePage";
-import LocationService from "./components/Location";
+import useColorScheme from './hooks/useColorScheme';
+import Navigation from './navigation';
+import useCachedResources from './hooks/useCachedResources';
+import UserDetails from './screens/UserDetails';
+import ServicePage from './screens/ServicePage';
+import LocationService from './components/Location';
 
 /**
  * Contains the nescessary parent components and navigation component
@@ -24,13 +24,13 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
+      <>
         {/* <StripeProvider2 publishableKey="pk_test_51KPrE7SEciFEVIES9vZLZkFMYtM7tXhFwkT08P75ADMHcRzUUqkmMqbRlpFdnOysKssgplKwOaFng7wYHj90x7RW00OtJ8ZuE5"> */}
         {/* <Navigation colorScheme={colorScheme} /> */}
 
         <UserDetails />
         {/* </StripeProvider2> */}
-      </SafeAreaProvider>
+      </>
     );
   }
 }
