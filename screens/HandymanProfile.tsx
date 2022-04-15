@@ -1,12 +1,12 @@
-import React from "react";
-import { StyleSheet, Image, TouchableOpacity } from "react-native";
-import Data from "../DataStore/DataService";
-import { View, Text } from "../components/Themed";
-import Icon from "react-native-vector-icons/EvilIcons";
-import { FontAwesome } from "@expo/vector-icons";
-import { EvilIcons } from "@expo/vector-icons";
-import PostContent from "../components/Readmore";
-import AnimatableFadeItems from "../components/AnimatableFadeItems";
+import React from 'react';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
+import Data from '../DataStore/DataService';
+import { View, Text } from '../components/Themed';
+import Icon from 'react-native-vector-icons/EvilIcons';
+import { FontAwesome } from '@expo/vector-icons';
+import { EvilIcons } from '@expo/vector-icons';
+import PostContent from '../components/Readmore';
+import AnimatableFadeItems from '../components/AnimatableFadeItems';
 
 const ProfileView = () => {
   const newData = Data.map(function (value) {
@@ -17,7 +17,7 @@ const ProfileView = () => {
     <View>
       <View>
         <Text style={styles.title}>
-          {" "}
+          {' '}
           SMART<Text style={styles.service}> SERVICES</Text>
         </Text>
         <View
@@ -33,7 +33,7 @@ const ProfileView = () => {
       >
         <View
           style={{
-            backgroundColor: "transparent",
+            backgroundColor: 'transparent',
             padding: 10,
           }}
         >
@@ -43,7 +43,7 @@ const ProfileView = () => {
               color="#333"
               style={{
                 fontSize: 40,
-                backgroundColor: "#fff",
+                backgroundColor: '#fff',
                 borderRadius: 5,
                 width: 30,
               }}
@@ -79,7 +79,7 @@ const ProfileView = () => {
             {newData[0].location}
           </Text>
           <View>
-            <Text style={{ fontWeight: "bold", marginTop: 10, fontSize: 15 }}>
+            <Text style={{ fontWeight: 'bold', marginTop: 10, fontSize: 15 }}>
               Bio
             </Text>
             <PostContent />
@@ -87,10 +87,10 @@ const ProfileView = () => {
           <View>
             <Text
               style={{
-                fontWeight: "bold",
+                fontWeight: 'bold',
                 marginTop: 3,
                 fontSize: 20,
-                color: "#000000",
+                color: '#000000',
               }}
             >
               Reviews
@@ -105,32 +105,32 @@ const ProfileView = () => {
 
 const styles = StyleSheet.create({
   title: {
-    color: "#234c7d",
-    textAlign: "center",
+    color: '#234c7d',
+    textAlign: 'center',
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   service: {
-    color: "#234c7d",
-    fontWeight: "normal",
+    color: '#234c7d',
+    fontWeight: 'normal',
   },
   separator: {
     height: 1.5,
-    width: "90%",
-    alignSelf: "center",
+    width: '90%',
+    alignSelf: 'center',
   },
   backgroundColor: {
-    height: "90%",
-    width: "95%",
-    alignSelf: "center",
+    height: '90%',
+    width: '95%',
+    alignSelf: 'center',
     borderRadius: 20,
     margin: 5,
   },
   handyimage: {
-    backgroundColor: "transparent",
-    alignItems: "center",
-    alignSelf: "center",
-    flexDirection: "row",
+    backgroundColor: 'transparent',
+    alignItems: 'center',
+    alignSelf: 'center',
+    flexDirection: 'row',
     marginBottom: 15,
   },
   data: {
@@ -144,33 +144,33 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "white",
-    flexDirection: "column",
+    backgroundColor: 'white',
+    flexDirection: 'column',
   },
   handydetails: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 10,
   },
   name: {
     fontSize: 20,
     marginTop: 5,
-    color: "#335580",
-    fontWeight: "bold",
+    color: '#335580',
+    fontWeight: 'bold',
   },
   serviceBtn: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 12,
     borderRadius: 20,
-    backgroundColor: "#35B2E6",
-    width: "25%",
+    backgroundColor: '#35B2E6',
+    width: '25%',
   },
 
   btnName: {
     fontSize: 15,
-    fontWeight: "bold",
-    color: "#ffffff",
+    fontWeight: 'bold',
+    color: '#ffffff',
   },
   rate: {
     fontSize: 20,

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
-import Data from "../DataStore/DataService";
+import React, { useState } from 'react';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import Data from '../DataStore/DataService';
 
 const PostContent = () => {
   const newData = Data.map(function (value) {
@@ -41,16 +41,16 @@ const styles = StyleSheet.create({
   postContentContainer: {
     borderWidth: 0.5,
     borderRadius: 10,
-    borderColor: "#35B2E6",
-    flexDirection: "column",
+    borderColor: '#35B2E6',
+    flexDirection: 'column',
   },
 
   postMedia: {
     borderWidth: 0.5,
-    borderColor: "#35B2E6",
-    width: "100%",
+    borderColor: '#35B2E6',
+    width: '100%',
     height: 280,
-    resizeMode: "cover",
+    resizeMode: 'cover',
   },
 
   postDescription: {
@@ -59,9 +59,9 @@ const styles = StyleSheet.create({
   },
 
   seeMore: {
-    color: "#000000",
-    fontWeight: "bold",
-    fontStyle: "italic",
-    textDecorationLine: "underline",
+    color: '#000000',
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    textDecorationLine: 'underline',
   },
 });

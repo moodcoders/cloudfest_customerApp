@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import React, { useState } from 'react';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-import StarIconFilled from "../assets/fonts/star_filled.png";
-import StarIconUnFilled from "../assets/fonts/star_corner.png";
+import StarIconFilled from '../assets/fonts/star_filled.png';
+import StarIconUnFilled from '../assets/fonts/star_corner.png';
 
 const ShowRating = ({ data }: any) => {
   const [Rating, setRating] = useState(data.rating);
@@ -28,12 +28,12 @@ export default ShowRating;
 
 const styles = StyleSheet.create({
   customRatingBarStyle: {
-    justifyContent: "center",
-    flexDirection: "row",
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
   starImageStyle: {
     width: 20,
     height: 20,
-    resizeMode: "cover",
+    resizeMode: 'cover',
   },
 });

@@ -1,14 +1,14 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import Reviews from "../DataStore/Reviews";
-import ShowRating from "../components/ShowRating";
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import Reviews from '../DataStore/Reviews';
+import ShowRating from '../components/ShowRating';
 
 function AnimatableFadeItems() {
   return (
     <ScrollView
       style={{
-        height: "70%",
-        backgroundColor: "#599BD8",
+        height: '70%',
+        backgroundColor: '#599BD8',
         borderRadius: 12,
       }}
     >
@@ -18,15 +18,15 @@ function AnimatableFadeItems() {
             <View style={styles.item}>
               <View
                 style={{
-                  justifyContent: "space-between",
-                  flexDirection: "row",
+                  justifyContent: 'space-between',
+                  flexDirection: 'row',
                   margin: 10,
                 }}
               >
                 <Text
                   style={{
-                    color: "#C4C4C4",
-                    fontWeight: "bold",
+                    color: '#C4C4C4',
+                    fontWeight: 'bold',
                     fontSize: 16,
                   }}
                 >
@@ -34,9 +34,9 @@ function AnimatableFadeItems() {
                 </Text>
                 <ShowRating data={handyman} />
 
-                <Text style={{ color: "#C4C4C4" }}>{handyman.date}</Text>
+                <Text style={{ color: '#C4C4C4' }}>{handyman.date}</Text>
               </View>
-              <Text style={{ color: "#fff", marginLeft: 10 }}>
+              <Text style={{ color: '#fff', marginLeft: 10 }}>
                 {handyman.Review}
               </Text>
             </View>

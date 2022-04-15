@@ -1,9 +1,9 @@
-import { Image, StyleSheet } from "react-native";
-import { Text, View } from "../components/Themed";
+import { Image, StyleSheet } from 'react-native';
+import { Text, View } from '../components/Themed';
 
-import Icon from "react-native-vector-icons/EvilIcons";
-import Calender from "react-native-vector-icons/MaterialCommunityIcons";
-import Rupee from "react-native-vector-icons/FontAwesome";
+import Icon from 'react-native-vector-icons/EvilIcons';
+import Calender from 'react-native-vector-icons/MaterialCommunityIcons';
+import Rupee from 'react-native-vector-icons/FontAwesome';
 
 interface bookingParams {
   img: any;
@@ -18,7 +18,7 @@ interface bookingParams {
 const BookingHandymanDetails = (prop: bookingParams) => {
   return (
     <View style={styles.card}>
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: 'row' }}>
         <View style={styles.cardBoarder}>
           <Image style={styles.image} resizeMode="cover" source={prop.img} />
           <Text>{prop.jobName}</Text>
@@ -27,11 +27,11 @@ const BookingHandymanDetails = (prop: bookingParams) => {
           <Text style={styles.bookingNumber}>Booking Number- bg6789p0 </Text>
           <Text style={{ marginTop: 25 }}>Smart PRO</Text>
           <Text style={styles.name}>Shams</Text>
-          <Text style={{ color: "red" }}>{prop.exp}</Text>
+          <Text style={{ color: 'red' }}>{prop.exp}</Text>
           <Text style={styles.data}>
             <Icon
               name="star"
-              onPress={() => console.log("back button press")}
+              onPress={() => console.log('back button press')}
               color="gold"
               style={{ fontSize: 25 }}
             />
@@ -44,10 +44,10 @@ const BookingHandymanDetails = (prop: bookingParams) => {
         <Text>
           <Calender
             name="calendar-clock"
-            onPress={() => console.log("back button press")}
+            onPress={() => console.log('back button press')}
             color="#333"
             style={{ fontSize: 25, margin: 10 }}
-          />{" "}
+          />{' '}
           9:20 PM Sat,12 Sep 2021
         </Text>
       </View>
@@ -63,9 +63,9 @@ const BookingHandymanDetails = (prop: bookingParams) => {
           <Text style={styles.serviceCharge}>
             <Rupee
               name="rupee"
-              onPress={() => console.log("back button press")}
+              onPress={() => console.log('back button press')}
               color="#333"
-              style={{ fontSize: 20, fontWeight: "bold" }}
+              style={{ fontSize: 20, fontWeight: 'bold' }}
             />
             {prop.rate}
           </Text>
@@ -80,9 +80,9 @@ const BookingHandymanDetails = (prop: bookingParams) => {
           <Text style={styles.serviceCharge}>
             <Rupee
               name="rupee"
-              onPress={() => console.log("back button press")}
+              onPress={() => console.log('back button press')}
               color="#333"
-              style={{ fontSize: 20, fontWeight: "bold" }}
+              style={{ fontSize: 20, fontWeight: 'bold' }}
             />
             {prop.rate}
           </Text>
@@ -94,21 +94,21 @@ const BookingHandymanDetails = (prop: bookingParams) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 25,
     paddingVertical: 10,
     paddingHorizontal: 10,
-    width: "100%",
+    width: '100%',
     marginVertical: 10,
-    paddingBottom: "5%",
+    paddingBottom: '5%',
   },
   cardBoarder: {
-    alignItems: "center",
+    alignItems: 'center',
     borderWidth: 1,
-    borderColor: "#599bd8",
+    borderColor: '#599bd8',
     marginRight: 10,
     borderRadius: 15,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   image: {
     width: 120,
@@ -119,43 +119,43 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     marginTop: 5,
-    color: "#335580",
-    fontWeight: "bold",
+    color: '#335580',
+    fontWeight: 'bold',
   },
   data: {
-    color: "#333",
+    color: '#333',
     fontSize: 15,
     margin: 3,
   },
   bookingNumber: {
-    color: "#000000",
+    color: '#000000',
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     paddingTop: 25,
   },
   priceDetails: {
-    color: "#000000",
+    color: '#000000',
     marginTop: 20,
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     opacity: 0.5,
   },
   service: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 5,
   },
   separator: {
     marginTop: 5,
     height: 1.5,
-    width: "100%",
-    alignSelf: "center",
+    width: '100%',
+    alignSelf: 'center',
   },
   serviceCharge: {
     fontSize: 20,
-    color: "#333",
-    fontWeight: "bold",
+    color: '#333',
+    fontWeight: 'bold',
     opacity: 0.8,
   },
 });
