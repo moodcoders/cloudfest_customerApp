@@ -1,4 +1,5 @@
 import { Image, StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Fridge from '../assets/Icons/refrigerator.png';
@@ -8,7 +9,7 @@ import Calenders from '../components/Calender';
 
 const HomeApplicances = ({ navigation }: any) => {
   return (
-    <View>
+    <SafeAreaView>
       <View>
         <Text style={styles.title}>
           {' '}
@@ -71,7 +72,7 @@ const HomeApplicances = ({ navigation }: any) => {
           </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

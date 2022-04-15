@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { Modal, StyleSheet, Text, View, StatusBar, TextInput } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Modal, StyleSheet, StatusBar, TextInput } from "react-native";
+import { Text, View, } from '../components/Themed';
+
 
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -9,42 +11,58 @@ import SuggestionServies from '../components/SuggestionServies';
 import Separator from '../components/Separator';
 import Colors from '../constants/Colors';
 import LocationMenu from "../components/LocationMenu";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { getServices } from "../services/service";
+
+export interface serviceDataInterface {
+    _id: string,
+    name: string,
+    isDisabled: boolean,
+    imgUrl: string,
+    description: string,
+    price: number,
+}
 
 const ServicePage = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
+    const [serviceData, setserviceData] = useState<serviceDataInterface[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const data = await getServices()
+            if (data) {
+                setserviceData(data)
+            }
+        })()
+    }, [])
 
     return (
-        <>
-            <StatusBar
-                barStyle='dark-content'
-                backgroundColor={Colors.DEFAULT_WHITE}
-                translucent
-            />
-            <Separator height={StatusBar.currentHeight} />
-            <View >
+        <SafeAreaView>
+            <View>
                 <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
-            </View >
-            <View style={{ backgroundColor: '#EDF1FB', height: '92%' }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: 25 }}>
+                <View style={styles.separator} lightColor="#eee" darkColor="rgba(0, 0, 0, 0.22)" />
+            </View>
+            <View style={{ backgroundColor: '#EDF1FB', height: '95%', }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: 25, backgroundColor: 'transparent' }}>
                     <Ionicons name="location-sharp" size={40} color="#234c7d" />
-                    <View style={{ flexDirection: 'column' }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <View style={{ flexDirection: 'column', backgroundColor: 'transparent' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: 'transparent' }}>
                             <Text style={[styles.textStyle,]}>Home</Text>
                             <AntDesign
                                 onPress={() => setModalVisible(true)}
                                 name="down" size={24} color="#234c7d"
                             />
                         </View>
-                        <View >
+                        <View style={{ backgroundColor: 'transparent' }} >
                             <Text ellipsizeMode='tail' numberOfLines={1} style={{ width: '50%', color: "#234c7d" }}>
                                 DC 250, Street 314, New Town, Action Area 1, DC Block, West Bengal.
                             </Text>
                         </View>
                     </View>
                 </View>
-                <View style={[styles.container, styles.shadowProp]}>
+                <View style={[styles.container, styles.shadowProp,]}>
                     {/* Search Icon */}
                     <Feather
                         name="search"
@@ -60,10 +78,10 @@ const ServicePage = () => {
                         value={searchQuery}
                     />
                 </View>
-                <View>
+                <View style={{ backgroundColor: 'transparent' }}>
                     <Text style={styles.subTitle}>Get your work done.{"\n"}Choose Services</Text>
                 </View>
-                <SuggestionServies />
+                <SuggestionServies serviceData={serviceData} />
                 <View>
                     <Modal
                         animationType="slide"
@@ -88,7 +106,7 @@ const ServicePage = () => {
                     </Modal>
                 </View>
             </View>
-        </>
+        </SafeAreaView>
     );
 };
 
@@ -96,7 +114,7 @@ const styles = StyleSheet.create({
     title: {
         color: '#234c7d',
         textAlign: 'center',
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: "bold"
     },
     service: {

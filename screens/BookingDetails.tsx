@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/EvilIcons';
@@ -8,11 +8,26 @@ import Calling from '../assets/fonts/callingIcon.png';
 import Message from '../assets/fonts/message.png';
 
 import Data from "../DataStore/DataService";
-import HandymanDetails from '../components/BookingHandymanDetails';
+import BookingHandymanDetails from '../components/BookingHandymanDetails';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { bookingDataType } from './MyBooking';
+import { getBookingDetails } from '../services/booking';
 
-const BookingDetails = ({ navigation }: any) => {
+const BookingDetails = ({ navigation, route }: any) => {
+
+    const [bookingData, setbookingData] = useState<bookingDataType>();
+
+    useEffect(() => {
+        (async () => {
+            const data = await getBookingDetails(route.params)
+            if (data) {
+                setbookingData(data)
+            }
+        })()
+    }, [])
+
     return (
-        <View>
+        <SafeAreaView>
             <View >
                 <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(0, 0, 0, 0.22)" />
@@ -28,7 +43,7 @@ const BookingDetails = ({ navigation }: any) => {
                     </TouchableOpacity>
                     <Text style={styles.subTitle}>Booking Details</Text>
                 </View>
-                <HandymanDetails {...Data[0]} />
+                <BookingHandymanDetails bookingData={bookingData} />
                 <View style={{ backgroundColor: 'transparent', padding: 20 }}>
                     <View style={styles.smartIcon}>
                         <TouchableOpacity>
@@ -56,7 +71,7 @@ const BookingDetails = ({ navigation }: any) => {
                     </View>
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 
