@@ -1,62 +1,132 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import DatePicker from "@react-native-community/datetimepicker";
-import Platform from "expo-modules-core/build/Platform";
+import React, { useState } from 'react';
+import {
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+  Platform,
+} from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-const DatePickerApp = () => {
-  const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState("date");
+import moment from 'moment';
+
+const CustomDatePicker = (props: any) => {
+  const { textStyle, defaultDate } = props;
+  const [date, setDate] = useState(moment(defaultDate));
   const [show, setShow] = useState(false);
 
-  const onChange = (event: any, selectedDate: Date) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === "ios");
-    setDate(currentDate);
-
-    let tempDate = new Date(currentDate);
-    let fDate =
-      tempDate.getDate() +
-      "/" +
-      (tempDate.getMonth() + 1) +
-      "/" +
-      tempDate.getFullYear();
-
-    console.log(fDate);
+  const onChange = (e: any, selectedDate: moment.MomentInput) => {
+    setDate(moment(selectedDate));
   };
 
-  const showMode = (currentMode: React.SetStateAction<string>) => {
-    setShow(true);
-    setMode(currentMode);
+  const onAndroidChange = (e: any, selectedDate: moment.MomentInput) => {
+    setShow(false);
+    if (selectedDate) {
+      setDate(moment(selectedDate));
+      props.onDateChange(selectedDate);
+    }
+  };
+  const onCancelPress = () => {
+    setDate(moment(defaultDate));
+    setShow(false);
   };
 
+  const onDonePress = () => {
+    props.onDateChange(date);
+    setShow(false);
+  };
+
+  const renderDatePicker = () => {
+    return (
+      <DateTimePicker
+        timeZoneOffsetInMinutes={0}
+        value={new Date(date.toString())}
+        mode="date"
+        minimumDate={
+          new Date(moment().subtract(120, 'years').format('YYYY-MM-DD'))
+        }
+        maximumDate={new Date(moment().format('YYYY-MM-DD'))}
+        onChange={Platform.OS === 'ios' ? onChange : onAndroidChange}
+      />
+    );
+  };
   return (
-    <View style={styles.container}>
-      <View></View>
-      <TouchableOpacity
-        onPress={() => showMode("date")}
-        style={styles.serviceBtn}
-      >
-        <Text style={styles.btnName}>Select Date of Birth</Text>
-      </TouchableOpacity>
-      {show && <DatePicker value={date} mode={mode} onChange={onChange} />}
-    </View>
+    <TouchableHighlight activeOpacity={0} onPress={() => setShow(true)}>
+      <View>
+        <Text style={textStyle}>{date.format('YYYY-MM-DD')}</Text>
+        {Platform.OS !== 'ios' && show && renderDatePicker()}
+        {Platform.OS === 'ios' && (
+          <Modal
+            transparent={true}
+            animationType="slide"
+            visible={show}
+            supportedOrientations={['portrait']}
+            onRequestClose={() => setShow(false)}
+          >
+            <View style={{ flex: 1 }}>
+              <TouchableHighlight
+                style={{
+                  flex: 1,
+                  alignItems: 'flex-end',
+                  flexDirection: 'row',
+                }}
+              >
+                activeOpacity={1} visible={show} onPress={() => setShow(false)}
+                <TouchableHighlight
+                  underlayColor={'#FFFFFF'}
+                  style={{
+                    flex: 1,
+                    borderTopColor: '#E9E9E9',
+                    borderTopWidth: 1,
+                  }}
+                  onPress={() => console.log('datepicker clicked')}
+                >
+                  <View
+                    style={{
+                      backgroundColor: '#FFFFFF',
+                      height: 256,
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <View style={{ marginTop: 20 }}>{renderDatePicker()}</View>
+                    <TouchableHighlight
+                      underlayColor={'transparent'}
+                      onPress={onCancelPress}
+                      style={styles.btnText}
+                    >
+                      <Text>Cancel</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                      underlayColor={'transparent'}
+                      onPress={onDonePress}
+                      style={styles.btnText}
+                    >
+                      <Text>Cancel</Text>
+                    </TouchableHighlight>
+                  </View>
+                </TouchableHighlight>
+              </TouchableHighlight>
+            </View>
+          </Modal>
+        )}
+      </View>
+    </TouchableHighlight>
   );
 };
 
-export default DatePickerApp;
+CustomDatePicker.defaultProps = {
+  textStyle: {},
+  defaultDate: moment(),
+  onDateChange: () => {},
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  serviceBtn: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-  },
-  btnName: {
-    fontSize: 15,
-    color: "#90AAC9",
+  btnText: {
+    position: 'absolute',
+    top: 0,
+    height: 42,
   },
 });
+
+export default CustomDatePicker;
