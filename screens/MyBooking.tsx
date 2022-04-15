@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/EvilIcons';
@@ -8,10 +8,48 @@ import FilterList from "../assets/fonts/filter.png";
 
 import BookingCards from '../components/BookingCards';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { getBookingsForUser } from '../services/booking';
+
+export interface bookingDataType {
+    _id: any,
+    location: string
+    serviceType: string,
+    serviceUri: string,
+    schedule: Date,
+    isCompleted: boolean,
+    handyman: {
+        name: string,
+        rating: number,
+        experience: number,
+        profile: string,
+        image: string,
+        _id: any
+    },
+    userId: any,
+    isPaid: boolean,
+    paymenType: string,
+    rating: {
+        feedback: string,
+        rating: number,
+        _id: any
+    },
+    cost: number,
+    __v: 0
+}
 
 const MyBooking = ({ navigation }: any) => {
+    const [bookingData, setbookingData] = useState<bookingDataType[]>([]);
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
+
+    useEffect(() => {
+        (async () => {
+            const data = await getBookingsForUser("623b7de9686da70164931c7c")
+            if (data) {
+                setbookingData(data)
+            }
+        })()
+    }, [])
 
     return (
         <SafeAreaView >
@@ -61,7 +99,11 @@ const MyBooking = ({ navigation }: any) => {
                 </View>
 
                 <ScrollView>
-                    <BookingCards />
+                    {
+                        bookingData.map((booking: bookingDataType) => {
+                            return <BookingCards key={booking._id} booking={booking} />
+                        })
+                    }
                 </ScrollView>
             </View>
         </SafeAreaView >

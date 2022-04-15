@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity, Image, StatusBar } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
@@ -9,19 +9,47 @@ import {
   AntDesign,
 } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/Foundation';
+import * as SecureStore from 'expo-secure-store';
 
 import Separator from '../components/Separator';
 import Colors from '../constants/Colors';
 import { View, Text } from '../components/Themed';
 import { Display } from '../constants';
 import { AuthContext } from '../constants/Context';
-import Navigation from '../navigation';
+import { getProfileDetails } from '../services/profileDetails';
 
 interface ctx {
   signIn: void;
 }
+interface profileDataType {
+  name: string,
+  gender: string,
+  email: string,
+  DOB: Date,
+  address: {
+    street: string,
+    houseNo: string,
+    pincode: string,
+    state: string,
+    country: string
+  }
+  providers:[{
+      uid :number
+  }]
+}
 const UserProfileView = ({ navigation }: any) => {
   const { authContext } = useContext<ctx | any>(AuthContext);
+  const [profileData, setProfileData] = useState<profileDataType>()
+
+  useEffect(() => {
+    (async () => {
+      const id = await SecureStore.getItemAsync('id')
+      const data = await getProfileDetails(id)
+      if (data) {
+        setProfileData(data)
+      }
+    })()
+  }, [])
 
   return (
     <View style={styles.main}>
@@ -60,8 +88,8 @@ const UserProfileView = ({ navigation }: any) => {
           </Text>
         </View>
 
-        <Text style={styles.name}>Sucheta Mahata</Text>
-        <Text style={styles.userInfo}>90******11</Text>
+        <Text style={styles.name}>{profileData?.name}</Text>
+        <Text style={styles.userInfo}>{profileData?.providers[0].uid}</Text>
       </View>
 
       <View style={styles.arrangement}>

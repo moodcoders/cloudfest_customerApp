@@ -9,7 +9,7 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName, Pressable, } from 'react-native';
 
 import {
   RootStackParamList,
@@ -29,6 +29,9 @@ import MyBooking from '../screens/MyBooking';
 import BookingDetails from '../screens/BookingDetails';
 import UserProfileView from '../screens/UserProfile';
 import useCachedResources from '../hooks/useCachedResources';
+
+// import Settings from '../screens/Settings';
+
 
 import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
 import OtpVerification from '../screens/Authentication/OtpVerification';

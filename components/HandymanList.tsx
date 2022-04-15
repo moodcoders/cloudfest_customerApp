@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dimensions, Image, StyleSheet } from 'react-native';
 import { View, Text } from '../components/Themed';
 import Carousel from 'react-native-snap-carousel';
@@ -23,6 +23,24 @@ const SLIDER_WIDTH = Dimensions.get('window').width + 5;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
 
 const HandymanList = () => {
+    const [data, setData] = useState();
+
+    // useEffect(() => {
+    //     (async () => {
+    //         try {
+    //             const response = await fetch(`http://192.168.1.10:4001/`, {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': "application/json"
+    //                 }
+    //             })
+    //             let { data } = await response.json()
+    //             setData(data)
+    //         } catch (error) {
+    //             throw error;
+    //         }
+    //     })()
+    // }, [])
     return (
         <Carousel
             data={DataServices}
