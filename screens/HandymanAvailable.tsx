@@ -33,7 +33,7 @@ const HandymanAvailable = ({ navigation, route }: any) => {
             <TouchableOpacity>
               <Icon
                 name='chevron-left'
-                onPress={() => navigation.navigate('root' as any )} //TODO: new updated routing
+                onPress={() => navigation.navigate('HomeApplicances' as any, {service: route.params.service, img: route.params.img} )} //TODO: new updated routing
                 color='#fff'
                 style={{
                   fontSize: 35,
@@ -122,3 +122,4 @@ const styles = StyleSheet.create({
 });
 
 export default HandymanAvailable;
+

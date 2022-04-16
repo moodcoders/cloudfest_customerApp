@@ -1,7 +1,7 @@
 export async function getBookingsForUser(userId: string) {
   try {
     const response = await fetch(
-      `http://192.168.0.113:4001/v1/bookings/?id=${userId}`,
+      `http://192.168.1.25:4001/v1/bookings/?id=${userId}`,
       {
         method: 'GET',
         headers: {
@@ -19,7 +19,7 @@ export async function getBookingsForUser(userId: string) {
 export async function getBookingDetails(bookingId: string) {
   try {
     const response = await fetch(
-      `http://192.168.0.113:4001/v1/booking/?id=${bookingId}`,
+      `http://192.168.1.25:4001/v1/booking/?id=${bookingId}`,
       {
         method: 'GET',
         headers: {

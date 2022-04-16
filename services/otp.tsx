@@ -1,4 +1,4 @@
-const AUTH_API = 'http://192.168.0.113:4000';
+const AUTH_API = 'http://192.168.1.25:4000';
 import { notifyMessage } from '../constants/NotifyMessage';
 import * as SecureStore from 'expo-secure-store';
 
@@ -39,6 +39,7 @@ export const validateOtp = async (mobileNumber: string, otp: string) => {
       }),
     });
     const jsonResponse = await response.json();
+    console.log(jsonResponse)
     if (!response.ok) {
       throw new Error(jsonResponse.message);
     }
