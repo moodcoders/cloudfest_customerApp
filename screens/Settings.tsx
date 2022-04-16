@@ -3,18 +3,22 @@ import { StyleSheet, TouchableOpacity, Image, Text, View, SafeAreaView } from 'r
 import { } from '../components/Themed';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
+
 
 import Img from '../assets/images/photography.png';
 import ToggleBtn from '../components/ToggleBtn';
 // import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Settings = ({ navigation }: any) => {
+  const { t: translate } = useTranslation();
+
   return (
     <SafeAreaView>
       <View>
         <Text style={styles.title}>
           {' '}
-          SMART<Text style={styles.service}> SERVICES</Text>
+          {translate("SMART")}<Text style={styles.service}> {translate("SERVICES")}</Text>
         </Text>
         <View style={styles.separator} />
       </View>
@@ -38,7 +42,7 @@ const Settings = ({ navigation }: any) => {
             }}
           >
             <Ionicons name='settings-sharp' size={40} color='#fff' />
-            <Text style={[styles.subTitle]}>Settings</Text>
+            <Text style={[styles.subTitle]}>{translate("Settings")}</Text>
           </View>
         </View>
         <View style={styles.card}>

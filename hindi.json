@@ -14,6 +14,21 @@
     "Services": "सर्विस",
     "Login Or SignUp":"लॉगिन या साइन अप करें",
     "Continue":"जारी रखें",
-    "lang": "हिन्दी"
+    "lang": "हिन्दी",
+    "Edit":"संपादित करें",
+    "Message":"संदेश",
+    "Settings":"समायोजन",
+    "Share":"साझा करना",
+    "Logout":"लॉग आउट",
+   "My Booking":"मेरी बुकिंग",
+   "Filters":"फिल्टर",
+    "Search all Bookings":"सभी बुकिंग खोजें",
+    "Support":"सहायता",
+    "Token":"टोकन",
+    "OTP Verification":"ओटीपी सत्यापन",
+    "Welcome":"स्वागत",
+    "Enter the OTP number just sent you at":"ओटीपी नंबर दर्ज करें जो आपको अभी भेजा गया है",
+    "Verify":"सत्यापित करें"
+
   }
 }

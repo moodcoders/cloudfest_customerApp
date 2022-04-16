@@ -9,6 +9,7 @@ import Colors from '../../constants/Colors';
 import { Display } from '../../constants';
 import Timer from '../../components/Timer';
 import { validateOtp } from '../../services/otp';
+import { useTranslation } from 'react-i18next';
 
 interface ctx {
   signIn: void;
@@ -24,6 +25,8 @@ interface ctx {
 const OtpVerification = ({ navigation, route }: any) => {
   const { mobileNumber } = route.params;
   const { authContext } = useContext<ctx | any>(AuthContext);
+  const { t: translate } = useTranslation();
+
 
   const checkValidation = async () => {
     try {
@@ -44,13 +47,13 @@ const OtpVerification = ({ navigation, route }: any) => {
             size={30}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.headerTitle}>OTP Verification</Text>
+          <Text style={styles.headerTitle}>{translate("OTP Verification")}</Text>
         </View>
-        <Text style={styles.text_header}>Welcome!</Text>
+        <Text style={styles.text_header}>{translate("Welcome")}!</Text>
       </View>
       <Animatable.View animation='fadeInUpBig' style={styles.footer}>
         <Text style={styles.content}>
-          Enter the OTP number just sent you at{' '}
+          {translate("Enter the OTP number just sent you at")}{' '}
           <Text style={styles.mobileNumberText}>{mobileNumber}</Text>
         </Text>
         <View style={styles.otpContainer}>
@@ -68,7 +71,7 @@ const OtpVerification = ({ navigation, route }: any) => {
           <Timer mobileNumber={mobileNumber} />
         </View>
         <TouchableOpacity style={styles.signinButton} onPress={checkValidation}>
-          <Text style={styles.signinButtonText}>Verify</Text>
+          <Text style={styles.signinButtonText}>{translate("Verify")}</Text>
         </TouchableOpacity>
       </Animatable.View>
     </View>

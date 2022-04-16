@@ -9,6 +9,8 @@ import {
 import { Text, View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import { Feather } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
+
 
 import FilterList from '../assets/fonts/filter.png';
 
@@ -44,6 +46,7 @@ export interface bookingDataType {
 }
 
 const MyBooking = ({ navigation }: any) => {
+  const { t: translate } = useTranslation();
   const [bookingData, setbookingData] = useState<bookingDataType[]>([]);
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = (query: React.SetStateAction<string>) =>
@@ -63,7 +66,7 @@ const MyBooking = ({ navigation }: any) => {
       <View>
         <Text style={styles.title}>
           {' '}
-          SMART<Text style={styles.service}> SERVICES</Text>
+          {translate("SMART")}<Text style={styles.service}> {translate("SERVICES")}</Text>
         </Text>
         <View
           style={styles.separator}
@@ -96,7 +99,7 @@ const MyBooking = ({ navigation }: any) => {
               }}
             />
           </TouchableOpacity>
-          <Text style={styles.subTitle}>My Booking</Text>
+          <Text style={styles.subTitle}>{translate("My Booking")}</Text>
         </View>
         <View
           style={{
@@ -116,7 +119,7 @@ const MyBooking = ({ navigation }: any) => {
             {/* Search Input field */}
             <TextInput
               style={styles.serviceInput}
-              placeholder='Search all Bookings'
+              placeholder={translate("Search all Bookings")}
               onChangeText={onChangeSearch}
               value={searchQuery}
             />
@@ -126,7 +129,7 @@ const MyBooking = ({ navigation }: any) => {
               <Image style={styles.filterIcon} source={FilterList} />
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={{ fontSize: 20, marginLeft: '4%' }}>Filters</Text>
+              <Text style={{ fontSize: 20, marginLeft: '4%' }}>{translate("Filter")}</Text>
             </TouchableOpacity>
           </View>
         </View>

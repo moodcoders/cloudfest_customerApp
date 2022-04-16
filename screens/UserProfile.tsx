@@ -10,6 +10,8 @@ import {
 } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/Foundation';
 import * as SecureStore from 'expo-secure-store';
+import { useTranslation } from 'react-i18next';
+
 
 import Separator from '../components/Separator';
 import Colors from '../constants/Colors';
@@ -36,6 +38,8 @@ export interface profileDataType {
 const UserProfileView = ({ navigation }: any) => {
   const { authContext } = useContext<ctx | any>(AuthContext);
   const [profileData, setProfileData] = useState<profileDataType>();
+  const { t: translate } = useTranslation();
+
 
   useEffect(() => {
     (async () => {
@@ -57,7 +61,7 @@ const UserProfileView = ({ navigation }: any) => {
       <Separator height={StatusBar.currentHeight} />
       <Text style={styles.title}>
         {' '}
-        SMART<Text style={styles.service}> SERVICE</Text>
+        {translate('SMART')}<Text style={styles.service}> {translate('SERVICE')}</Text>
       </Text>
       <View
         style={styles.separator}
@@ -85,17 +89,17 @@ const UserProfileView = ({ navigation }: any) => {
         </View>
 
         <Text style={styles.name}>{profileData?.name}</Text>
-        <Text style={styles.userInfo}>{ profileData?.email}</Text>
+        <Text style={styles.userInfo}>{profileData?.email}</Text>
       </View>
 
       <View style={styles.arrangement}>
         <TouchableOpacity style={styles.agentStyle}>
           <MaterialIcons name='support-agent' size={44} color='black' />
-          <Text>Support</Text>
+          <Text>{translate("Support")}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.agentStyle}>
           <FontAwesome5 name='coins' size={44} color='black' />
-          <Text>Token</Text>
+          <Text>{translate("Token")}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.agentStyle}>
           <FontAwesome name='group' size={44} color='black' />
@@ -106,29 +110,29 @@ const UserProfileView = ({ navigation }: any) => {
       <View style={styles.rectangle2}>
         <TouchableOpacity style={styles.viewStyle}>
           <Feather name='edit' size={34} color='black' />
-          <Text style={styles.textStyle}>Edit</Text>
+          <Text style={styles.textStyle}>{translate('Edit')}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.viewStyle}>
           <AntDesign name='message1' size={34} color='black' />
-          <Text style={styles.textStyle}>Message</Text>
+          <Text style={styles.textStyle}>{translate("Message")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.viewStyle}
           onPress={() => navigation.navigate('Settings')}
         >
           <Feather name='settings' size={34} color='black' />
-          <Text style={styles.textStyle}>Settings</Text>
+          <Text style={styles.textStyle}>{translate("Settings")}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.viewStyle}>
           <AntDesign name='sharealt' size={34} color='black' />
-          <Text style={styles.textStyle}>Share</Text>
+          <Text style={styles.textStyle}>{translate("Share")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.viewStyle}
           onPress={() => authContext.signOut()}
         >
           <MaterialIcons name='logout' size={34} color='black' />
-          <Text style={styles.textStyle}>Logout</Text>
+          <Text style={styles.textStyle}>{translate("Logout")}</Text>
         </TouchableOpacity>
       </View>
     </View>
