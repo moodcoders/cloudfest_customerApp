@@ -1,54 +1,132 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, View, Text, ScrollView } from 'react-native';
-import CalendarPicker from 'react-native-calendar-picker';
+import React, { useState } from 'react';
+import {
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+  Platform,
+} from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-const Calenders = () => {
+import moment from 'moment';
+
+const CustomDatePicker = (props: any) => {
+  const { textStyle, defaultDate } = props;
+  const [date, setDate] = useState(moment(defaultDate));
+  const [show, setShow] = useState(false);
+
+  const onChange = (e: any, selectedDate: moment.MomentInput) => {
+    setDate(moment(selectedDate));
+  };
+
+  const onAndroidChange = (e: any, selectedDate: moment.MomentInput) => {
+    setShow(false);
+    if (selectedDate) {
+      setDate(moment(selectedDate));
+      props.onDateChange(selectedDate);
+    }
+  };
+  const onCancelPress = () => {
+    setDate(moment(defaultDate));
+    setShow(false);
+  };
+
+  const onDonePress = () => {
+    props.onDateChange(date);
+    setShow(false);
+  };
+
+  const renderDatePicker = () => {
     return (
-        <SafeAreaView>
-            <View style={styles.container}>
-                <StatusBar style="auto" />
-                <CalendarPicker
-                    startFromMonday={true}
-                    minDate={new Date(2018, 1, 1)}
-                    maxDate={new Date(2050, 6, 3)}
-                    width={340}
-                    height={342}
-                    weekdays={['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']}
-                    months={[
-                        'January',
-                        'Febraury',
-                        'March',
-                        'April',
-                        'May',
-                        'June',
-                        'July',
-                        'August',
-                        'September',
-                        'October',
-                        'November',
-                        'December',
-                    ]}
-                    previousTitle="<<"
-                    nextTitle=">>"
-                    todayBackgroundColor="#e6ffe6"
-                    selectedDayColor="#66ff33"
-                    selectedDayTextColor="#000000"
-                    scaleFactor={375}
-                    textStyle={{
-                        color: 'black',
-                    }}
-
-                />
-            </View>
-        </SafeAreaView>
-
+      <DateTimePicker
+        timeZoneOffsetInMinutes={0}
+        value={new Date(date.toString())}
+        mode="date"
+        minimumDate={
+          new Date(moment().subtract(120, 'years').format('YYYY-MM-DD'))
+        }
+        maximumDate={new Date(moment().format('YYYY-MM-DD'))}
+        onChange={Platform.OS === 'ios' ? onChange : onAndroidChange}
+      />
     );
+  };
+  return (
+    <TouchableHighlight activeOpacity={0} onPress={() => setShow(true)}>
+      <View>
+        <Text style={textStyle}>{date.format('YYYY-MM-DD')}</Text>
+        {Platform.OS !== 'ios' && show && renderDatePicker()}
+        {Platform.OS === 'ios' && (
+          <Modal
+            transparent={true}
+            animationType="slide"
+            visible={show}
+            supportedOrientations={['portrait']}
+            onRequestClose={() => setShow(false)}
+          >
+            <View style={{ flex: 1 }}>
+              <TouchableHighlight
+                style={{
+                  flex: 1,
+                  alignItems: 'flex-end',
+                  flexDirection: 'row',
+                }}
+              >
+                activeOpacity={1} visible={show} onPress={() => setShow(false)}
+                <TouchableHighlight
+                  underlayColor={'#FFFFFF'}
+                  style={{
+                    flex: 1,
+                    borderTopColor: '#E9E9E9',
+                    borderTopWidth: 1,
+                  }}
+                  onPress={() => console.log('datepicker clicked')}
+                >
+                  <View
+                    style={{
+                      backgroundColor: '#FFFFFF',
+                      height: 256,
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <View style={{ marginTop: 20 }}>{renderDatePicker()}</View>
+                    <TouchableHighlight
+                      underlayColor={'transparent'}
+                      onPress={onCancelPress}
+                      style={styles.btnText}
+                    >
+                      <Text>Cancel</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                      underlayColor={'transparent'}
+                      onPress={onDonePress}
+                      style={styles.btnText}
+                    >
+                      <Text>Cancel</Text>
+                    </TouchableHighlight>
+                  </View>
+                </TouchableHighlight>
+              </TouchableHighlight>
+            </View>
+          </Modal>
+        )}
+      </View>
+    </TouchableHighlight>
+  );
 };
-export default Calenders;
+
+CustomDatePicker.defaultProps = {
+  textStyle: {},
+  defaultDate: moment(),
+  onDateChange: () => {},
+};
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#ffffff',
-    },
+  btnText: {
+    position: 'absolute',
+    top: 0,
+    height: 42,
+  },
 });
+
+export default CustomDatePicker;
