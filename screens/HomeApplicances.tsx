@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Fridge from '../assets/Icons/refrigerator.png';
@@ -11,7 +12,7 @@ import DateTime from './DateTime';
 
 const HomeApplicances = ({ navigation }: any) => {
     return (
-        <View>
+        <SafeAreaView>
             <View>
                 <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
                 <View style={[styles.separator, { backgroundColor: '#eee' }]} />
@@ -53,7 +54,7 @@ const HomeApplicances = ({ navigation }: any) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 

@@ -1,46 +1,68 @@
-import React from 'react'
-import { SafeAreaView, StyleSheet, TextInput, StatusBar } from 'react-native';
-import { Text, View } from '../components/Themed';
-import { Feather } from '@expo/vector-icons';
+import React, { useEffect, useState } from "react";
+import { Modal, StyleSheet, StatusBar, TextInput } from "react-native";
+import { Text, View, } from '../components/Themed';
 
-import Separator from '../components/Separator';
-import Colors from '../constants/Colors';
+
+import { Feather } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import SuggestionServies from '../components/SuggestionServies';
+import Separator from '../components/Separator';
+import Colors from '../constants/Colors';
+import LocationMenu from "../components/LocationMenu";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { getServices } from "../services/service";
 
-/**
- * Servicespage Displayes  Services provided by the platform
- * 
- * @returns JSX.Elements
- */
+export interface serviceDataInterface {
+    _id: string,
+    name: string,
+    isDisabled: boolean,
+    imgUrl: string,
+    description: string,
+    price: number,
+}
 
 const ServicePage = () => {
+    const [modalVisible, setModalVisible] = useState(false);
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
+    const [serviceData, setserviceData] = useState<serviceDataInterface[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const data = await getServices()
+            if (data) {
+                setserviceData(data)
+            }
+        })()
+    }, [])
+
     return (
-        <View >
-            <StatusBar
-                barStyle='dark-content'
-                backgroundColor={Colors.DEFAULT_WHITE}
-                translucent
-            />
-            <Separator height={StatusBar.currentHeight} />
-            <View >
-                <Text style={styles.title}>
-                    {' '}
-                    SMART<Text style={styles.service}> SERVICES</Text>
-                </Text>
-                <View
-                    style={styles.separator}
-                    lightColor='#eee'
-                    darkColor='rgba(0, 0, 0, 0.22)'
-                />
+        <SafeAreaView>
+            <View>
+                <Text style={styles.title}> SMART<Text style={styles.service}> SERVICES</Text></Text>
+                <View style={styles.separator} lightColor="#eee" darkColor="rgba(0, 0, 0, 0.22)" />
             </View>
-            <View style={styles.backgroundColor} lightColor="#edf1fb" darkColor="rgba(0, 0, 0, 0.22)">
-                <Text style={styles.locationSelection}>
-                    show PopUp
-                </Text>
-                <View style={[styles.container, styles.shadowProp]}>
+            <View style={{ backgroundColor: '#EDF1FB', height: '95%', }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: 25, backgroundColor: 'transparent' }}>
+                    <Ionicons name="location-sharp" size={40} color="#234c7d" />
+                    <View style={{ flexDirection: 'column', backgroundColor: 'transparent' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: 'transparent' }}>
+                            <Text style={[styles.textStyle,]}>Home</Text>
+                            <AntDesign
+                                onPress={() => setModalVisible(true)}
+                                name="down" size={24} color="#234c7d"
+                            />
+                        </View>
+                        <View style={{ backgroundColor: 'transparent' }} >
+                            <Text ellipsizeMode='tail' numberOfLines={1} style={{ width: '50%', color: "#234c7d" }}>
+                                DC 250, Street 314, New Town, Action Area 1, DC Block, West Bengal.
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={[styles.container, styles.shadowProp,]}>
                     {/* Search Icon */}
                     <Feather
                         name="search"
@@ -56,10 +78,35 @@ const ServicePage = () => {
                         value={searchQuery}
                     />
                 </View>
-                <Text style={styles.subTitle}>Get your work done.{"\n"}Choose Services</Text>
-                <SuggestionServies />
+                <View style={{ backgroundColor: 'transparent' }}>
+                    <Text style={styles.subTitle}>Get your work done.{"\n"}Choose Services</Text>
+                </View>
+                <SuggestionServies serviceData={serviceData} />
+                <View>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => {
+                            setModalVisible(!modalVisible);
+                        }}
+                    >
+                        <View style={[{ marginTop: '20%', backgroundColor: 'transparent' }]}>
+                            <View style={{ backgroundColor: '#333', width: 50, alignSelf: 'center', borderRadius: 55 }}>
+                                <Text
+                                    onPress={() => setModalVisible(!modalVisible)}
+                                    style={styles.closeBtn}>
+                                    X
+                                </Text>
+                            </View>
+                            <View style={styles.modalView}>
+                                <LocationMenu />
+                            </View>
+                        </View>
+                    </Modal>
+                </View>
             </View>
-        </View >
+        </SafeAreaView>
     );
 };
 
@@ -79,13 +126,7 @@ const styles = StyleSheet.create({
         width: '80%',
         alignSelf: 'center',
     },
-    backgroundColor: {
-        height: '95%',
-        width: '95%',
-        alignSelf: 'center',
-        borderRadius: 30,
-        margin: 10
-    },
+
     locationSelection: {
         width: '100%',
         height: '10%',
@@ -110,6 +151,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginLeft: 10,
         color: '#a6b0c5',
+        width: '100%'
     },
     shadowProp: {
         shadowColor: '#171717',
@@ -123,6 +165,24 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginLeft: 20,
     },
+    modalView: {
+        height: '90%',
+        width: "100%",
+        borderRadius: 40,
+        backgroundColor: "#fff",
+    },
+    textStyle: {
+        marginRight: 8,
+        color: "#234c7d",
+        fontSize: 25,
+    },
+    closeBtn: {
+        color: "#FFF",
+        fontSize: 35,
+        fontWeight: "bold",
+        textAlign: "center",
+    }
 });
 
 export default ServicePage;
+

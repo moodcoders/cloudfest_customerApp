@@ -1,134 +1,140 @@
-import Electrician from "../assets/images/electrician.png";
-import Plumber from "../assets/images/plumber.png";
-import gardener from "../assets/images/gardener.png";
-import barber from "../assets/images/barber.png";
-import cleaner from "../assets/images/cleaner.png";
-import photography from "../assets/images/photography.png";
-
-
+import Electrician from '../assets/images/electrician.png';
+import Plumber from '../assets/images/plumber.png';
+import gardener from '../assets/images/gardener.png';
+import barber from '../assets/images/barber.png';
+import cleaner from '../assets/images/cleaner.png';
+import photography from '../assets/images/photography.png';
 
 const DataServices = [
   {
-    id: "1",
+    id: '1',
     img: Electrician,
     name: 'Shams',
-    jobName: "Electrician",
-    exp: "2 years of Exprience",
+    jobName: 'Electrician',
+    exp: '2 years of Exprience',
     rating: 4.3,
     totalJobs: 35,
     rate: 250,
-    working: "Electrician Service"
+    working: 'Electrician Service',
+    location: 'DC-220,Kolkata-700156',
+    bio: 'Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.',
   },
   {
-    id: "2",
+    id: '2',
     img: Plumber,
     name: 'Ghazanfar',
-    exp: "2 years of Exprience",
+    exp: '2 years of Exprience',
     rating: 4.3,
     totalJobs: 35,
     rate: 250,
     jobName: 'Electrician',
-    working: "Electrician Service"
-
+    working: 'Electrician Service',
+    location: 'DC-220,Kolkata-700156',
+    bio: 'Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.',
   },
   {
-    id: "3",
+    id: '3',
     img: gardener,
     name: 'osama',
-    exp: "2 years of Exprience",
+    exp: '2 years of Exprience',
     rating: 4.3,
     totalJobs: 35,
     rate: 250,
     jobName: 'Electrician',
-    working: "Plumbing Service"
-
+    working: 'Plumbing Service',
+    location: 'DC-220,Kolkata-700156',
+    bio: 'Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.',
   },
   {
-    id: "4",
+    id: '4',
     img: barber,
     name: 'Huzefa',
-    exp: "2 years of Exprience",
+    exp: '2 years of Exprience',
     rating: 4.3,
     totalJobs: 35,
     rate: 250,
-    working: "Garding Service"
+    working: 'Garding Service',
+    location: 'DC-220,Kolkata-700156',
+    bio: 'Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.',
   },
   {
-    id: "5",
+    id: '5',
     img: cleaner,
     name: 'pritom',
-    exp: "2 years of Exprience",
+    exp: '2 years of Exprience',
     rating: 4.3,
     totalJobs: 35,
     rate: 250,
     jobName: 'Cleaner',
-    working: "Garding Service"
-
-
+    working: 'Garding Service',
+    location: 'DC-220,Kolkata-700156',
+    bio: 'Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.',
   },
   {
-    id: "6",
+    id: '6',
     img: photography,
     name: 'Shahid',
-    exp: "2 years of Exprience",
+    exp: '2 years of Exprience',
     rating: 4.3,
     totalJobs: 35,
     rate: 250,
     jobName: 'Photography',
-    working: "cleaning Service"
-
-
+    working: 'cleaning Service',
+    location: 'DC-220,Kolkata-700156',
+    bio: 'Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.',
   },
   {
-    id: "7",
+    id: '7',
     img: Electrician,
     name: 'Ehtasham',
-    exp: "2 years of Exprience",
+    exp: '2 years of Exprience',
     rating: 4.3,
     totalJobs: 35,
     rate: 250,
     jobName: 'Electrician',
-    working: "cleaning Service"
-
+    working: 'cleaning Service',
+    location: 'DC-220,Kolkata-700156',
+    bio: 'Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.',
   },
   {
-    id: "8",
+    id: '8',
     img: barber,
     name: 'Mahaboob',
-    exp: "2 years of Exprience",
+    exp: '2 years of Exprience',
     rating: 4.3,
     totalJobs: 35,
     rate: 250,
-    jobName: "Barber",
-    working: "Electrician Service"
+    jobName: 'Barber',
+    working: 'Electrician Service',
+    location: 'DC-220,Kolkata-700156',
+    bio: 'Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.',
   },
   {
-    id: "9",
+    id: '9',
     img: Electrician,
     name: 'Sucheta',
-    exp: "2 years of Exprience",
+    exp: '2 years of Exprience',
     rating: 4.3,
     totalJobs: 35,
     rate: 250,
     jobName: 'Electrician',
-    working: "cleaning Service"
-
+    working: 'cleaning Service',
+    location: 'DC-220,Kolkata-700156',
+    bio: 'Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.',
   },
   {
-    id: "10",
+    id: '10',
     img: gardener,
     name: 'Janvi',
-    exp: "2 years of Exprience",
+    exp: '2 years of Exprience',
     rating: 4.3,
     totalJobs: 35,
     rate: 250,
     jobName: 'Gardener',
-    working: "cleaning Service"
-
+    working: 'cleaning Service',
+    location: 'DC-220,Kolkata-700156',
+    bio: 'Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.Hey,I am Steve James.',
   },
 ];
 
 export default DataServices;
-
-
-

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../constants/Context';
 import {
   NavigationContainer,
   DefaultTheme,
@@ -7,7 +9,7 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ColorSchemeName, Pressable, SafeAreaView } from 'react-native';
+import { ColorSchemeName, Pressable, } from 'react-native';
 
 import {
   RootStackParamList,
@@ -17,17 +19,29 @@ import {
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import NotFoundScreen from '../screens/NotFoundScreen';
-// import TabOneScreen from '../screens/TabOneScreen';
 import ModalScreen from '../screens/ModalScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import LinkingConfiguration from './LinkingConfiguration';
-import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
-import OtpVerification from '../screens/Authentication/OtpVerification';
 import HomePage from '../screens/HomePage';
 import ServicePage from '../screens/ServicePage';
 import HandymanAvailable from '../screens/HandymanAvailable';
 import MyBooking from '../screens/MyBooking';
 import BookingDetails from '../screens/BookingDetails';
+import UserProfileView from '../screens/UserProfile';
+import useCachedResources from '../hooks/useCachedResources';
+
+// import Settings from '../screens/Settings';
+
+
+import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
+import OtpVerification from '../screens/Authentication/OtpVerification';
+import OauthVerification from '../screens/Authentication/OauthVerification';
+import ChooseLanguage from '../screens/ChooseLanguage';
+import Settings from '../screens/Settings';
+
+interface ctx {
+  authState: object;
+}
 
 export default function Navigation({
   colorScheme,
@@ -51,30 +65,52 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const { authState } = useContext<ctx | any>(AuthContext);
   return (
     <Stack.Navigator
-      initialRouteName='LoginSignupScreen'
+      initialRouteName='ChooseLanguage'
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name='LoginSignupScreen' component={LoginSignupScreen} />
-      <Stack.Screen name='OtpVerification' component={OtpVerification} />
-      <Stack.Screen name='HandymanAvailable' component={HandymanAvailable} />
-
-      <Stack.Screen
-        name='Root'
-        component={BottomTabNavigator}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name='BookingDetails'
-        component={BookingDetails}
-        options={{ title: 'Oops!' }}
-      />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name='Modal' component={ModalScreen} />
-      </Stack.Group>
+      {authState.currentLanguage === null ? (
+        <Stack.Screen name='ChooseLanguage' component={ChooseLanguage} />
+      ) : null}
+      {authState.userToken === null ? (
+        <>
+          <Stack.Screen
+            name='LoginSignupScreen'
+            component={LoginSignupScreen}
+          />
+          <Stack.Screen name='OtpVerification' component={OtpVerification} />
+          <Stack.Screen
+            name='OauthVerification'
+            component={OauthVerification}
+          />
+        </>
+      ) : (
+        <>
+          <Stack.Screen
+            name='Root'
+            component={BottomTabNavigator}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='HandymanAvailable'
+            component={HandymanAvailable}
+          />
+          <Stack.Screen name='BookingDetails' component={BookingDetails} />
+          <Stack.Screen name='Settings' component={Settings} />
+          <Stack.Screen
+            name='NotFound'
+            component={NotFoundScreen}
+            options={{ title: 'Oops!' }}
+          />
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen name='Modal' component={ModalScreen} />
+          </Stack.Group>
+        </>
+      )}
     </Stack.Navigator>
   );
 }
@@ -143,7 +179,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name='Profile'
-        component={TabTwoScreen}
+        component={UserProfileView}
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => (
