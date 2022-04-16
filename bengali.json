@@ -14,6 +14,20 @@
     "Services": "সেবা",
     "Login Or SignUp":"লগিন করো অথবা সাইন আপ করুন",
     "Continue":"চালিয়ে যান",
-    "lang": "bengali"
+    "lang": "bengali",
+    "Edit":"সম্পাদনা করুন",
+    "Message":"বার্তা",
+    "Settings":"সেটিংস",
+    "Share":"শেয়ার করুন",
+    "Logout":"প্রস্থান",
+    "My Booking":"আমার কথা",
+    "Filters":"ফিল্টার",
+    "Search all Bookings":"সমস্ত বুকিং অনুসন্ধান করুন",
+    "Support":"সমর্থন",
+    "Token":"টোকেন",
+    "OTP Verification":"OTP যাচাইকরণ",
+    "Welcome":"স্বাগত",
+    "Enter the OTP number just sent you at":"এইমাত্র আপনাকে পাঠানো OTP নম্বরটি লিখুন",
+    "Verify":"যাচাই করুন"
   }
 }

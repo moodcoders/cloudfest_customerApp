@@ -14,6 +14,20 @@
     "Services": "Services",
     "Login Or SignUp":"Login Or SignUp",
     "Continue":"Continue",
-    "lang": "Eng"
+    "lang": "Eng",
+    "Edit":"Edit",
+    "Message":"Message",
+    "Settings":"Settings",
+    "Share":"Share",
+    "Logout":"Logout",
+    "My Booking":"My Booking",
+    "Filters":"Filters",
+    "Search all Bookings":"Search all Bookings",
+    "Support":"Support",
+    "Token":"Token",
+    "OTP Verification":"OTP Verification",
+    "Welcome":"Welcome",
+    "Enter the OTP number just sent you at":"Enter the OTP number just sent you at",
+    "Verify":"Verify"
   }
 }
