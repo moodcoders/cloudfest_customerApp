@@ -16,11 +16,11 @@ function Category(props: MemberProp) {
     return (
         <View style={{ alignItems: 'center', margin: 10 }}>
             <TouchableOpacity
-                onPress={() => navigation.navigate("HandymanAvailable" as any)}>
+                onPress={() => navigation.navigate("HomeApplicances" as any, {service: props.name, img: props.img} )}>
                 <Image source={{ uri: props.img }} style={styles.serviceImage} />
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => navigation.navigate("HandymanAvailable" as any)}>
+                onPress={() => navigation.navigate("HomeApplicances" as any, {service: props.name, img: props.img})}>
                 <Text style={styles.serviceName}>{props.name}</Text>
             </TouchableOpacity>
         </View>

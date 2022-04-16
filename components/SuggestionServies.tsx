@@ -19,14 +19,14 @@ interface listOfServicesProp {
 function ListOfServices({ service }: listOfServicesProp) {
   return (
     <>
-      <Member name={service.name} img={service.imgUrl} />
+      <Member service={service.name} img={service.imgUrl} />
     </>
   );
 }
 
 interface MemberProp {
   img: any;
-  name: String;
+  service: String;
 }
 
 /**
@@ -34,19 +34,19 @@ interface MemberProp {
  * @param props - Displayes Image and Name in the components using the params passed
  * @returns JSX.Elements
  */
-const Member = (props: MemberProp) => {
+const Member = ( {service, img}: MemberProp) => {
   const navigation = useNavigation();
   return (
     <View style={{ backgroundColor: 'transparent', alignItems: 'center' }}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('HomeApplicances' as any)}
+        onPress={() => navigation.navigate('HomeApplicances' as any, {service:service, img:img})}
       >
-        <Image source={{ uri: props.img }} style={styles.serviceImage} />
+        <Image source={{ uri: img }} style={styles.serviceImage} />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('HomeApplicances' as any)}
+        onPress={() => navigation.navigate('HomeApplicances' as any, {service:service, img:img})}
       >
-        <Text style={styles.serviceName}>{props.name}</Text>
+        <Text style={styles.serviceName}>{service}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -9,7 +9,9 @@ import ApplicanceServices from '../components/ApplicancesServices';
 import SuggestionServies from '../components/SuggestionServies';
 import DateTime from './DateTime';
 
-const HomeApplicances = ({ navigation }: any) => {
+const HomeApplicances = ({ navigation, route }: any) => {
+  const [date, setDate] = useState(new Date());
+
   return (
     <SafeAreaView>
       <View>
@@ -48,7 +50,7 @@ const HomeApplicances = ({ navigation }: any) => {
               style={{ fontSize: 35 }}
             />
           </View>
-          <Text style={styles.ClintName}>Home Applicances</Text>
+          <Text style={styles.ClintName}>{route.params.service}</Text>
           <View
             style={{
               flexDirection: 'row',
@@ -57,7 +59,7 @@ const HomeApplicances = ({ navigation }: any) => {
             }}
           >
             <Text style={styles.subTitle}>Rs. 100/hr </Text>
-            <Image source={Fridge} style={styles.serviceImage} />
+            <Image source={{uri : route.params.img}} style={styles.serviceImage} />
           </View>
         </View>
         <View style={styles.serviceItems}>
@@ -68,10 +70,10 @@ const HomeApplicances = ({ navigation }: any) => {
           <Text style={[styles.ClintName, { fontSize: 18, marginBottom: 15 }]}>
             Date &#38; Time
           </Text>
-          <DateTime />
+          <DateTime setDate={setDate} date={date}/>
           <TouchableOpacity
             style={styles.serviceBtn}
-            onPress={() => navigation.navigate('HandymanAvailable')}
+            onPress={() => navigation.navigate('HandymanAvailable'as any, {service:route.params.service, img:route.params.img, date:date})}
           >
             <Text style={styles.btnName}> Schedule</Text>
           </TouchableOpacity>
@@ -79,6 +81,7 @@ const HomeApplicances = ({ navigation }: any) => {
       </View>
     </SafeAreaView>
   );
+
 };
 
 const styles = StyleSheet.create({

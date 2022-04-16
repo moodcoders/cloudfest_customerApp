@@ -7,7 +7,7 @@ import EletricianIcon from '../assets/images/electricianIcon.png';
 import HandymanDetail from '../components/HandymanDetails';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const HandymanAvailable = ({ navigation }: any) => {
+const HandymanAvailable = ({ navigation, route }: any) => {
   return (
     <SafeAreaView>
       <View>
@@ -33,7 +33,7 @@ const HandymanAvailable = ({ navigation }: any) => {
             <TouchableOpacity>
               <Icon
                 name='chevron-left'
-                onPress={() => navigation.navigate('HomeApplicances' as any)}
+                onPress={() => navigation.navigate('HomeApplicances' as any, {service: route.params.service, img: route.params.img} )} //TODO: new updated routing
                 color='#fff'
                 style={{
                   fontSize: 35,
@@ -50,7 +50,7 @@ const HandymanAvailable = ({ navigation }: any) => {
               style={{ fontSize: 35 }}
             />
           </View>
-          <Text style={styles.ClintName}>Eletricians</Text>
+          <Text style={styles.ClintName}>{route.params.service}</Text>
           <View
             style={{
               flexDirection: 'row',
@@ -67,7 +67,7 @@ const HandymanAvailable = ({ navigation }: any) => {
               Available in Newtown
               <Icon name='location' color='#234c7d' style={{ fontSize: 35 }} />
             </Text>
-            <Image source={EletricianIcon} style={styles.serviceImage} />
+            <Image source={{uri: route.params.img}} style={styles.serviceImage} />
           </View>
           <HandymanDetail />
         </View>
@@ -122,3 +122,4 @@ const styles = StyleSheet.create({
 });
 
 export default HandymanAvailable;
+
