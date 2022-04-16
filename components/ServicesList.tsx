@@ -1,9 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, ScrollView, Image, TouchableOpacityBase, TouchableOpacity } from 'react-native';
 import { View, Text } from '../components/Themed';
 
 import DataServices from '../DataStore/DataService';
+import { serviceDataInterface } from '../screens/ServicePage';
+import { getServices } from '../services/service';
 interface MemberProp {
     img: any,
     name: String,
@@ -15,7 +17,7 @@ function Category(props: MemberProp) {
         <View style={{ alignItems: 'center', margin: 10 }}>
             <TouchableOpacity
                 onPress={() => navigation.navigate("HandymanAvailable" as any)}>
-                <Image source={props.img} style={styles.serviceImage} />
+                <Image source={{ uri: props.img }} style={styles.serviceImage} />
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate("HandymanAvailable" as any)}>
@@ -28,25 +30,39 @@ interface ListServiceProp {
     name: String,
     img: any
 }
+
 interface CategoryServicesProp {
-    ServiceList: ListServiceProp[]
+    service: serviceDataInterface
 }
 
-function CategoryServices(props: CategoryServicesProp) {
+function CategoryServices({ service }: CategoryServicesProp) {
     return (
         <>
-            {props.ServiceList.map((s: ListServiceProp, i) => (
-                <Category key={i} name={s.name} img={s.img} />
-            ))}
+            <Category name={service.name} img={service.imgUrl} />
         </>
     );
 };
 
 export const ServicesList = () => {
+    const [serviceData, setserviceData] = useState<serviceDataInterface[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const data = await getServices()
+            if (data) {
+                setserviceData(data)
+            }
+        })()
+    }, [])
+
     return (
         <ScrollView
             horizontal showsHorizontalScrollIndicator={false} >
-            <CategoryServices ServiceList={DataServices} />
+            {
+                serviceData.map((service: serviceDataInterface) => {
+                    return <CategoryServices key={service._id} service={service} />
+                })
+            }
         </ScrollView>
     );
 };

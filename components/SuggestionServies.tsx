@@ -5,22 +5,21 @@ import { Text, View } from './Themed';
 // Importing  images and name from  dataStore
 import DataServices from '../DataStore/DataService';
 import { useNavigation } from '@react-navigation/native';
+import { serviceDataInterface } from '../screens/ServicePage';
 
 interface serviceProp {
   name: String;
   img: any;
 }
 interface listOfServicesProp {
-  serviceList: serviceProp[];
+  service: serviceDataInterface;
 }
 
 // ListOfSerives is maping Image and name
-function ListOfServices(props: listOfServicesProp) {
+function ListOfServices({ service }: listOfServicesProp) {
   return (
     <>
-      {props.serviceList.map((elements: serviceProp, index) => (
-        <Member key={index} name={elements.name} img={elements.img} />
-      ))}
+      <Member name={service.name} img={service.imgUrl} />
     </>
   );
 }
@@ -40,9 +39,9 @@ const Member = (props: MemberProp) => {
   return (
     <View style={{ backgroundColor: 'transparent', alignItems: 'center' }}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('HomeApplicances' as any)}
+        onPress={() => navigation.navigate('HandymanAvailable' as any)}
       >
-        <Image source={props.img} style={styles.serviceImage} />
+        <Image source={{ uri: props.img }} style={styles.serviceImage} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('HandymanAvailable' as any)}
@@ -59,11 +58,17 @@ const Member = (props: MemberProp) => {
  * @returns JSX Elements
  *
  */
-const SuggestionServies = () => {
+
+interface suggestionServicesProp {
+  serviceData: serviceDataInterface[];
+}
+const SuggestionServies = ({ serviceData }: suggestionServicesProp) => {
   return (
     <ScrollView>
       <View style={styles.serviceList}>
-        <ListOfServices serviceList={DataServices} />
+        {serviceData.map((service: serviceDataInterface) => {
+          return <ListOfServices key={service._id} service={service} />;
+        })}
       </View>
     </ScrollView>
   );

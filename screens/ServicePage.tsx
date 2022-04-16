@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, StyleSheet, StatusBar, TextInput } from 'react-native';
 import { Text, View } from '../components/Themed';
 
@@ -11,12 +11,32 @@ import Separator from '../components/Separator';
 import Colors from '../constants/Colors';
 import LocationMenu from '../components/LocationMenu';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { getServices } from '../services/service';
+
+export interface serviceDataInterface {
+  _id: string;
+  name: string;
+  isDisabled: boolean;
+  imgUrl: string;
+  description: string;
+  price: number;
+}
 
 const ServicePage = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = (query: React.SetStateAction<string>) =>
     setSearchQuery(query);
+  const [serviceData, setserviceData] = useState<serviceDataInterface[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await getServices();
+      if (data) {
+        setserviceData(data);
+      }
+    })();
+  }, []);
 
   return (
     <SafeAreaView>
@@ -69,62 +89,108 @@ const ServicePage = () => {
                 Bengal.
               </Text>
             </View>
-          </View>
-        </View>
-        <View style={[styles.container, styles.shadowProp]}>
-          {/* Search Icon */}
-          <Feather
-            name='search'
-            size={20}
-            color='#599bd8'
-            style={{ marginLeft: 10 }}
-          />
-          {/* Search Input field */}
-          <TextInput
-            style={styles.serviceInput}
-            placeholder='Service Name'
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-          />
-        </View>
-        <View style={{ backgroundColor: 'transparent' }}>
-          <Text style={styles.subTitle}>
-            Get your work done.{'\n'}Choose Services
-          </Text>
-        </View>
-        <SuggestionServies />
-        <View>
-          <Modal
-            animationType='slide'
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              setModalVisible(!modalVisible);
-            }}
-          >
-            <View
-              style={[{ marginTop: '20%', backgroundColor: 'transparent' }]}
-            >
+            <View style={{ backgroundColor: '#EDF1FB', height: '95%' }}>
               <View
                 style={{
-                  backgroundColor: '#333',
-                  width: 50,
-                  alignSelf: 'center',
-                  borderRadius: 55,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  paddingLeft: 25,
+                  backgroundColor: 'transparent',
                 }}
               >
-                <Text
-                  onPress={() => setModalVisible(!modalVisible)}
-                  style={styles.closeBtn}
+                <Ionicons name='location-sharp' size={40} color='#234c7d' />
+                <View
+                  style={{
+                    flexDirection: 'column',
+                    backgroundColor: 'transparent',
+                  }}
                 >
-                  X
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      backgroundColor: 'transparent',
+                    }}
+                  >
+                    <Text style={[styles.textStyle]}>Home</Text>
+                    <AntDesign
+                      onPress={() => setModalVisible(true)}
+                      name='down'
+                      size={24}
+                      color='#234c7d'
+                    />
+                  </View>
+                  <View style={{ backgroundColor: 'transparent' }}>
+                    <Text
+                      ellipsizeMode='tail'
+                      numberOfLines={1}
+                      style={{ width: '50%', color: '#234c7d' }}
+                    >
+                      DC 250, Street 314, New Town, Action Area 1, DC Block,
+                      West Bengal.
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View style={[styles.container, styles.shadowProp]}>
+                {/* Search Icon */}
+                <Feather
+                  name='search'
+                  size={20}
+                  color='#599bd8'
+                  style={{ marginLeft: 10 }}
+                />
+                {/* Search Input field */}
+                <TextInput
+                  style={styles.serviceInput}
+                  placeholder='Service Name'
+                  onChangeText={onChangeSearch}
+                  value={searchQuery}
+                />
+              </View>
+              <View style={{ backgroundColor: 'transparent' }}>
+                <Text style={styles.subTitle}>
+                  Get your work done.{'\n'}Choose Services
                 </Text>
               </View>
-              <View style={styles.modalView}>
-                <LocationMenu />
+              <SuggestionServies serviceData={serviceData} />
+              <View>
+                <Modal
+                  animationType='slide'
+                  transparent={true}
+                  visible={modalVisible}
+                  onRequestClose={() => {
+                    setModalVisible(!modalVisible);
+                  }}
+                >
+                  <View
+                    style={[
+                      { marginTop: '20%', backgroundColor: 'transparent' },
+                    ]}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: '#333',
+                        width: 50,
+                        alignSelf: 'center',
+                        borderRadius: 55,
+                      }}
+                    >
+                      <Text
+                        onPress={() => setModalVisible(!modalVisible)}
+                        style={styles.closeBtn}
+                      >
+                        X
+                      </Text>
+                    </View>
+                    <View style={styles.modalView}>
+                      <LocationMenu />
+                    </View>
+                  </View>
+                </Modal>
               </View>
             </View>
-          </Modal>
+          </View>
         </View>
       </View>
     </SafeAreaView>
