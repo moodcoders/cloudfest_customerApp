@@ -38,6 +38,9 @@ import Settings from '../screens/Settings';
 import HomeApplicances from '../screens/HomeApplicances';
 import ProfileView from '../screens/HandymanProfile';
 import UserDetails from '../screens/UserDetails';
+import PayPage from '../screens/Payment/PayPage';
+import BookingDone from '../screens/Payment/BookingDone';
+import StripeApp from '../screens/Payment/StripeCard';
 
 interface ctx {
   authState: object;
@@ -105,6 +108,9 @@ function RootNavigator() {
           <Stack.Screen name='HomeApplicances' component={HomeApplicances} />
           <Stack.Screen name='Settings' component={Settings} />
           <Stack.Screen name='HandymanProfile' component={ProfileView} />
+          <Stack.Screen name='PayPage' component={PayPage} />
+          <Stack.Screen name='StripeCard' component={StripeApp} />
+          <Stack.Screen name='BookingDone' component={BookingDone} />
           <Stack.Screen
             name='NotFound'
             component={NotFoundScreen}

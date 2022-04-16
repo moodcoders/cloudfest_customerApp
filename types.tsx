@@ -28,6 +28,9 @@ export type RootStackParamList = {
   Settings: undefined;
   HandymanProfile: undefined;
   UserDetails: undefined;
+  PayPage: undefined;
+  BookingDone: undefined;
+  StripeCard: undefined;
   Modal: undefined;
   NotFound: undefined;
 };

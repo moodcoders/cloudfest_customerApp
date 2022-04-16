@@ -8,7 +8,7 @@ import { EvilIcons } from '@expo/vector-icons';
 import PostContent from '../components/Readmore';
 import AnimatableFadeItems from '../components/AnimatableFadeItems';
 
-const ProfileView = () => {
+const ProfileView = ({ navigation }: any) => {
   const newData = Data.map(function (value) {
     return value;
   });
@@ -22,14 +22,14 @@ const ProfileView = () => {
         </Text>
         <View
           style={styles.separator}
-          lightColor="#eee"
-          darkColor="rgba(0, 0, 0, 0.22)"
+          lightColor='#eee'
+          darkColor='rgba(0, 0, 0, 0.22)'
         />
       </View>
       <View
         style={styles.backgroundColor}
-        lightColor="#edf1fb"
-        darkColor="rgba(0, 0, 0, 0.22)"
+        lightColor='#edf1fb'
+        darkColor='rgba(0, 0, 0, 0.22)'
       >
         <View
           style={{
@@ -39,8 +39,8 @@ const ProfileView = () => {
         >
           <TouchableOpacity>
             <Icon
-              name="chevron-left"
-              color="#333"
+              name='chevron-left'
+              color='#333'
               style={{
                 fontSize: 40,
                 backgroundColor: '#fff',
@@ -53,29 +53,32 @@ const ProfileView = () => {
         <View style={styles.handyimage}>
           <View style={[styles.data, { borderRadius: 15 }]}>
             <Text style={styles.data}>
-              <FontAwesome name="star" size={20} color="gold" />
+              <FontAwesome name='star' size={20} color='gold' />
               {newData[0].rating}
             </Text>
           </View>
           <Image
             style={styles.image}
-            resizeMode="cover"
+            resizeMode='cover'
             source={newData[0].img}
           />
         </View>
         <View style={styles.container}>
           <View style={styles.handydetails}>
             <Text style={styles.name}>{newData[0].name}</Text>
-            <TouchableOpacity style={styles.serviceBtn}>
+            <TouchableOpacity
+              style={styles.serviceBtn}
+              onPress={() => navigation.navigate('PayPage')}
+            >
               <Text style={styles.btnName}>Select</Text>
             </TouchableOpacity>
           </View>
           <Text style={styles.rate}>
-            <FontAwesome name="rupee" size={20} color="black" />
+            <FontAwesome name='rupee' size={20} color='black' />
             {newData[0].rate}/hr
           </Text>
           <Text>
-            <EvilIcons name="location" size={15} color="black" />
+            <EvilIcons name='location' size={15} color='black' />
             {newData[0].location}
           </Text>
           <View>
