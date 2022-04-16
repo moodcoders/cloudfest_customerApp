@@ -1,4 +1,4 @@
-const AUTH_API = 'http://192.168.0.113:4000';
+const AUTH_API = 'http://192.168.1.11:4000';
 import { notifyMessage } from '../constants/NotifyMessage';
 import * as SecureStore from 'expo-secure-store';
 

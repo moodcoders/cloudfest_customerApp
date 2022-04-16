@@ -24,7 +24,13 @@ export type RootStackParamList = {
   BookingDetails: undefined;
   OauthVerification: undefined;
   HandymanAvailable: undefined;
+  HomeApplicances: undefined;
   Settings: undefined;
+  HandymanProfile: undefined;
+  UserDetails: undefined;
+  PayPage: undefined;
+  BookingDone: undefined;
+  StripeCard: undefined;
   Modal: undefined;
   NotFound: undefined;
 };
