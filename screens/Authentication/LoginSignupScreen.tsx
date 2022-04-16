@@ -6,13 +6,13 @@ import {
   StyleSheet,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import { useTranslation } from 'react-i18next';
 
 import { Text, View } from '../../components/Themed';
 import NumberVerification from '../../components/NumberVerification';
 import Smartservice from '../../assets/images/smartservice.png';
 import { Display } from '../../constants';
 import Colors from '../../constants/Colors';
-import { useTranslation } from 'react-i18next';
 import Handyman from '../../assets/images/handymanImg.png';
 
 /**

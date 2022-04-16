@@ -12,7 +12,7 @@ export default function ChooseLanguage({ navigation }: any) {
 
   return (
     <View style={[styles.langButtonflex, { justifyContent: 'space-around' }]}>
-      <Text style={styles.textStyle}>Choose Your Preffed Language</Text>
+      <Text style={styles.textStyle}>Choose Your Preferred Language</Text>
       <TouchableOpacity
         style={styles.signinButton}
         activeOpacity={0.8}
@@ -33,6 +33,16 @@ export default function ChooseLanguage({ navigation }: any) {
       >
         <Text style={styles.signinButtonText}>हिन्दी</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.signinButton}
+        activeOpacity={0.8}
+        onPress={() => {
+          authContext.changeLanguage('bengali');
+          navigation.navigate('LoginSignupScreen');
+        }}
+      >
+        <Text style={styles.signinButtonText}>বাংলা</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -49,6 +59,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   signinButton: {
+    marginBottom: 20,
     backgroundColor: Colors.Button_Blue,
     borderRadius: 8,
     height: Display.setHeight(6),

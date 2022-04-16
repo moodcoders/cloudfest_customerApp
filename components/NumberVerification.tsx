@@ -6,8 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-
 import { openBrowserAsync } from 'expo-web-browser';
+import { useTranslation } from 'react-i18next';
 
 import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
@@ -16,6 +16,7 @@ import { generateOtpAPI } from '../services/otp';
 import IndianFlag from '../assets/images/india.png';
 import Google from '../assets/images/google.png';
 import { AuthContext } from '../constants/Context';
+import { notifyMessage } from '../constants/NotifyMessage';
 
 /**
  * NumberVerification Component is allowing the user to input the number for SignUp/Login
@@ -25,10 +26,11 @@ import { AuthContext } from '../constants/Context';
  * @returns JSX.Element
  */
 const NumberVerification = ({ navigation }: any) => {
+  const { t: translate } = useTranslation();
+
   const [mobileNumber, setmobileNumber] = useState('');
   const [isValidNumberFlag, setValidNumberFlag] = useState<Boolean>(false);
   const { signIn } = useContext<any>(AuthContext);
-
 
   /**validatemobileNumber is a function for checking(if the input value is number or not) */
   function validatemobileNumber(number: string): Boolean {
@@ -45,9 +47,8 @@ const NumberVerification = ({ navigation }: any) => {
     }
   }
 
-  function handleOnPress(){
-    openBrowserAsync('http://moodcoders.ddns.net:4000/auth/google/login')
-    // signIn('abc')
+  function handleOnPress() {
+    openBrowserAsync('http://moodcoders.ddns.net:4000/auth/google/login');
   }
 
   /**onPressCheck is navigating the user to OtpVerification page by checking the
@@ -62,12 +63,12 @@ const NumberVerification = ({ navigation }: any) => {
       ? navigation.navigate('OtpVerification', {
           mobileNumber,
         })
-      : Alert.alert('Enter Your Correct Phone Number');
+      : notifyMessage('Enter Your Correct Phone Number');
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.primaryText}>Login Or SignUp</Text>
+      <Text style={styles.primaryText}>{translate('Login Or SignUp')}</Text>
       <View style={styles.inputsContainer}>
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity style={styles.countryListContainer}>
@@ -100,14 +101,17 @@ const NumberVerification = ({ navigation }: any) => {
         activeOpacity={0.8}
         onPress={onPressCheck}
       >
-        <Text style={styles.signinButtonText}>Continue</Text>
+        <Text style={styles.signinButtonText}>{translate('Continue')}</Text>
       </TouchableOpacity>
       <View style={styles.borderContainer}>
         <View style={styles.border} />
         <Text style={styles.borderText}>Or</Text>
         <View style={styles.border} />
       </View>
-      <TouchableOpacity style={[styles.borderContainer, styles.socialIcon]} onPress ={handleOnPress}>
+      <TouchableOpacity
+        style={[styles.borderContainer, styles.socialIcon]}
+        onPress={handleOnPress}
+      >
         <Image style={styles.google} source={Google} />
       </TouchableOpacity>
     </View>
