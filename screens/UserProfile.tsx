@@ -22,34 +22,36 @@ interface ctx {
   signIn: void;
 }
 interface profileDataType {
-  name: string,
-  gender: string,
-  email: string,
-  DOB: Date,
+  name: string;
+  gender: string;
+  email: string;
+  DOB: Date;
   address: {
-    street: string,
-    houseNo: string,
-    pincode: string,
-    state: string,
-    country: string
-  }
-  providers:[{
-      uid :number
-  }]
+    street: string;
+    houseNo: string;
+    pincode: string;
+    state: string;
+    country: string;
+  };
+  providers: [
+    {
+      uid: number;
+    },
+  ];
 }
 const UserProfileView = ({ navigation }: any) => {
   const { authContext } = useContext<ctx | any>(AuthContext);
-  const [profileData, setProfileData] = useState<profileDataType>()
+  const [profileData, setProfileData] = useState<profileDataType>();
 
   useEffect(() => {
     (async () => {
-      const id = await SecureStore.getItemAsync('id')
-      const data = await getProfileDetails(id)
+      const id = await SecureStore.getItemAsync('id');
+      const data = await getProfileDetails(id);
       if (data) {
-        setProfileData(data)
+        setProfileData(data);
       }
-    })()
-  }, [])
+    })();
+  }, []);
 
   return (
     <View style={styles.main}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, View } from './Themed';
 
 import Icon from 'react-native-vector-icons/Foundation';
@@ -7,52 +7,59 @@ import Rupee from 'react-native-vector-icons/FontAwesome';
 
 import '../DataStore/HandyData';
 import DataServices from '../DataStore/DataService';
+import { useNavigation } from '@react-navigation/native';
 
 function HandymanDetail() {
+  const navigation = useNavigation();
   return (
     <View style={{ backgroundColor: 'transparent' }}>
       {DataServices.map((handyman) => {
         return (
-          <View key={handyman.id} style={[styles.card]}>
-            <View>
-              <Image
-                style={styles.image}
-                resizeMode="cover"
-                source={handyman.img}
-              />
-            </View>
-            <View>
-              <Text style={styles.name}>{handyman.name}</Text>
-              <Text style={{ color: 'red' }}>{handyman.exp}</Text>
-              <View style={{ flexDirection: 'row', marginTop: 35 }}>
-                <Text style={styles.data}>
-                  Rating{'\n'}
-                  <Icon
-                    name="star"
-                    onPress={() => console.log('back button press')}
-                    color="gold"
-                    style={{ fontSize: 15 }}
-                  />
-                  {handyman.rating}
-                </Text>
-                <Text style={styles.data}>
-                  TotalJobs{'\n'}
-                  {handyman.totalJobs}
-                </Text>
-                <Text style={styles.data}>
-                  Rate
-                  {'\n'}
-                  <Rupee
-                    name="rupee"
-                    onPress={() => console.log('back button press')}
-                    color="#333"
-                    style={{ fontSize: 15, fontWeight: 'bold' }}
-                  />
-                  {handyman.rate}
-                </Text>
+          <TouchableOpacity
+            key={handyman.id}
+            onPress={() => navigation.navigate('HandymanProfile' as any)}
+          >
+            <View style={[styles.card]}>
+              <View>
+                <Image
+                  style={styles.image}
+                  resizeMode='cover'
+                  source={handyman.img}
+                />
+              </View>
+              <View>
+                <Text style={styles.name}>{handyman.name}</Text>
+                <Text style={{ color: 'red' }}>{handyman.exp}</Text>
+                <View style={{ flexDirection: 'row', marginTop: 35 }}>
+                  <Text style={styles.data}>
+                    Rating{'\n'}
+                    <Icon
+                      name='star'
+                      onPress={() => console.log('back button press')}
+                      color='gold'
+                      style={{ fontSize: 15 }}
+                    />
+                    {handyman.rating}
+                  </Text>
+                  <Text style={styles.data}>
+                    TotalJobs{'\n'}
+                    {handyman.totalJobs}
+                  </Text>
+                  <Text style={styles.data}>
+                    Rate
+                    {'\n'}
+                    <Rupee
+                      name='rupee'
+                      onPress={() => console.log('back button press')}
+                      color='#333'
+                      style={{ fontSize: 15, fontWeight: 'bold' }}
+                    />
+                    {handyman.rate}
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
         );
       })}
     </View>

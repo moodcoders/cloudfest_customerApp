@@ -89,108 +89,62 @@ const ServicePage = () => {
                 Bengal.
               </Text>
             </View>
-            <View style={{ backgroundColor: '#EDF1FB', height: '95%' }}>
+          </View>
+        </View>
+        <View style={[styles.container, styles.shadowProp]}>
+          {/* Search Icon */}
+          <Feather
+            name='search'
+            size={20}
+            color='#599bd8'
+            style={{ marginLeft: 10 }}
+          />
+          {/* Search Input field */}
+          <TextInput
+            style={styles.serviceInput}
+            placeholder='Service Name'
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+          />
+        </View>
+        <View style={{ backgroundColor: 'transparent' }}>
+          <Text style={styles.subTitle}>
+            Get your work done.{'\n'}Choose Services
+          </Text>
+        </View>
+        <SuggestionServies serviceData={serviceData} />
+        <View>
+          <Modal
+            animationType='slide'
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              setModalVisible(!modalVisible);
+            }}
+          >
+            <View
+              style={[{ marginTop: '20%', backgroundColor: 'transparent' }]}
+            >
               <View
                 style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  paddingLeft: 25,
-                  backgroundColor: 'transparent',
+                  backgroundColor: '#333',
+                  width: 50,
+                  alignSelf: 'center',
+                  borderRadius: 55,
                 }}
               >
-                <Ionicons name='location-sharp' size={40} color='#234c7d' />
-                <View
-                  style={{
-                    flexDirection: 'column',
-                    backgroundColor: 'transparent',
-                  }}
+                <Text
+                  onPress={() => setModalVisible(!modalVisible)}
+                  style={styles.closeBtn}
                 >
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      backgroundColor: 'transparent',
-                    }}
-                  >
-                    <Text style={[styles.textStyle]}>Home</Text>
-                    <AntDesign
-                      onPress={() => setModalVisible(true)}
-                      name='down'
-                      size={24}
-                      color='#234c7d'
-                    />
-                  </View>
-                  <View style={{ backgroundColor: 'transparent' }}>
-                    <Text
-                      ellipsizeMode='tail'
-                      numberOfLines={1}
-                      style={{ width: '50%', color: '#234c7d' }}
-                    >
-                      DC 250, Street 314, New Town, Action Area 1, DC Block,
-                      West Bengal.
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <View style={[styles.container, styles.shadowProp]}>
-                {/* Search Icon */}
-                <Feather
-                  name='search'
-                  size={20}
-                  color='#599bd8'
-                  style={{ marginLeft: 10 }}
-                />
-                {/* Search Input field */}
-                <TextInput
-                  style={styles.serviceInput}
-                  placeholder='Service Name'
-                  onChangeText={onChangeSearch}
-                  value={searchQuery}
-                />
-              </View>
-              <View style={{ backgroundColor: 'transparent' }}>
-                <Text style={styles.subTitle}>
-                  Get your work done.{'\n'}Choose Services
+                  X
                 </Text>
               </View>
-              <SuggestionServies serviceData={serviceData} />
-              <View>
-                <Modal
-                  animationType='slide'
-                  transparent={true}
-                  visible={modalVisible}
-                  onRequestClose={() => {
-                    setModalVisible(!modalVisible);
-                  }}
-                >
-                  <View
-                    style={[
-                      { marginTop: '20%', backgroundColor: 'transparent' },
-                    ]}
-                  >
-                    <View
-                      style={{
-                        backgroundColor: '#333',
-                        width: 50,
-                        alignSelf: 'center',
-                        borderRadius: 55,
-                      }}
-                    >
-                      <Text
-                        onPress={() => setModalVisible(!modalVisible)}
-                        style={styles.closeBtn}
-                      >
-                        X
-                      </Text>
-                    </View>
-                    <View style={styles.modalView}>
-                      <LocationMenu />
-                    </View>
-                  </View>
-                </Modal>
+              <View style={styles.modalView}>
+                <LocationMenu />
               </View>
             </View>
-          </View>
+          </Modal>
         </View>
       </View>
     </SafeAreaView>

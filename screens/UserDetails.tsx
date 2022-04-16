@@ -26,7 +26,7 @@ const getLocation = async () => {
   return await Location.getCurrentPositionAsync({});
 };
 
-const UserDetails = () => {
+const UserDetails = ({ navigation }: any) => {
   const [mobileNumber, setmobileNumber] = useState('');
   const [isValidNumberFlag, setValidNumberFlag] = useState<Boolean>(false);
   const [userLocation, setuserLocation] = useState<Location.LocationObject>();
@@ -65,25 +65,25 @@ const UserDetails = () => {
       </Text>
       <View
         style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(0,0,0,0.22)"
+        lightColor='#eee'
+        darkColor='rgba(0,0,0,0.22)'
       />
       <View style={{ padding: 10 }}>
         <View style={styles.title}>
-          <AntDesign name="user" size={30} color="black" />
+          <AntDesign name='user' size={30} color='black' />
           <Text style={styles.title}>User Details</Text>
         </View>
         <View style={styles.rectangle2}>
           <View style={styles.rectangle3}>
-            <TextInput placeholder="Name" style={styles.inputContainer} />
+            <TextInput placeholder='Name' style={styles.inputContainer} />
           </View>
           <View style={styles.rectangle3}>
             <TextInput
               style={styles.inputContainer}
-              placeholder="Email"
+              placeholder='Email'
               value={email}
               autoCorrect={false}
-              autoCapitalize="none"
+              autoCapitalize='none'
               onChangeText={(value) => {
                 setEmail(value);
                 handleValidEmail(value);
@@ -104,8 +104,8 @@ const UserDetails = () => {
             <View style={[styles.rectangle3, { width: 217.5 }]}>
               <TextInput
                 maxLength={10}
-                placeholder="Phone Number"
-                keyboardType="number-pad"
+                placeholder='Phone Number'
+                keyboardType='number-pad'
                 onChangeText={onChangeHandler}
                 style={styles.inputContainer}
                 value={mobileNumber}
@@ -126,7 +126,7 @@ const UserDetails = () => {
           >
             <Text>Date of Birth</Text>
             <CustomDatePicker
-              defaultDate="1985-01-01"
+              defaultDate='1985-01-01'
               onDateChange={(value: string) => console.log(value)}
             />
           </View>
@@ -135,7 +135,7 @@ const UserDetails = () => {
             <Dropdown />
           </View>
           <View style={styles.rectangle3}>
-            <TextInput placeholder="Address" style={styles.inputContainer} />
+            <TextInput placeholder='Address' style={styles.inputContainer} />
           </View>
           <Text style={[styles.title, { marginTop: '5%' }]}>OR</Text>
 
@@ -147,7 +147,7 @@ const UserDetails = () => {
               alignItems: 'center',
             }}
           >
-            <Ionicons name="location-outline" size={24} color="black" />
+            <Ionicons name='location-outline' size={24} color='black' />
             <Text style={{ fontSize: 18 }}>Set Location</Text>
             <Toggle
               onClick={async () => {
@@ -159,7 +159,10 @@ const UserDetails = () => {
           </View>
         </View>
         <View style={{ alignItems: 'center' }}>
-          <TouchableOpacity style={styles.serviceBtn}>
+          <TouchableOpacity
+            style={styles.serviceBtn}
+            onPress={() => navigation.navigate('Root')}
+          >
             <Text style={styles.btnName}>Next</Text>
           </TouchableOpacity>
         </View>

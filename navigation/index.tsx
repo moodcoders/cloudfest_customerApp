@@ -9,7 +9,7 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ColorSchemeName, Pressable, } from 'react-native';
+import { ColorSchemeName, Pressable } from 'react-native';
 
 import {
   RootStackParamList,
@@ -20,7 +20,6 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ModalScreen from '../screens/ModalScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
 import LinkingConfiguration from './LinkingConfiguration';
 import HomePage from '../screens/HomePage';
 import ServicePage from '../screens/ServicePage';
@@ -28,10 +27,8 @@ import HandymanAvailable from '../screens/HandymanAvailable';
 import MyBooking from '../screens/MyBooking';
 import BookingDetails from '../screens/BookingDetails';
 import UserProfileView from '../screens/UserProfile';
-import useCachedResources from '../hooks/useCachedResources';
 
 // import Settings from '../screens/Settings';
-
 
 import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
 import OtpVerification from '../screens/Authentication/OtpVerification';
@@ -39,6 +36,8 @@ import OauthVerification from '../screens/Authentication/OauthVerification';
 import ChooseLanguage from '../screens/ChooseLanguage';
 import Settings from '../screens/Settings';
 import HomeApplicances from '../screens/HomeApplicances';
+import ProfileView from '../screens/HandymanProfile';
+import UserDetails from '../screens/UserDetails';
 
 interface ctx {
   authState: object;
@@ -88,9 +87,11 @@ function RootNavigator() {
             name='OauthVerification'
             component={OauthVerification}
           />
+          {/* <Stack.Screen name='UserDetails' component={UserDetails} /> */}
         </>
       ) : (
         <>
+          <Stack.Screen name='UserDetails' component={UserDetails} />
           <Stack.Screen
             name='Root'
             component={BottomTabNavigator}
@@ -103,6 +104,7 @@ function RootNavigator() {
           <Stack.Screen name='BookingDetails' component={BookingDetails} />
           <Stack.Screen name='HomeApplicances' component={HomeApplicances} />
           <Stack.Screen name='Settings' component={Settings} />
+          <Stack.Screen name='HandymanProfile' component={ProfileView} />
           <Stack.Screen
             name='NotFound'
             component={NotFoundScreen}

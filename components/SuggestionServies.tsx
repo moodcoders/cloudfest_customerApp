@@ -39,12 +39,12 @@ const Member = (props: MemberProp) => {
   return (
     <View style={{ backgroundColor: 'transparent', alignItems: 'center' }}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('HandymanAvailable' as any)}
+        onPress={() => navigation.navigate('HomeApplicances' as any)}
       >
         <Image source={{ uri: props.img }} style={styles.serviceImage} />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('HandymanAvailable' as any)}
+        onPress={() => navigation.navigate('HomeApplicances' as any)}
       >
         <Text style={styles.serviceName}>{props.name}</Text>
       </TouchableOpacity>

@@ -26,6 +26,8 @@ export type RootStackParamList = {
   HandymanAvailable: undefined;
   HomeApplicances: undefined;
   Settings: undefined;
+  HandymanProfile: undefined;
+  UserDetails: undefined;
   Modal: undefined;
   NotFound: undefined;
 };
