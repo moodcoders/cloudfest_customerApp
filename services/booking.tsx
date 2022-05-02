@@ -5,7 +5,7 @@ const APP_SERVICE='https://app-service-ffptpmrzya-el.a.run.app';
 export async function getBookingsForUser(userId: string) {
   try {
     const response = await fetch(
-      `${AUTH_SERVICE}/?id=${userId}`,
+      `${APP_SERVICE}/v1/bookings/?id=${userId}`,
       {
         method: 'GET',
         headers: {

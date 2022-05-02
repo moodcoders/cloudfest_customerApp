@@ -51,7 +51,7 @@ export default function useCachedResources() {
           ...prevState,
           userToken: null,
           isLoadingComplete: false,
-          currentLanguage: null
+          // currentLanguage: null
         }
       default:
         throw new Error();

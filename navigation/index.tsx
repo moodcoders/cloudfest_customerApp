@@ -94,7 +94,7 @@ function RootNavigator() {
         </>
       ) : (
         <>
-          <Stack.Screen name='UserDetails' component={UserDetails} />
+          {/* <Stack.Screen name='UserDetails' component={UserDetails} /> */}
           <Stack.Screen
             name='Root'
             component={BottomTabNavigator}
