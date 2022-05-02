@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import { Display } from '../constants';
-import { generateOtpAPI } from '../services/otp';
+import { AUTH_SERVICE, generateOtpAPI } from '../services/otp';
 import IndianFlag from '../assets/images/india.png';
 import Google from '../assets/images/google.png';
 import { AuthContext } from '../constants/Context';
@@ -48,7 +48,7 @@ const NumberVerification = ({ navigation }: any) => {
   }
 
   function handleOnPress() {
-    openBrowserAsync('http://moodcoders.ddns.net:4000/auth/google/login');
+    openBrowserAsync(`${AUTH_SERVICE}/auth/google/login`);
   }
 
   /**onPressCheck is navigating the user to OtpVerification page by checking the
