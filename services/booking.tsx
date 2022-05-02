@@ -1,7 +1,11 @@
+import { AUTH_SERVICE } from './otp';
+
+const APP_SERVICE='https://app-service-ffptpmrzya-el.a.run.app';
+
 export async function getBookingsForUser(userId: string) {
   try {
     const response = await fetch(
-      `http://192.168.1.25:4001/v1/bookings/?id=${userId}`,
+      `${AUTH_SERVICE}/?id=${userId}`,
       {
         method: 'GET',
         headers: {
@@ -19,7 +23,7 @@ export async function getBookingsForUser(userId: string) {
 export async function getBookingDetails(bookingId: string) {
   try {
     const response = await fetch(
-      `http://192.168.1.25:4001/v1/booking/?id=${bookingId}`,
+      `${APP_SERVICE}/v1/booking/?id=${bookingId}`,
       {
         method: 'GET',
         headers: {

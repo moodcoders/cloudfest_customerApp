@@ -1,9 +1,10 @@
 import { profileDataType } from "../screens/UserProfile";
+import { AUTH_SERVICE } from './otp';
 
 export async function getProfileDetails(id: string | null) {
   try {
     const response = await fetch(
-      `http://192.168.1.25:4000/auth/customer/?id=${id}`,
+      `https://https://auth-service-ffptpmrzya-el.a.run.app/auth/customer/?id=${id}`,
       {
         method: 'GET',
         headers: {
@@ -21,7 +22,7 @@ export async function getProfileDetails(id: string | null) {
 export async function saveProfileDetails(id: string | null, profileData: any) {
   try {
     const response = await fetch(
-      `http://192.168.1.25:4000/auth/customer/update/?id=${id}`,
+      `${AUTH_SERVICE}/auth/customer/update/?id=${id}`,
       {
         method: 'PATCH',
         headers: {

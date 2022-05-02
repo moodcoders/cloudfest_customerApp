@@ -1,11 +1,11 @@
-const AUTH_API = 'http://192.168.1.25:4000';
+export const AUTH_SERVICE = 'https://auth-service-ffptpmrzya-el.a.run.app';
 import { notifyMessage } from '../constants/NotifyMessage';
 import * as SecureStore from 'expo-secure-store';
 
 /**generateOtpAPI is generating OTP for the user */
 export const generateOtpAPI = async (mobileNumber: string) => {
   try {
-    const response = await fetch(`${AUTH_API}/auth/userOtp/generate-otp`, {
+    const response = await fetch(`${AUTH_SERVICE}/auth/userOtp/generate-otp`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -27,7 +27,7 @@ export const generateOtpAPI = async (mobileNumber: string) => {
 /**validateOtp is generating token for the user */
 export const validateOtp = async (mobileNumber: string, otp: string) => {
   try {
-    const response = await fetch(`${AUTH_API}/auth/userOtp/userlogin`, {
+    const response = await fetch(`${AUTH_SERVICE}/auth/userOtp/userlogin`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
